@@ -1,0 +1,52 @@
+# BOKKO — Netlify configuration
+#
+# Put this file at the ROOT of the site repo (same level as index.html).
+# If you already have a netlify.toml, just copy the [[redirects]] blocks
+# into it — order matters, keep the media rule first.
+
+# 1. Real files under /portfolio/media/ are served as-is.
+#    (Netlify already prefers existing files over 200-redirects, but being
+#     explicit here means a future "force" rule can't accidentally swallow
+#     the video files.)
+[[redirects]]
+  from = "/portfolio/media/*"
+  to = "/portfolio/media/:splat"
+  status = 200
+
+# 2. /portfolio or /portfolio/ with no client code — send to the homepage
+#    rather than showing the page's generic fallback content. Must come
+#    before the catch-all /portfolio/* rule below, since that would
+#    otherwise match these too (an empty splat still matches "*"). force
+#    is required here because /portfolio/index.html is a real file, and
+#    Netlify prefers serving an existing file over a plain redirect rule.
+[[redirects]]
+  from = "/portfolio"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/portfolio/"
+  to = "/"
+  status = 301
+  force = true
+
+# 3. Every other /portfolio/<anything> URL serves the portfolio page.
+#    The page reads the code out of the URL and looks it up in Firestore,
+#    so bokko.co/portfolio/AWC1 needs no build step and no new file.
+[[redirects]]
+  from = "/portfolio/*"
+  to = "/portfolio/index.html"
+  status = 200
+
+# Client links shouldn't turn up in Google.
+[[headers]]
+  for = "/portfolio/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+# Long cache on the video files — their names are unique per upload.
+[[headers]]
+  for = "/portfolio/media/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

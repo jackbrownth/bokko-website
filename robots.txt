@@ -1,0 +1,49 @@
+# BOKKO — robots.txt
+# Allows standard search engines and AI answer-engine crawlers to read and
+# cite this site. If you ever want to block a specific bot, add a
+# "User-agent: <bot>" / "Disallow: /" block for it above the final "Allow: /".
+
+User-agent: *
+Allow: /
+
+# --- AI / LLM answer-engine crawlers (explicitly allowed) ---
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+Sitemap: https://bokko.co/sitemap.xml
