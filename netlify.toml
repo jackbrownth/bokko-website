@@ -40,6 +40,15 @@
   to = "/portfolio/index.html"
   status = 200
 
+# ----------------------------------------------------------- Link previews
+# Gives each /portfolio/<code> link its own preview title, description and
+# image when it is sent in iMessage, LINE, WhatsApp and similar. The code is
+# in netlify/edge-functions/portfolio-preview.js.
+[[edge_functions]]
+  path = "/portfolio/*"
+  excludedPath = "/portfolio/media/*"
+  function = "portfolio-preview"
+
 # ------------------------------------------------------------------ Headers
 
 # Client proposal links and the admin should not appear in search results.
