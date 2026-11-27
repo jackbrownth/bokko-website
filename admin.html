@@ -755,7 +755,7 @@ body.pf-unsaved .pf-dirty{display:inline}
         <h2>Video wall <span class="pf-count" id="pf_clipCount"></span></h2>
         <p class="hint">The main event. Pick clips from your Client Work library. Drag the ⠿ handle to reorder — whatever sits at the top is what the client sees before scrolling. Five per row on desktop, so 5, 10 or 15 looks tidiest.</p>
         <label>Section heading</label>
-        <input class="input" id="pf_reelsHeading" placeholder="Our work, in motion.">
+        <textarea class="input" id="pf_reelsHeading" rows="2" placeholder="Our work, in motion."></textarea>
         <label>Section subtext</label>
         <textarea class="input" id="pf_reelsSub" rows="2"></textarea>
         <label>Clips shown before the &ldquo;Load more&rdquo; button <span class="small">(5 per row on desktop)</span></label>
@@ -784,7 +784,7 @@ body.pf-unsaved .pf-dirty{display:inline}
           </div>
           <div>
             <label>Sub-line</label>
-            <input class="input" id="pf_approachSub" placeholder="A first read on the brief.">
+            <textarea class="input" id="pf_approachSub" rows="4" placeholder="A first read on the brief."></textarea>
           </div>
         </div>
         <label>Heading</label>
@@ -2950,7 +2950,7 @@ const DEFAULT_SECTION_ORDER = [
   'services','pricing','performanceMeasurement','includedExcluded','eventsActivations',
   'contentPillars','roadmap','partnership','mediaInvestment','audienceStrategy',
   'searchIntent','creatorMarketing','reviewPanels','branchPlans',
-  'properties','gallery','showcase','deliverables','productionLogistics','groupInvestment','terms','trust'
+  'properties','gallery','showcase','deliverables','productionLogistics','groupInvestment','addOns','terms','trust'
 ];
 const SECTION_ORDER_LABELS = {
   showreel:'Showreel', work:'Production Samples', results:'Selected Results', approach:'Tailored Section',
@@ -2962,7 +2962,7 @@ const SECTION_ORDER_LABELS = {
   audienceStrategy:'Audience Strategy', searchIntent:'Search & High-Intent Media',
   creatorMarketing:'Creator Marketing', reviewPanels:'Review Panels (expandable)',
   branchPlans:'Branch / Location Plans', trust:'Trusted By & Testimonials',
-  properties:'Properties (chapters)', gallery:'Image Gallery', showcase:'Creative Showcase', deliverables:'Deliverables Table',
+  properties:'Properties (chapters)', addOns:'Optional Add-ons', gallery:'Image Gallery', showcase:'Creative Showcase', deliverables:'Deliverables Table',
   productionLogistics:'Production Logistics', groupInvestment:'Group Investment', terms:'Partnership Terms'
 };
 // Where a key has a sections.<key> toggle, this maps it to that checkbox's
@@ -2977,7 +2977,7 @@ const SECTION_ORDER_TOGGLE_ID = {
   partnership:'pf_sec_partnership', mediaInvestment:'pf_sec_mediaInvestment', audienceStrategy:'pf_sec_audienceStrategy',
   searchIntent:'pf_sec_searchIntent', creatorMarketing:'pf_sec_creatorMarketing',
   reviewPanels:'pf_sec_reviewPanels', branchPlans:'pf_sec_branchPlans',
-  properties:'pfx_sec_properties', gallery:'pfx_sec_gallery', showcase:'pfx_sec_showcase', deliverables:'pfx_sec_deliverables',
+  properties:'pfx_sec_properties', addOns:'pfx_sec_addOns', gallery:'pfx_sec_gallery', showcase:'pfx_sec_showcase', deliverables:'pfx_sec_deliverables',
   productionLogistics:'pfx_sec_productionLogistics', groupInvestment:'pfx_sec_groupInvestment', terms:'pfx_sec_terms'
 };
 
@@ -4734,7 +4734,7 @@ document.getElementById('pf_importCsBtn').onclick = openCaseStudyPicker;
    English shows up here after Save.
    ============================================================ */
 const PF_TH_SKIP = ['id','slug','slugLower','name','thDict','thEnabled','anchor','url','poster','image','link','bannerImage','approachImage','logosImage','showreelUrl','showreelPoster','ogImage','ogTitle','ogDescription','cat','testimonials','sectionOrder','sections','views','lastViewed','createdAt','updatedAt','image2','logo','kind','ctaSubject','video','alt'];
-const PF_TH_MODULES = ['opportunity','strategy','marketingSystem','performanceMeasurement','includedExcluded','eventsActivations','contentPillars','roadmap','partnership','mediaInvestment','audienceStrategy','searchIntent','creatorMarketing','reviewPanels','branchPlans','properties','gallery','showcase','deliverables','productionLogistics','groupInvestment','terms'];
+const PF_TH_MODULES = ['opportunity','strategy','marketingSystem','performanceMeasurement','includedExcluded','eventsActivations','contentPillars','roadmap','partnership','mediaInvestment','audienceStrategy','searchIntent','creatorMarketing','reviewPanels','branchPlans','properties','gallery','showcase','deliverables','productionLogistics','groupInvestment','addOns','terms'];
 let pfThaiRowsList = [];   // English strings, in display order
 let pfThaiSavedMap = {};   // en -> th as last saved on this portfolio
 
@@ -4861,6 +4861,20 @@ const PFX_MODULES = [
     ]],
     ['note', 'text', 'Note under the artworks']
   ]) },
+  { key: 'addOns', label: 'Optional add-ons', hint: 'priced extras shown as cards', fields: PFX_HEAD.concat([
+    ['sub', 'area', 'Intro'],
+    ['items', 'list', 'Add-on', [
+      ['tag', 'text', 'Small label (e.g. who it is for)'],
+      ['title', 'text', 'Title'],
+      ['price', 'text', 'Price'],
+      ['unit', 'text', 'What the price covers (e.g. One-off, per hotel)'],
+      ['price2', 'text', 'Second price (optional)'],
+      ['unit2', 'text', 'What the second price covers'],
+      ['body', 'area', 'Description'],
+      ['points', 'area', 'Points, one per line']
+    ]],
+    ['note', 'area', 'Note under the cards (optional)']
+  ]) },
   { key: 'deliverables', label: 'Deliverables table', hint: '', fields: PFX_HEAD.concat([
     ['sub', 'area', 'Intro'],
     ['cols', 'cols', 'Column headings (separated by |)'],
@@ -4886,6 +4900,15 @@ const PFX_MODULES = [
     ['offerUnit', 'text', 'Group rate: unit (e.g. Per month)'],
     ['offerTitle', 'text', 'Group rate: line under the price'],
     ['offerPoints', 'lines', 'Group rate: what is included (one per line)'],
+    ['offers', 'list', 'Option shown side by side (two or three; when used, they replace the single group rate above)', [
+      ['label', 'text', 'Label (e.g. Six-month partnership)'],
+      ['badge', 'text', 'Small pink tag (optional, e.g. Preferred rate)'],
+      ['price', 'text', 'Price'],
+      ['unit', 'text', 'Unit (e.g. Per month)'],
+      ['title', 'text', 'Line under the price (optional)'],
+      ['points', 'area', 'Points, one per line']
+    ]],
+    ['offersNote', 'area', 'Line under the options (what both include)'],
     ['compareTitle', 'text', 'Comparison: heading'],
     ['compareCols', 'cols', 'Comparison: column headings (the last column is shown in pink)'],
     ['compareRows', 'table', 'Comparison: rows'],
