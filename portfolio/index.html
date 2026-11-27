@@ -7,7 +7,7 @@
 <meta name="description" content="BOKKO: in-house hospitality video production, social management and performance advertising for hotels, resorts and lifestyle destinations.">
 <meta property="og:title" content="BOKKO — Hospitality Content &amp; Performance">
 <meta property="og:description" content="In-house video production, social management and performance advertising for hotels, resorts and lifestyle destinations.">
-<meta property="og:image" content="https://bokko.co/portfolio/media/chon-01.jpg">
+<meta property="og:image" content="https://bokko.co/poster.jpg">
 <meta name="robots" content="noindex">
 <style>
 :root{
@@ -41,7 +41,7 @@ button{font:inherit;cursor:pointer}
 .mark.has-logo{background:none;box-shadow:none}
 .logo strong{display:block;letter-spacing:.24em;font-size:17px;line-height:1}
 .logo span{display:block;margin-top:4px;color:var(--muted);font-size:9px;letter-spacing:.11em;text-transform:uppercase}
-.navlinks{display:flex;gap:2px;align-items:center}
+.navlinks{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:2px 4px;align-items:center}
 .navlinks a{color:rgba(6,47,61,.74);font-size:13px;font-weight:900;padding:10px 11px;border-radius:999px;text-decoration:none;white-space:nowrap}
 .navlinks a:hover{background:rgba(6,47,61,.06)}
 .navcta{background:var(--deep)!important;color:#fff!important}
@@ -96,6 +96,24 @@ h3{margin:0;font-size:17px;letter-spacing:-.02em}
 /* ---- hero banner (optional, per-portfolio) ---- */
 .pfbanner{position:relative;width:100%;height:min(86vh,780px);min-height:440px;overflow:hidden;background:var(--deep)}
 .pfbanner-media{position:absolute;inset:0;background-size:cover;background-position:center}
+/* A banner that is far wider than the band it sits in is a wordmark or a
+   logo lockup, not a photograph. Cropping one to fill a portrait phone
+   screen throws away most of it, so those are shown whole instead, on a
+   shorter band. Photographs are unaffected — see BANNER_WIDE_RATIO. */
+.pfbanner.is-wide{height:auto;min-height:0;background:var(--deep)}
+/* Sized as a masthead rather than a hero: a wordmark blown up to hero
+   height is just a large empty field. Height is capped so the lockup reads
+   clearly and the page gets to its first line of copy quickly. */
+.pfbanner.is-wide .pfbanner-media{position:relative;inset:auto;width:100%;
+  height:clamp(170px,24vh,260px);
+  background-size:contain;background-repeat:no-repeat;background-position:center;
+  background-color:#fff}
+.pfbanner.is-wide .pfbanner-shade{display:none}
+.pfbanner.is-wide .pfbanner-inner{position:relative;padding-top:34px;padding-bottom:40px}
+@media(max-width:720px){
+  .pfbanner.is-wide .pfbanner-media{height:clamp(110px,16vh,160px)}
+  .pfbanner.is-wide .pfbanner-inner{padding-top:24px;padding-bottom:28px}
+}
 .pfbanner-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,47,61,.18) 0%,rgba(6,47,61,.32) 45%,rgba(6,47,61,.88) 100%)}
 .pfbanner-inner{position:absolute;left:0;right:0;bottom:0;padding-bottom:46px}
 .pfbanner-inner .eyebrow{color:#fff;background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.28)}
@@ -131,7 +149,7 @@ h3{margin:0;font-size:17px;letter-spacing:-.02em}
    carousel — same manual scroll-snap pattern as .work-scroll/.work-card on
    the main site, not an auto-scrolling marquee, since these cards are tappable. */
 @media(max-width:720px){
-  .wall{display:flex;gap:10px;overflow-x:auto;-webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory;padding:2px 2px 4px}
+  .wall{display:flex;gap:10px;overflow-x:auto;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity;scroll-padding-left:22px;padding:2px 2px 4px}
   .wall::-webkit-scrollbar{display:none}
   .vcard{flex:0 0 82%;scroll-snap-align:start}
 }
@@ -212,6 +230,19 @@ h3{margin:0;font-size:17px;letter-spacing:-.02em}
 @media (prefers-reduced-motion:reduce){.reel:hover{transform:none}}
 
 .wallnote{margin-top:18px;color:var(--muted);font-size:13px;line-height:1.6}
+
+/* Horizontal strips (video wall, results, testimonials) are nested scrollers.
+   Without containment iOS chains the swipe up to the document, so dragging a
+   clip sideways drags the whole page with it and nothing feels anchored.
+   `clip` rather than `hidden` so the sticky nav keeps working. */
+html,body{overflow-x:clip}
+.wall,.results,.trail{overscroll-behavior-x:contain}
+/* overscroll-behavior alone did not stop iOS sliding the whole page when a
+   swipe began on one of the strips. Restricting the document to vertical
+   panning does, while pinch-zoom stays available and the strips opt back
+   into horizontal gestures for themselves. */
+body{touch-action:pan-y pinch-zoom}
+.wall,.results,.trail{touch-action:pan-x pinch-zoom}
 @media(max-width:560px){
   .vmeta b{font-size:12.5px}
   .vmeta i{font-size:9.5px;letter-spacing:.05em}
@@ -244,6 +275,13 @@ h3{margin:0;font-size:17px;letter-spacing:-.02em}
 .rcard h3{margin:7px 0 0}
 .big{display:block;margin-top:12px;font-size:clamp(21px,2.4vw,27px);letter-spacing:-.05em;line-height:1.05}
 .rcard p{margin:8px 0 0;color:var(--muted);font-size:13px;line-height:1.6;text-wrap:pretty}
+/* Optional case-study link on a results tile. Tiles without a `link`
+   field render exactly as before, so existing portfolios are untouched. */
+.rcard .rlink{display:inline-flex;align-items:center;gap:6px;margin-top:12px;
+  color:var(--aquad);font-size:12px;font-weight:900;letter-spacing:.02em;text-decoration:none}
+.rcard .rlink:hover{text-decoration:underline}
+.rcard .rlink span{transition:transform .18s}
+.rcard .rlink:hover span{transform:translateX(3px)}
 .swipehint{display:none;color:var(--muted);font-size:12.5px;margin:14px 0 0}
 
 .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
@@ -257,10 +295,24 @@ h3{margin:0;font-size:17px;letter-spacing:-.02em}
 .pfee strong{font-size:19px;letter-spacing:-.03em;margin-top:3px}
 .pfee.total strong{color:var(--pink)}
 .pcard p{margin:14px 0 0;color:var(--muted);font-size:13px;line-height:1.6;text-wrap:pretty}
-.pricingnote{color:var(--muted);font-size:12.5px;line-height:1.6;margin:18px 0 0}
+.pricingnote{color:var(--muted);font-size:12.5px;line-height:1.6;margin:18px 0 0;white-space:pre-line}
+/* Optional per-package extras (phase 2, batch B). All additive — a package
+   with none of these fields renders exactly as it did before. */
+.pcard{position:relative}
+.pcard.featured{border-color:var(--pink);box-shadow:0 20px 50px rgba(255,79,175,.18)}
+.pcard-featured-badge{position:absolute;top:-11px;left:20px;background:var(--pink);color:#fff;
+  font-size:10px;font-weight:900;letter-spacing:.05em;text-transform:uppercase;padding:5px 10px;border-radius:999px}
+.pcard .pill-row{margin-bottom:14px}
+.pcard-scope{margin-top:14px}
+.pcard-scope h4{margin:0 0 6px;font-size:11px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;color:var(--aquad)}
+.pcard-scope ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.pcard-scope li{position:relative;padding-left:16px;font-size:12.5px;line-height:1.5;color:var(--muted)}
+.pcard-scope li::before{content:"";position:absolute;left:0;top:6px;width:6px;height:6px;border-radius:50%;background:var(--aqua)}
+.pcard .price-note{margin-top:14px}
+.pricing-grid.solo{grid-template-columns:1fr;max-width:640px;margin-left:auto;margin-right:auto}
 @media(max-width:720px){
   /* A four-tile stack is a long scroll on a phone. Swipe reads better. */
-  .results{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;
+  .results{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x proximity;
     -webkit-overflow-scrolling:touch;scrollbar-width:none;
     padding:2px 22px 10px 0;margin-right:-22px}
   .results::-webkit-scrollbar{display:none}
@@ -284,6 +336,93 @@ h3{margin:0;font-size:17px;letter-spacing:-.02em}
 .fcard h3{color:#fff;font-size:16px}
 .fcard p{margin:10px 0 0;color:rgba(255,255,255,.8);font-size:13.5px;line-height:1.66;text-wrap:pretty}
 .fcard .n{display:block;color:var(--aqua);font-size:11px;font-weight:900;letter-spacing:.09em;text-transform:uppercase;margin-bottom:9px}
+.fit-callout{margin-top:28px;border:1px solid rgba(255,79,175,.5);background:rgba(255,79,175,.14);
+  border-radius:20px;padding:20px 24px;text-align:center}
+.fit-callout strong{display:block;color:#fff;font-size:clamp(17px,2.6vw,23px);letter-spacing:-.03em;line-height:1.3}
+@media(max-width:560px){.fit-callout{padding:16px 18px;border-radius:16px}}
+
+/* ---- marketing system diagram (phase 2, batch C rebuild; polished in
+   batch F; unified into one dark panel in batch G) — a premium sales
+   visual, not a flowchart: the whole thing (badge, heading, both paths,
+   outcome, optimisation) sits inside one dark BOKKO container so it reads
+   as one connected system rather than several boxes floating on the page.
+   Related to the Closing CTA's dark treatment but deliberately not
+   identical — a different gradient angle/endpoint and no heavy shadow,
+   since this is a strategic panel, not a call to action. No animation. */
+.ms-panel{background:linear-gradient(160deg,var(--deep) 0%,#052a37 55%,#03181f 100%);
+  border-radius:32px;padding:48px 44px;color:#fff}
+.ms-panel .head{margin-bottom:20px}
+.ms-panel .eyebrow{color:#bff6fd;background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.22)}
+.ms-panel h2{color:#fff}
+@media(max-width:640px){.ms-panel{padding:30px 20px;border-radius:24px}}
+
+.ms{margin-top:20px}
+.ms-desktop{display:none}
+.ms-mobile{display:flex;flex-direction:column;gap:8px;max-width:480px;margin:0 auto}
+@media(min-width:860px){.ms-desktop{display:block}.ms-mobile{display:none}}
+
+.ms-cols{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+.ms-path{display:flex;flex-direction:column}
+.ms-path-head{min-height:64px}
+.ms-eyebrow-label{color:rgba(255,255,255,.62);font-size:11px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;text-align:center}
+/* Source boxes: a light, translucent panel — an input into the channel
+   below, not a standalone card competing with it. */
+.ms-source{margin-top:8px;display:flex;align-items:center;justify-content:center;min-height:44px;
+  text-align:center;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.2);border-radius:14px;
+  padding:9px 14px;font-weight:900;font-size:12.5px;color:#fff}
+/* Connectors: a slim line with a small arrowhead reads as "flowing into
+   the next stage" without looking like a technical flowchart arrow. */
+.ms-arrow{display:flex;align-items:center;justify-content:center;width:26px;height:26px;margin:7px auto 0;
+  border-radius:50%;background:rgba(0,196,216,.16);border:1px solid rgba(0,196,216,.4);
+  color:var(--aqua);font-size:12px;font-weight:900}
+/* Three-layer internal hierarchy:
+   1. h4 — the channel GROUP (Paid Social / Google). Largest, strongest.
+   2. .ms-chips — the PLATFORM/SOURCE layer (Meta+TikTok, or Google's
+      Search/Maps/High-intent mechanisms). Small, decorative, chip-shaped —
+      the same treatment on both sides so they read as the same kind of
+      information.
+   3. .ms-actions — the COMMERCIAL-ROLE layer (what the channel actually
+      does). Deliberately NOT another chip: a quiet, left-aligned, bulleted
+      list, set off from the chips above by a hairline divider, so it reads
+      as supporting copy rather than another tag. Only Paid Social has this
+      layer today (Google's three items are mechanisms, i.e. layer 2, not
+      actions) — a card with nothing for a layer just doesn't render it.
+   Paid Social is a translucent "glass" panel rather than the same solid
+   dark tone as the outer container (the two would otherwise be visually
+   indistinguishable); Google keeps its solid teal so the two panels read
+   as equally weighted despite the different treatment. */
+.ms-channel{border-radius:20px;padding:22px 18px;text-align:center}
+.ms-channel h4{margin:0;font-size:17px;letter-spacing:.03em;text-transform:uppercase;font-weight:900;color:#fff}
+.ms-channel.meta{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16)}
+.ms-channel.google{background:var(--aquad)}
+.ms-chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:9px}
+.ms-chips span{font-size:10px;font-weight:900;letter-spacing:.05em;text-transform:uppercase;color:#fff;
+  background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.36);border-radius:999px;padding:4px 11px}
+.ms-actions{margin-top:15px;padding-top:13px;border-top:1px solid rgba(255,255,255,.18);
+  display:inline-flex;flex-direction:column;gap:8px;text-align:left}
+.ms-action-row{display:flex;align-items:flex-start;gap:8px;font-size:12.5px;font-weight:700;
+  color:rgba(255,255,255,.92);line-height:1.4}
+.ms-action-row .dot{flex:0 0 auto;width:5px;height:5px;border-radius:50%;background:var(--aqua);margin-top:5px}
+.ms-arrows-in{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:4px}
+.ms-arrows-in .ms-arrow{margin-top:0}
+/* Outcome bar: the payoff — kept pink, strong against the dark panel. */
+.ms-outcome{margin-top:2px;background:linear-gradient(135deg,var(--pink),#ff77c2);color:#fff;text-align:center;
+  border-radius:20px;padding:20px 24px;font-size:17px;font-weight:900;letter-spacing:.04em;text-transform:uppercase;
+  box-shadow:0 16px 36px rgba(255,79,175,.32)}
+/* Optimisation strip: a compact, clearly secondary panel — not the
+   previous plain leftover text, and not the old large dashed loop
+   container. */
+.ms-optimise{margin-top:14px;max-width:420px;margin-left:auto;margin-right:auto;text-align:center;
+  background:rgba(255,255,255,.07);border:1px solid rgba(0,196,216,.35);border-radius:16px;padding:12px 18px}
+.ms-optimise-label{display:block;color:rgba(255,255,255,.66);font-size:10.5px;font-weight:900;letter-spacing:.05em;text-transform:uppercase}
+.ms-optimise-items{display:block;margin-top:4px;color:#fff;font-size:13px;font-weight:900}
+
+.ms-mobile .ms-source{margin-top:6px}
+.ms-mobile .ms-channel{padding:18px 16px;margin-top:6px}
+.ms-mobile .ms-actions{margin-top:13px;padding-top:11px}
+.ms-mobile .ms-eyebrow-label{margin-top:12px}
+.ms-mobile .ms-eyebrow-label:first-child{margin-top:0}
+.ms-mobile .ms-optimise{margin-top:12px}
 
 .ways{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media(max-width:860px){.ways{grid-template-columns:1fr}}
@@ -305,14 +444,158 @@ h3{margin:0;font-size:17px;letter-spacing:-.02em}
 .way li::before{content:"";position:absolute;left:0;top:7px;width:9px;height:9px;border-radius:50%;
   background:var(--aqua);box-shadow:0 0 0 4px rgba(0,196,216,.14)}
 .way.lead li::before{box-shadow:0 0 0 4px rgba(0,196,216,.22)}
+.way.excl li::before{background:var(--pink);box-shadow:0 0 0 4px rgba(255,79,175,.14)}
 .wayfoot{margin:20px 0 0;padding-top:16px;border-top:1px solid var(--line);font-size:13px;
   line-height:1.6;color:var(--muted)}
 .way.lead .wayfoot{border-top-color:rgba(255,255,255,.18);color:rgba(255,255,255,.72)}
 
+/* ---- optional section modules (phase 1) ---- */
+.examples{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:26px}
+@media(max-width:760px){.examples{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:460px){.examples{grid-template-columns:1fr}}
+.example{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px 18px;font-weight:900;
+  font-size:13px;letter-spacing:-.005em;color:var(--deep);box-shadow:0 10px 26px rgba(6,47,61,.06);
+  display:flex;align-items:center;gap:10px;line-height:1.35}
+.example::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--pink);
+  box-shadow:0 0 0 4px rgba(255,79,175,.14);flex:0 0 auto}
+
+/* ---- optional section modules (phase 2, batch 2) ---- */
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}
+@media(max-width:900px){.pillars{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.pillars{grid-template-columns:1fr}}
+.pillar{background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px 20px;box-shadow:0 12px 30px rgba(6,47,61,.07)}
+.pillar h3{font-size:14px;letter-spacing:.05em;text-transform:uppercase;color:var(--aquad);font-weight:900}
+.pillar p{margin:10px 0 0;color:var(--deep);font-size:14.5px;line-height:1.55}
+.pillar-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.pillar-tags span{font-size:10px;font-weight:900;letter-spacing:.02em;color:var(--aquad);
+  background:rgba(0,196,216,.1);border:1px solid rgba(0,196,216,.2);border-radius:999px;padding:5px 9px}
+
+.roadmap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+@media(max-width:900px){.roadmap-grid{grid-template-columns:1fr}}
+.rmcard{background:#fff;border:1px solid var(--line);border-radius:22px;padding:24px 22px;box-shadow:0 14px 34px rgba(6,47,61,.08)}
+.rmcard .n{color:var(--aquad);font-size:10.5px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+.rmcard h3{margin:8px 0 0;font-size:17px;letter-spacing:-.02em;line-height:1.32}
+.rmcard p{margin:10px 0 0;color:var(--muted);font-size:13.5px;line-height:1.6}
+.rmcompound{margin-top:16px;background:linear-gradient(135deg,var(--deep),var(--deep2));color:#fff;border-radius:22px;padding:24px 26px}
+.rmcompound .n{color:#bff6fd}
+.rmcompound h3{color:#fff;font-size:17px}
+.rmcompound p{color:rgba(255,255,255,.85);margin:10px 0 0;font-size:13.5px;line-height:1.6}
+
+.price-hero{background:#fff;border:1px solid var(--line);border-radius:28px;padding:36px 32px;box-shadow:0 20px 50px rgba(6,47,61,.1);margin-top:28px}
+@media(max-width:640px){.price-hero{padding:26px 20px;border-radius:22px}}
+.pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.pill-row span{border:1px solid var(--line);background:var(--ice);color:var(--deep);border-radius:999px;
+  padding:7px 13px;font-size:11px;font-weight:900;letter-spacing:.03em}
+.price-hero h3{font-size:clamp(20px,2.6vw,26px);letter-spacing:-.02em}
+.price-hero > p{margin:14px 0 0;color:var(--muted);font-size:14.5px;line-height:1.64;text-wrap:pretty;max-width:70ch}
+/* Matches the standalone Tulum page's larger fee display. Scoped to
+   .price-hero only — the shared .pfees/.pfee rule above (used by the
+   existing multi-package pricing grid) is untouched. .price-hero exists
+   nowhere else in this template, so this cannot leak into that grid. */
+.price-hero .pfees{gap:16px 26px;margin-top:24px}
+.price-hero .pfee span{font-size:10.5px}
+.price-hero .pfee strong{font-size:22px;margin-top:4px}
+.price-note{margin-top:16px;padding:14px 16px;background:rgba(0,196,216,.08);border:1px solid rgba(0,196,216,.18);
+  border-radius:14px;font-size:13px;line-height:1.62;color:var(--deep);white-space:pre-line}
+.price-note strong{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--aquad);margin-bottom:4px}
+
+.media-card{background:#fff;border:1px solid var(--line);border-radius:26px;padding:30px 28px;box-shadow:0 16px 40px rgba(6,47,61,.08);margin-top:28px}
+@media(max-width:640px){.media-card{padding:22px 18px;border-radius:20px}}
+.media-headline{font-size:clamp(24px,3.6vw,34px);letter-spacing:-.03em;line-height:1.05;color:var(--deep)}
+.media-card > p{margin:14px 0 0;color:var(--muted);font-size:14.5px;line-height:1.64;max-width:70ch}
+.media-banner{margin-top:22px;text-align:center;border:1px solid rgba(0,196,216,.3);background:rgba(0,196,216,.09);
+  border-radius:16px;padding:12px 16px;font-size:12px;font-weight:900;letter-spacing:.05em;text-transform:uppercase;color:var(--aquad)}
+
+/* ---- optional section modules (phase 2, batch 3) ---- */
+.astrat{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:28px}
+@media(max-width:760px){.astrat{grid-template-columns:1fr}}
+.acard{background:#fff;border:1px solid var(--line);border-radius:22px;padding:26px 24px;box-shadow:0 14px 34px rgba(6,47,61,.08)}
+.acard .n{display:block;color:var(--aquad);font-size:11px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px}
+.acard h3{font-size:18px;letter-spacing:-.02em;line-height:1.32}
+.acard p{margin:10px 0 0;color:var(--muted);font-size:13.5px;line-height:1.62}
+
+.intent-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:28px}
+@media(max-width:1000px){.intent-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:640px){.intent-grid{grid-template-columns:repeat(2,1fr)}}
+.intent-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px 16px;box-shadow:0 12px 30px rgba(6,47,61,.07)}
+.intent-card h3{font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--deep);font-weight:900}
+.intent-card p{margin:8px 0 0;color:var(--muted);font-size:12.5px;line-height:1.5}
+.split-callout{margin-top:26px;text-align:center;border:1px solid rgba(0,196,216,.28);background:rgba(0,196,216,.08);
+  border-radius:20px;padding:18px 22px}
+.split-callout strong{display:block;font-size:clamp(15px,2vw,18px);letter-spacing:-.01em;line-height:1.5;color:var(--deep)}
+
+/* ---- review panels: expandable audit categories ---- */
+.rvlist{display:grid;gap:12px;margin-top:28px}
+.rv{background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:0 12px 30px rgba(6,47,61,.07)}
+.rv summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:16px;align-items:center;padding:20px 24px}
+.rv summary::-webkit-details-marker{display:none}
+.rv .rvhead{min-width:0}
+.rv .n{display:block;color:var(--aquad);font-size:10.5px;font-weight:900;letter-spacing:.09em;text-transform:uppercase;margin-bottom:6px}
+.rv h3{margin:0;font-size:clamp(16px,1.7vw,19px);letter-spacing:-.03em;line-height:1.2;color:var(--deep)}
+.rv .lead{margin:5px 0 0;color:var(--muted);font-size:13.5px;line-height:1.5;text-wrap:pretty}
+.rv .chev{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;
+  color:var(--deep);font-size:20px;line-height:1;transition:.25s;flex:0 0 auto;background:#fff}
+.rv summary:hover .chev{border-color:var(--aqua)}
+.rv[open] .chev{transform:rotate(45deg);background:var(--deep);color:#fff;border-color:var(--deep)}
+.rv .body{padding:18px 24px 24px;border-top:1px solid var(--line);animation:rvIn .28s ease}
+@keyframes rvIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.rv .body p{margin:0 0 14px;color:var(--deep);font-size:14.5px;line-height:1.6;text-wrap:pretty}
+.rv ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:9px 24px}
+.rv li{position:relative;padding-left:20px;font-size:13.5px;line-height:1.55;color:var(--muted);text-wrap:pretty}
+.rv li::before{content:"";position:absolute;left:0;top:8px;width:7px;height:7px;border-radius:50%;background:var(--aqua);box-shadow:0 0 0 3px rgba(0,196,216,.18)}
+.rv .goal{margin:16px 0 0;padding:13px 15px;border-radius:14px;background:var(--ice);border:1px solid var(--line);font-size:13.5px;color:var(--deep);line-height:1.55;text-wrap:pretty}
+.rvclose{margin-top:22px;padding:24px 28px;border-radius:22px;background:linear-gradient(135deg,var(--deep),var(--deep2));color:#fff;
+  font-size:clamp(16px,1.9vw,21px);font-weight:900;line-height:1.4;letter-spacing:-.025em;text-wrap:pretty}
+@media(max-width:720px){.rv summary{padding:16px 18px}.rv .body{padding:16px 18px 20px}.rv ul{grid-template-columns:1fr}.rvclose{padding:20px 22px}}
+
+/* ---- branch / location plans ---- */
+.brgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}
+@media(max-width:960px){.brgrid{grid-template-columns:1fr}}
+.br{background:#fff;border:1px solid var(--line);border-radius:24px;padding:26px 24px;box-shadow:0 14px 34px rgba(6,47,61,.08);display:flex;flex-direction:column}
+.br.lead{background:linear-gradient(135deg,var(--deep),var(--deep2));border:0;color:#fff}
+.br .tag{display:inline-flex;align-self:flex-start;font-size:10.5px;font-weight:900;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--aquad);background:rgba(0,196,216,.1);border:1px solid rgba(0,196,216,.22);border-radius:999px;padding:5px 11px}
+.br.lead .tag{color:#fff;background:var(--pink);border-color:var(--pink)}
+.br .n{display:block;margin-top:16px;font-size:11px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.br.lead .n{color:#bff6fd}
+.br h3{margin:6px 0 0;font-size:clamp(19px,2vw,23px);letter-spacing:-.04em;line-height:1.1;color:var(--deep)}
+.br.lead h3{color:#fff}
+.br p{margin:12px 0 0;font-size:14px;line-height:1.6;color:var(--muted);text-wrap:pretty}
+.br.lead p{color:rgba(255,255,255,.82)}
+.br ul{list-style:none;margin:16px 0 0;padding:16px 0 0;border-top:1px solid var(--line);display:grid;gap:9px}
+.br.lead ul{border-top-color:rgba(255,255,255,.18)}
+.br li{position:relative;padding-left:20px;font-size:13.5px;line-height:1.55;color:var(--deep);text-wrap:pretty}
+.br.lead li{color:rgba(255,255,255,.88)}
+.br li::before{content:"";position:absolute;left:0;top:8px;width:7px;height:7px;border-radius:50%;background:var(--aqua);box-shadow:0 0 0 3px rgba(0,196,216,.18)}
+.br.lead li::before{box-shadow:0 0 0 3px rgba(0,196,216,.3)}
+.br .foot{margin-top:auto;padding-top:18px;font-size:12.5px;font-weight:900;line-height:1.5;color:var(--aquad);text-wrap:pretty}
+.br.lead .foot{color:#bff6fd}
+
+/* ---- additive: pillar objective chain, 3-column measurement, roadmap bullets ---- */
+.chain{margin-top:14px;padding-top:14px;border-top:1px solid var(--line);display:grid;gap:8px}
+.chain div{display:grid;grid-template-columns:92px 1fr;gap:10px;font-size:12.5px;line-height:1.45;color:var(--deep)}
+.chain b{font-size:10px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--aquad);padding-top:2px}
+.ways.three{grid-template-columns:repeat(3,1fr)}
+@media(max-width:980px){.ways.three{grid-template-columns:1fr}}
+.rmcard ul{list-style:none;margin:14px 0 0;padding:14px 0 0;border-top:1px solid var(--line);display:grid;gap:8px}
+.rmcard li{position:relative;padding-left:18px;font-size:13px;line-height:1.5;color:var(--muted)}
+.rmcard li::before{content:"";position:absolute;left:0;top:7px;width:6px;height:6px;border-radius:50%;background:var(--aqua)}
+.compact #reviewPanelsSection,.compact #branchPlansSection{padding:54px 0}
+
+.stageflow{display:flex;gap:10px;margin-top:28px;flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px}
+@media(max-width:760px){.stageflow{flex-direction:column;overflow:visible}}
+.stage{flex:1 1 0;min-width:150px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px 16px;
+  box-shadow:0 12px 30px rgba(6,47,61,.07)}
+.stage .n{display:block;color:var(--aquad);font-size:10px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+.stage h3{margin:8px 0 0;font-size:15px;letter-spacing:-.01em}
+.stage p{margin:6px 0 0;color:var(--muted);font-size:12.5px;line-height:1.5}
+.stage-arrow{display:flex;align-items:center;justify-content:center;color:var(--aquad);font-size:18px;font-weight:900;flex:0 0 auto}
+@media(max-width:760px){.stage-arrow{transform:rotate(90deg);margin:-2px 0}}
+
 .logos{border:1px solid var(--line);background:rgba(255,255,255,.75);border-radius:26px;padding:24px;box-shadow:0 12px 30px rgba(6,47,61,.06)}
 .logos img{width:100%;height:auto;mix-blend-mode:multiply}
 .tblock{position:relative;margin-top:26px}
-.trail{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;
+.trail{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x proximity;
   -webkit-overflow-scrolling:touch;scrollbar-width:none;padding:4px 2px 10px}
 .trail::-webkit-scrollbar{display:none}
 .tcard{flex:0 0 300px;scroll-snap-align:start;border:0;padding:0;background:none;cursor:zoom-in;
@@ -360,6 +643,51 @@ footer{padding:26px 0 40px;color:var(--muted);font-size:12px;display:flex;justif
 .pf-credit{width:100%;margin-top:2px;opacity:.85}
 
 #boot{padding:120px 22px;text-align:center;color:var(--muted);font-size:14px}
+
+/* ---- access gate ---- */
+#gate{display:none;position:fixed;inset:0;z-index:300;overflow-y:auto;
+  background:
+    radial-gradient(circle at 12% -6%,rgba(255,79,175,.17),transparent 340px),
+    radial-gradient(circle at 92% 2%,rgba(0,196,216,.26),transparent 440px),
+    linear-gradient(180deg,var(--ice),#fff 46%,var(--soft))}
+#gate.open{display:block}
+.gate-wrap{min-height:100%;display:flex;align-items:center;justify-content:center;padding:32px 22px}
+.gate-card{width:100%;max-width:440px;background:rgba(255,255,255,.92);border:1px solid var(--line);
+  border-radius:28px;padding:34px 30px;box-shadow:0 30px 80px rgba(6,47,61,.16)}
+.gate-brand{display:flex;align-items:center;gap:11px;margin-bottom:22px}
+.gate-brand .mark{width:40px;height:40px;border-radius:14px;flex:0 0 auto;overflow:hidden;
+  background:linear-gradient(135deg,var(--aqua),#d9fdff 55%,var(--pink));
+  box-shadow:0 12px 28px rgba(0,196,216,.24);display:grid;place-items:center;
+  color:#fff;font-weight:900;font-size:19px;letter-spacing:-.04em}
+.gate-brand .mark.has-logo{background:none;box-shadow:none}
+.gate-brand .mark img{width:100%;height:100%;object-fit:contain;display:block}
+.gate-brand strong{display:block;letter-spacing:.24em;font-size:17px;line-height:1}
+.gate-brand span{display:block;margin-top:4px;color:var(--muted);font-size:9px;letter-spacing:.11em;text-transform:uppercase}
+.gate-card h2{margin:0;font-size:clamp(25px,4.6vw,31px);line-height:1.04;letter-spacing:-.045em;text-wrap:balance}
+.gate-for{display:block;margin-top:12px;color:var(--aquad);font-size:11px;font-weight:900;
+  letter-spacing:.08em;text-transform:uppercase;line-height:1.5}
+.gate-card p.lead{margin:14px 0 0;color:rgba(6,47,61,.76);font-size:14.5px;line-height:1.62;text-wrap:pretty}
+.gate-field{margin-top:16px}
+.gate-field label{display:block;font-size:10.5px;font-weight:900;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.gate-field input{width:100%;border:1px solid var(--line);background:#fff;border-radius:14px;
+  padding:14px 15px;font-size:15px;color:var(--deep);font-family:inherit}
+.gate-field input:focus{outline:none;border-color:var(--aqua);box-shadow:0 0 0 3px rgba(0,196,216,.16)}
+.gate-field input.bad{border-color:#d92d20;box-shadow:0 0 0 3px rgba(217,45,32,.12)}
+.gate-btn{width:100%;margin-top:20px;border:0;border-radius:999px;padding:16px;cursor:pointer;
+  background:linear-gradient(135deg,var(--deep),var(--deep2));color:#fff;font-weight:900;font-size:15px;
+  transition:.2s;font-family:inherit}
+.gate-btn:hover{filter:brightness(1.1)}
+.gate-btn[disabled]{opacity:.6;cursor:default}
+.gate-err{display:none;margin:12px 0 0;color:#d92d20;font-size:13px;line-height:1.5;font-weight:900}
+.gate-err.show{display:block}
+.gate-foot{margin:18px 0 0;padding-top:16px;border-top:1px solid var(--line);
+  color:var(--muted);font-size:11.5px;line-height:1.6;text-wrap:pretty}
+.gate-foot a{color:var(--aquad);font-weight:900}
+@media(max-width:480px){
+  .gate-card{padding:28px 22px;border-radius:24px}
+  .gate-wrap{padding:20px 16px}
+}
 #notfound{display:none;padding:110px 22px;text-align:center}
 #notfound h2{margin-bottom:0}
 #page{display:none}
@@ -368,11 +696,425 @@ footer{padding:26px 0 40px;color:var(--muted);font-size:12px;display:flex;justif
   *{transition:none!important;animation:none!important}
   html{scroll-behavior:auto}
 }
+
+/* ============================================================
+   Compact / premium proposal layout (phase 3, batch E).
+   Opt-in via d.compactLayout === true, applied as a `.compact`
+   class on #page. Every rule below is scoped under `.compact` so
+   a doc without the flag (KAIA, AWC, every portfolio today)
+   renders with exactly the spacing and behaviour it always has.
+   ============================================================ */
+.compact section{padding:54px 0}
+@media(max-width:720px){.compact section{padding:36px 0}}
+.compact .hero{padding-top:36px;padding-bottom:26px}
+.compact .stats{margin-top:24px}
+.compact .head{margin-bottom:22px}
+.compact .lede{max-width:70ch}
+.compact .sub{max-width:66ch}
+.compact .fit>p,.compact .fit .sub,.compact .price-hero>p,.compact .media-card>p,.compact .pcard p{max-width:70ch}
+/* dominant sections keep the most room, within the 90-120px desktop /
+   55-75px mobile target — hero is tuned separately just above */
+.compact #results,.compact #opportunitySection,.compact #marketingSystemSection,.compact #partnershipSection{padding:62px 0}
+@media(max-width:720px){
+  .compact #results,.compact #opportunitySection,.compact #marketingSystemSection,.compact #partnershipSection{padding:40px 0}
+}
+/* supporting sections read tighter still, within the 65-90px desktop /
+   55-75px mobile target */
+.compact #searchIntentSection,.compact #contentPillarsSection,.compact #roadmapSection,
+.compact #performanceMeasurementSection,.compact #includedExcludedSection{padding:54px 0}
+@media(max-width:720px){
+  .compact #searchIntentSection,.compact #contentPillarsSection,.compact #roadmapSection,
+  .compact #performanceMeasurementSection,.compact #includedExcludedSection{padding:36px 0}
+}
+.compact .ms{margin-top:18px}
+.compact .intent-grid{margin-top:20px}
+.compact .pillars{margin-top:20px}
+.compact .roadmap-grid{margin-top:20px}
+.compact .astrat{margin-top:20px}
+.compact .fgrid{margin-top:20px}
+.compact .price-hero{padding:28px 26px;margin-top:20px}
+.compact .media-card{padding:24px 22px;margin-top:20px}
+.compact .fit{padding:30px 28px}
+/* Trusted-by logo strip: reduce the CARD's own padding under compact, but
+   let the composite image keep filling the card's width — this is a
+   fixed-aspect artwork, not a photo, so a height cap it shrinks it into a
+   sliver surrounded by empty white space. Width-led sizing with a
+   sensible max-width (so it doesn't run enormous on very wide screens)
+   is the correct constraint, not height. */
+.compact .logos{padding:32px 40px;height:auto;min-height:0}
+.compact .logos img{display:block;width:100%;max-width:1150px;height:auto;margin:0 auto;object-fit:contain}
+@media(max-width:760px){
+  .compact .logos{padding:20px 16px}
+  .compact .logos img{width:100%;max-width:none}
+}
+/* Slightly larger tap targets on the proposal that has the most interactive
+   chips/controls, without touching the shared .chip/.tnav rules other
+   portfolios already use. */
+.compact .chip{padding:12px 16px}
+.compact .tnav{width:44px;height:44px}
+.compact .morebtn{padding:15px 28px}
+
+/* ---- Recommended Partnership: prominent 6-month total (Tulum-only
+   section today; safe to style unconditionally). ---- */
+.price-hero .pfee.total{flex:1 1 100%;margin-top:8px;padding-top:16px;border-top:1px dashed var(--line)}
+.price-hero .pfee.total span{color:var(--pink);font-size:11px}
+.price-hero .pfee.total strong{font-size:clamp(26px,3.4vw,32px);color:var(--pink)}
+.price-hero .pfee-caption{display:block;margin-top:4px;color:var(--muted);font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+
+/* ---- Recommended Media Investment: deliberately lighter/outlined, so it
+   reads as a different cost category from the solid-white fee card above
+   it (Tulum-only section today; safe to style unconditionally). ---- */
+.media-card{background:rgba(255,255,255,.5);border:1.5px dashed rgba(6,47,61,.24);box-shadow:none}
+
+/* ---- First 90 Days: a subtle down-arrow between stacked month cards on
+   mobile, echoing .stage-arrow, without implying an animated flow. Only
+   ever visible on portfolios that use the roadmap module (Tulum today). ---- */
+@media(max-width:900px){
+  .roadmap-grid .rmcard{position:relative}
+  .roadmap-grid .rmcard:not(:last-child)::after{
+    content:"\2193";position:absolute;left:50%;bottom:-19px;transform:translateX(-50%);
+    color:var(--aquad);font-size:16px;font-weight:900;line-height:1}
+}
+
+/* ---- Accessibility: a visible fallback focus ring for interactive
+   elements that don't already define their own :focus-visible treatment.
+   Only ever renders during keyboard navigation, so it changes nothing
+   about how any existing portfolio looks in normal mouse/touch use. ---- */
+.chip:focus-visible,.btn:focus-visible,.navlinks a:focus-visible,
+.filters button:focus-visible,.tnav:focus-visible{
+  outline:3px solid var(--aqua);outline-offset:2px}
+
+/* ---- EN / ไทย switch (only on portfolios with a Thai version switched on) ---- */
+.langsw{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:rgba(255,255,255,.75);margin:0 4px}
+.langsw button{border:0;background:none;padding:8px 11px;font-size:12px;font-weight:900;letter-spacing:.02em;color:rgba(6,47,61,.62);line-height:1}
+.langsw button[aria-pressed="true"]{background:var(--deep);color:#fff}
+.gate-lang{display:flex;justify-content:flex-end;margin:-6px 0 12px}
+html[lang="th"] h1,html[lang="th"] h2,html[lang="th"] h3,html[lang="th"] h4,html[lang="th"] .big,html[lang="th"] .stat strong{letter-spacing:0}
+html[lang="th"] h1{line-height:1.22}
+@media(min-width:761px){html[lang="th"] h1{font-size:clamp(36px,5vw,62px)}}
+html[lang="th"] h2{line-height:1.26}
+html[lang="th"] h3,html[lang="th"] h4,html[lang="th"] .big{line-height:1.35}
+html[lang="th"] .eyebrow,html[lang="th"] .waytag,html[lang="th"] .kicker,html[lang="th"] .stat span{letter-spacing:.02em}
+
+/* ============================================================
+   EDITORIAL LAYOUT + GROUP-PROPOSAL MODULES (optional, per portfolio)
+   Opt-in: editorialLayout === true adds .ed to #page and .pf-ed to
+   <body>. The five modules below (properties, deliverables,
+   productionLogistics, groupInvestment, terms) follow the same
+   sections.<key> === true rule as every other optional module, so a
+   portfolio without them is untouched.
+   ============================================================ */
+
+.ed section{padding:104px 0}
+.ed .hero .lede{font-size:21px;line-height:1.62;max-width:58ch;color:rgba(6,47,61,.84)}
+@media(max-width:720px){
+  .ed section{padding:64px 0}
+  .ed .hero .lede{font-size:18px}
+}
+
+/* scroll reveal — only when the browser can observe and motion is welcome */
+.pf-anim .reveal{opacity:0;transform:translateY(22px);transition:opacity .9s cubic-bezier(.2,.6,.2,1),transform .9s cubic-bezier(.2,.6,.2,1)}
+.pf-anim .reveal.in{opacity:1;transform:none}
+
+/* hero panels: one image per business behind the headline */
+.pfbanner.has-panels{height:min(90vh,860px);min-height:560px;display:block}
+.pfpanels{position:absolute;inset:0;display:grid;grid-template-columns:repeat(var(--n,4),1fr)}
+.pfpanel{position:relative;overflow:hidden}
+.pfpanel + .pfpanel{border-left:1px solid rgba(255,255,255,.2)}
+.pfpanel i{position:absolute;inset:0;background-size:cover;background-position:center}
+.pf-anim .pfpanel i{animation:pfPanelIn 2.4s cubic-bezier(.2,.6,.2,1) both}
+.pf-anim .pfpanel:nth-child(2) i{animation-delay:.12s}
+.pf-anim .pfpanel:nth-child(3) i{animation-delay:.24s}
+.pf-anim .pfpanel:nth-child(4) i{animation-delay:.36s}
+@keyframes pfPanelIn{from{opacity:0;transform:scale(1.08)}to{opacity:1;transform:none}}
+.pfpanel span{position:absolute;z-index:2;top:24px;left:24px;right:20px;color:#fff;font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;line-height:1.55;text-shadow:0 1px 14px rgba(0,0,0,.55)}
+.pfbanner.has-panels .pfbanner-shade{background:linear-gradient(180deg,rgba(6,47,61,.34) 0%,rgba(6,47,61,.1) 26%,rgba(6,47,61,.5) 62%,rgba(6,47,61,.93) 100%);pointer-events:none}
+.pfbanner.has-panels .pfbanner-inner{padding-bottom:58px}
+@media(max-width:760px){
+  .pfbanner.has-panels{height:min(88vh,720px);min-height:540px}
+  .pfpanels{grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(2,1fr)}
+  .pfpanel:nth-child(odd){border-left:0}
+  .pfpanel:nth-child(n+3){border-top:1px solid rgba(255,255,255,.2)}
+  .pfpanel span{top:14px;left:14px;font-size:9px;letter-spacing:.16em}
+  .pfbanner.has-panels .pfbanner-inner{padding-bottom:34px}
+}
+
+/* properties: one chapter per business */
+#propertiesSection{padding-bottom:0}
+.prop{padding:84px 0;border-top:1px solid var(--line)}
+#prList .prop:first-child{margin-top:64px}
+.prop-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:76px;align-items:start}
+.prop.flip .prop-grid{grid-template-columns:minmax(0,6fr) minmax(0,5fr)}
+.prop.flip .prop-main{order:2}
+.prop-main{margin:0;position:sticky;top:92px}
+.prop-main img{width:100%;aspect-ratio:4/5;object-fit:cover;background:rgba(0,196,216,.07)}
+.prop-n{font-size:12px;letter-spacing:.2em;color:var(--aquad);font-weight:700}
+.prop-n i{font-style:normal;opacity:.55}
+.prop-logo{height:46px;width:auto;margin-top:30px}
+.prop-kicker{margin:30px 0 0;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.prop-logo + .prop-kicker{margin-top:22px}
+.prop h3{margin:10px 0 0;font-size:clamp(38px,4.7vw,62px);line-height:1.02}
+.prop-line{margin:20px 0 0;font-size:clamp(21px,2.2vw,27px);line-height:1.3;color:var(--aquad);text-wrap:balance}
+.prop-body{margin-top:24px;color:rgba(6,47,61,.82);font-size:16.5px;line-height:1.74;max-width:58ch}
+.prop-body p{margin:0 0 14px}
+.prop-body p:last-child{margin-bottom:0}
+.prop-pri{margin-top:40px}
+.prop-pri h4{margin:0 0 8px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--aquad);font-weight:700}
+.prop-pri ol{list-style:none;margin:0;padding:0;counter-reset:pri;border-top:1px solid rgba(6,47,61,.3)}
+.prop-pri li{counter-increment:pri;display:grid;grid-template-columns:38px 1fr;padding:14px 0;border-bottom:1px solid var(--line);font-size:15px;line-height:1.56;text-wrap:pretty}
+.prop-pri li::before{content:counter(pri,decimal-leading-zero);font-size:11px;letter-spacing:.1em;color:var(--muted);padding-top:3px;font-weight:700}
+.prop-note{margin:30px 0 0;padding:16px 20px;border-left:2px solid var(--pink);background:rgba(255,79,175,.06);font-size:14.5px;line-height:1.62;text-wrap:pretty}
+.prop-second{margin:44px 0 0}
+.prop-second img{width:100%;aspect-ratio:3/2;object-fit:cover;background:rgba(0,196,216,.07)}
+html[lang="th"] .prop h3{font-weight:500;font-size:clamp(30px,3.6vw,46px);line-height:1.3}
+html[lang="th"] .prop-line{font-weight:500;line-height:1.5;font-size:clamp(19px,1.9vw,23px)}
+html[lang="th"] .prop-kicker,html[lang="th"] .prop-pri h4,html[lang="th"] .gi-label,html[lang="th"] .dt thead th,html[lang="th"] .pl-fact span,html[lang="th"] .tm h3{letter-spacing:.04em;font-size:12.5px}
+@media(max-width:900px){
+  .prop{padding:56px 0}
+  #prList .prop:first-child{margin-top:44px}
+  .prop-grid,.prop.flip .prop-grid{grid-template-columns:1fr;gap:30px}
+  .prop.flip .prop-main{order:0}
+  .prop-main{position:static}
+  .prop-main img{aspect-ratio:5/6}
+  .prop-second{margin-top:32px}
+}
+
+/* figures tables */
+.dt{width:100%;border-collapse:collapse;margin-top:48px;font-size:15.5px;line-height:1.45}
+.dt thead th{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:700;text-align:right;padding:0 0 14px 20px;border-bottom:1px solid rgba(6,47,61,.5);vertical-align:bottom}
+.dt thead th:first-child{text-align:left;padding-left:0}
+.dt tbody th{font-weight:400;text-align:left;padding:16px 16px 16px 0;border-bottom:1px solid var(--line);width:46%}
+.dt td{padding:16px 0 16px 20px;border-bottom:1px solid var(--line);text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+.dt tr.total th,.dt tr.total td{border-bottom:0;border-top:1px solid rgba(6,47,61,.5);font-weight:700;font-size:17px;padding-top:20px}
+.dt tbody tr:has(+ tr.total) th,.dt tbody tr:has(+ tr.total) td{border-bottom:0}
+.dt td.num{white-space:nowrap}
+.dt .hl{color:var(--pink)}
+.dt thead th.hl{color:var(--pink)}
+.dt-cap{margin:40px 0 -30px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--aquad);font-weight:700}
+.mod-notes{margin:30px 0 0;padding:0;list-style:none;max-width:76ch}
+.mod-notes li{position:relative;padding:0 0 0 22px;margin-top:10px;font-size:14.5px;line-height:1.66;color:rgba(6,47,61,.76);text-wrap:pretty}
+.mod-notes li::before{content:"";position:absolute;left:0;top:11px;width:10px;height:1px;background:var(--aquad)}
+@media(max-width:640px){
+  .dt{font-size:13.5px;margin-top:36px}
+  .dt thead th{font-size:9.5px;letter-spacing:.08em;padding-left:10px}
+  .dt td{padding:13px 0 13px 10px}
+  .dt tbody th{padding:13px 8px 13px 0;width:auto}
+  .dt tr.total th,.dt tr.total td{font-size:14.5px}
+}
+
+#deliverablesSection,#termsSection{background:rgba(0,196,216,.07)}
+
+/* production logistics */
+.pl-facts{display:grid;grid-template-columns:repeat(4,1fr);gap:36px;margin-top:56px}
+.pl-fact{border-top:1px solid rgba(6,47,61,.3);padding-top:18px}
+.pl-fact strong{display:block;font-size:clamp(44px,5vw,68px);line-height:1;font-weight:400}
+.pl-fact span{display:block;margin-top:12px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--muted);line-height:1.5}
+@media(max-width:720px){.pl-facts{grid-template-columns:repeat(2,1fr);gap:28px 22px;margin-top:40px}}
+
+/* group investment */
+.gi-bridge{margin:72px 0 0;font-size:clamp(24px,3vw,36px);line-height:1.26;max-width:26ch;text-wrap:balance}
+html[lang="th"] .gi-bridge{font-weight:500;line-height:1.5;font-size:clamp(20px,2.3vw,28px);max-width:34ch}
+.gi-offer{margin-top:44px;background:var(--deep);color:#fff;border-radius:3px;padding:68px 64px;display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:64px;align-items:center}
+.gi-label{display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:#bff6fd}
+.gi-price{margin-top:22px;font-size:clamp(60px,9.4vw,132px);line-height:.92;letter-spacing:-.03em;white-space:nowrap}
+.gi-price small{display:block;margin-top:14px;font-family:Arial,Helvetica,sans-serif;font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--pink)}
+.gi-offer-title{margin:26px 0 0;font-size:18px;line-height:1.5;color:rgba(255,255,255,.86);max-width:30ch}
+.gi-points{list-style:none;margin:0;padding:0;border-top:1px solid rgba(255,255,255,.3)}
+.gi-points li{padding:14px 0;border-bottom:1px solid rgba(255,255,255,.16);font-size:15px;line-height:1.5;color:rgba(255,255,255,.92)}
+.gi-h3{margin:88px 0 0;font-size:clamp(26px,3vw,36px);line-height:1.1;font-weight:400}
+html[lang="th"] .gi-h3{font-weight:500;line-height:1.4}
+.gi-h3 + .dt{margin-top:30px}
+.gi-adv{margin-top:88px;padding-top:44px;border-top:1px solid rgba(6,47,61,.5)}
+.gi-adv .gi-label{color:var(--aquad)}
+.gi-adv-value{margin-top:16px;font-size:clamp(52px,8vw,112px);line-height:.95;letter-spacing:-.03em;white-space:nowrap}
+.gi-bar{display:flex;gap:6px;height:14px;margin-top:44px}
+.gi-seg{min-width:44px;transform-origin:left center}
+.gi-seg.saving{background:var(--pink)}
+.gi-seg.absorbed{background:rgba(0,123,138,.1);border:1px solid var(--aquad)}
+.pf-anim .gi-adv.reveal .gi-seg{transform:scaleX(0);transition:transform 1.3s cubic-bezier(.2,.6,.2,1) .25s}
+.pf-anim .gi-adv.reveal.in .gi-seg{transform:none}
+.gi-parts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:44px;margin-top:30px}
+.gi-part .tag{display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.gi-part .tag i{width:14px;height:14px;flex:0 0 auto}
+.gi-part.saving .tag i{background:var(--pink)}
+.gi-part.absorbed .tag i{background:rgba(0,123,138,.1);border:1px solid var(--aquad)}
+.gi-part strong{display:block;margin-top:14px;font-size:clamp(30px,3.6vw,46px);font-weight:400;line-height:1.05;letter-spacing:-.02em}
+.gi-part.saving strong{color:var(--pink)}
+.gi-part h4{margin:12px 0 0;font-size:16px;line-height:1.4}
+.gi-part p{margin:8px 0 0;font-size:14.5px;line-height:1.64;color:rgba(6,47,61,.74);max-width:42ch;text-wrap:pretty}
+.gi-foot{margin:56px 0 0;font-size:15px;line-height:1.7;color:rgba(6,47,61,.78);max-width:70ch}
+html[lang="th"] .gi-part .tag{letter-spacing:.04em;font-size:12.5px}
+@media(max-width:900px){.gi-offer{grid-template-columns:1fr;gap:40px;padding:52px 34px;align-items:start}}
+@media(max-width:720px){
+  .gi-bridge{margin-top:52px}
+  .gi-offer{padding:44px 24px}
+  .gi-h3,.gi-adv{margin-top:60px}
+  .gi-parts{grid-template-columns:1fr;gap:34px}
+  .gi-bar{margin-top:32px}
+}
+
+/* terms */
+.tm-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:76px;margin-top:52px;align-items:start}
+.tm dl{margin:0;border-top:1px solid rgba(6,47,61,.5)}
+.tm-row{display:flex;justify-content:space-between;gap:24px;padding:15px 0;border-bottom:1px solid rgba(6,47,61,.14);font-size:15.5px;line-height:1.45}
+.tm-row dt{color:rgba(6,47,61,.74)}
+.tm-row dd{margin:0;font-weight:700;text-align:right}
+.tm-rownote{margin:16px 0 0;font-size:13.5px;color:rgba(6,47,61,.7)}
+.tm h3{margin:0 0 12px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--aquad);font-weight:700}
+.tm-list{list-style:none;margin:0;padding:0;border-top:1px solid rgba(6,47,61,.5)}
+.tm-list li{padding:13px 0;border-bottom:1px solid rgba(6,47,61,.14);font-size:14.5px;line-height:1.56;text-wrap:pretty}
+@media(max-width:900px){.tm-grid{grid-template-columns:1fr;gap:48px}}
+@media(max-width:560px){.tm-row{font-size:14px;gap:14px}}
+
+/* BOKKO type and component standards for the group-proposal modules: the same
+   Arial headings, tight tracking, 900-weight labels, rounded corners and
+   aqua / pink accents as the rest of the site. */
+.ed section{padding:84px 0}
+@media(max-width:720px){.ed section{padding:52px 0}}
+.prop-n,.prop-kicker,.prop-pri h4,.prop-pri li::before,.dt thead th,.dt-cap,.pl-fact span,.gi-label,.gi-part .tag,.tm h3,.gi-price small,.pfpanel span{font-weight:900;letter-spacing:.08em}
+.prop h3{font-weight:700;font-size:clamp(34px,4.6vw,56px);line-height:.96;letter-spacing:-.06em;text-wrap:balance}
+.prop-line{font-weight:700;font-size:clamp(18px,2vw,23px);line-height:1.28;letter-spacing:-.03em}
+.prop-main img,.prop-second img{border-radius:26px;box-shadow:var(--shadow)}
+.prop-note{border-left:0;border:1px solid rgba(255,79,175,.35);background:var(--pink2);border-radius:16px}
+.pl-fact{border-top:0;background:rgba(255,255,255,.86);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 12px 30px rgba(6,47,61,.07)}
+.pl-facts{gap:12px}
+.pl-fact strong{font-weight:700;font-size:clamp(30px,3.6vw,44px);letter-spacing:-.06em}
+.pl-fact span{font-size:10px;letter-spacing:.06em;margin-top:8px}
+.gi-bridge{font-weight:700;font-size:clamp(21px,2.6vw,30px);letter-spacing:-.04em;line-height:1.18;max-width:30ch}
+.gi-offer{background:linear-gradient(135deg,var(--deep),var(--deep2));border-radius:30px;box-shadow:var(--shadow)}
+.gi-price{font-weight:700;font-size:clamp(46px,6.4vw,88px);letter-spacing:-.075em;line-height:.9}
+.gi-price small{letter-spacing:.1em}
+.gi-h3{font-weight:700;font-size:clamp(22px,2.6vw,30px);letter-spacing:-.05em}
+.gi-adv-value{font-weight:700;font-size:clamp(46px,7vw,96px);letter-spacing:-.075em}
+.gi-part strong{font-weight:700;font-size:clamp(26px,3.2vw,40px);letter-spacing:-.06em}
+.gi-bar{height:16px}
+.gi-seg{border-radius:999px}
+.gi-part .tag i{border-radius:50%}
+.pfpanel span{letter-spacing:.12em}
+.mod-notes li::before{width:7px;height:7px;top:8px;border-radius:50%;background:var(--aqua);box-shadow:0 0 0 3px rgba(0,196,216,.18)}
+.mod-notes li{padding-left:20px}
+#deliverablesSection .wrap,#termsSection .wrap{position:relative}
+html[lang="th"] .prop h3,html[lang="th"] .gi-price,html[lang="th"] .gi-adv-value,html[lang="th"] .gi-part strong,html[lang="th"] .pl-fact strong,html[lang="th"] .gi-bridge,html[lang="th"] .gi-h3,html[lang="th"] .prop-line{letter-spacing:0;font-weight:700}
+html[lang="th"] .prop h3{line-height:1.25}
+html[lang="th"] .gi-price,html[lang="th"] .gi-adv-value{line-height:1.2}
+
+/* ============================================================
+   Launch-proposal additions (optional, per portfolio): panoramic
+   hero, image gallery, creative showcase, image captions, print.
+   ============================================================ */
+.imgcap{position:absolute;right:12px;bottom:12px;z-index:2;color:#fff;background:rgba(6,47,61,.62);border-radius:999px;
+  padding:5px 10px;font-size:9.5px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;line-height:1.3;max-width:calc(100% - 24px)}
+html[lang="th"] .imgcap{letter-spacing:.02em;font-size:11px}
+.pfbanner.is-pano{height:auto;min-height:0;display:block}
+.pfbanner.is-pano .pfbanner-media{position:relative;inset:auto}
+.pfbanner.is-pano .pfbanner-shade{display:none}
+.pfbanner.is-pano .pfbanner-inner{position:relative;padding-top:38px;padding-bottom:46px}
+.pfpano{position:relative;width:100%;aspect-ratio:8/3;min-height:min(54vh,470px);max-height:78vh;overflow:hidden;background:#0a2530}
+.pfpano i{position:absolute;inset:0;background-size:cover;background-position:center}
+.pf-anim .pfpano i{animation:pfPanelIn 2.6s cubic-bezier(.2,.6,.2,1) both}
+@media(max-width:720px){.pfbanner.is-pano .pfbanner-inner{padding-top:26px;padding-bottom:30px}}
+.prop-main,.prop-second{position:relative}
+.prop-second{position:relative}
+
+#gallerySection{padding-top:0}
+.gal{display:grid;grid-template-columns:repeat(var(--n,3),1fr);gap:14px}
+.gal figure{position:relative;margin:0;border-radius:26px;overflow:hidden;box-shadow:var(--shadow);background:#0a2530}
+.gal img{width:100%;height:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+.gal.one figure{border-radius:30px}
+.gal.one img{aspect-ratio:21/9}
+@media(max-width:760px){.gal{grid-template-columns:1fr}.gal.one img{aspect-ratio:4/3}}
+
+.sc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px 18px;margin-top:34px}
+.sc-item{margin:0;min-width:0}
+.sc-media{position:relative;border-radius:22px;overflow:hidden;background:#171310;box-shadow:var(--shadow);aspect-ratio:4/5}
+.sc-media img,.sc-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.sc-media .sc-print{display:none}
+.sc-tag{position:absolute;left:12px;top:12px;z-index:2;display:inline-flex;align-items:center;gap:6px;color:#fff;background:rgba(6,47,61,.66);
+  border-radius:999px;padding:6px 10px;font-size:9.5px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+.sc-tag i{width:6px;height:6px;border-radius:50%;background:var(--pink)}
+.sc-item figcaption{padding:14px 4px 0}
+.sc-item .n{display:block;color:var(--aquad);font-size:10.5px;font-weight:900;letter-spacing:.09em;text-transform:uppercase}
+.sc-item h3{margin:5px 0 0;font-size:18px;letter-spacing:-.03em;line-height:1.2}
+.sc-item p{margin:6px 0 0;color:var(--muted);font-size:13.5px;line-height:1.56;text-wrap:pretty}
+@media(max-width:900px){.sc-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.sc-grid{grid-template-columns:1fr;gap:30px}}
+
+@media print{
+  html,body{background:#fff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .nav{position:static!important}
+  .navlinks,.backbar,.morewrap,.filters,.swipehint,.wallnote,.reel-ctl,.reel-play,.langsw,#gate,#boot{display:none!important}
+  .pf-anim .reveal,.reveal{opacity:1!important;transform:none!important;transition:none!important}
+  .pf-anim .pfpanel i,.pf-anim .pfpano i{animation:none!important;opacity:1!important;transform:none!important}
+  .pf-anim .gi-adv.reveal .gi-seg{transform:none!important;transition:none!important}
+  .prop-main{position:static!important}
+  section,.ed section{padding:30px 0!important}
+  .pfbanner.has-panels{height:520px!important;min-height:0!important}
+  .pfpano{max-height:none;min-height:0}
+  .wall,.results,.trail{overflow:visible!important}
+  .trail{flex-wrap:wrap}
+  .sc-media video{display:none!important}
+  .sc-media .sc-print{display:block!important}
+  .prop,.rcard,.sc-item,.br,.rmcard,.way,.pillar,.fcard,.intent-card,.stage,.gi-offer,.gi-part,.tm-row,.tm-list li,.dt tr,.pl-fact,.gal figure,.vcard,.cta,.fit-callout{break-inside:avoid;page-break-inside:avoid}
+  h2,h3,.head{break-after:avoid;page-break-after:avoid}
+  .head,.pf-headline,.prop-copy{break-inside:avoid;page-break-inside:avoid}
+  footer{break-before:avoid;page-break-before:avoid;padding:8px 0!important;margin:0!important}
+  #contact{padding-bottom:6px!important}
+  .prop{padding:22px 0!important}
+  .prop-main img{max-height:400px!important;width:100%;object-fit:cover}
+  .prop-second{margin-top:18px!important}
+  .prop-second img{max-height:210px!important;width:100%;object-fit:cover}
+  .gi-offer{margin-top:18px!important;padding:34px 36px!important;gap:32px!important}
+  .gi-points li{padding:7px 0!important}
+  .head{margin-bottom:18px!important}
+  .wall{display:grid!important;grid-template-columns:repeat(5,1fr)!important;gap:10px!important}
+  .wall .vcard{flex:none!important;width:auto!important}
+  .fit,.cta,.gi-offer{box-shadow:none!important}
+}
 </style>
 </head>
 <body>
 
 <div id="boot">Loading portfolio…</div>
+
+<!-- Access gate. Shown only for portfolios with "Require name & email" on. -->
+<div id="gate" role="dialog" aria-modal="true" aria-labelledby="gateHeading">
+  <div class="gate-wrap">
+    <div class="gate-card">
+      <div class="gate-brand">
+        <span class="mark" id="gateMark">B</span>
+        <span><strong>BOKKO</strong><span>Marketing Specialists</span></span>
+      </div>
+      <h2 id="gateHeading">This portfolio is<br>shared privately.</h2>
+      <span class="gate-for" id="gateFor"></span>
+      <p class="lead" id="gateLead">Tell us who you are and we&rsquo;ll open it straight away.</p>
+
+      <form id="gateForm" novalidate>
+        <div class="gate-field">
+          <label for="gateName">Your name</label>
+          <input id="gateName" name="name" type="text" autocomplete="name" placeholder="Jane Smith" required>
+        </div>
+        <div class="gate-field">
+          <label for="gateEmail">Work email</label>
+          <input id="gateEmail" name="email" type="email" autocomplete="email" placeholder="jane@company.com" required>
+        </div>
+        <p class="gate-err" id="gateErr"></p>
+        <button class="gate-btn" id="gateBtn" type="submit">View the portfolio</button>
+      </form>
+
+      <p class="gate-foot">We use this only to know who we&rsquo;re speaking with about this proposal.
+        Questions? <a href="mailto:jack@bokko.co">jack@bokko.co</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- Netlify Forms needs a real form in the deployed HTML to detect at build
+     time. This one is never shown; the visible form above posts to it. -->
+<form name="portfolio-access" method="POST" data-netlify="true" hidden>
+  <input type="text" name="name">
+  <input type="email" name="email">
+  <input type="text" name="portfolio">
+  <input type="text" name="company">
+</form>
 
 <div id="notfound" class="wrap">
   <span class="eyebrow"><span class="dot"></span>Link not found</span>
@@ -388,11 +1130,7 @@ footer{padding:26px 0 40px;color:var(--muted);font-size:12px;display:flex;justif
         <span class="mark" id="navMark">B</span>
         <span class="logo"><strong>BOKKO</strong><span>Marketing Specialists</span></span>
       </a>
-      <div class="navlinks">
-        <a href="#reels">Video</a>
-        <a href="#results">Results</a>
-        <a href="#approach">Approach</a>
-        <a href="#pricingSection">Pricing</a>
+      <div class="navlinks" id="navLinks">
         <a class="navback" href="https://bokko.co" target="_blank" rel="noopener">&#8599; <b>BOKKO.CO</b></a>
         <a class="navcta" href="#contact">Contact</a>
       </div>
@@ -414,7 +1152,7 @@ footer{padding:26px 0 40px;color:var(--muted);font-size:12px;display:flex;justif
     <div class="stats" id="stats"></div>
   </header>
 
-
+<div id="sectionsFlow">
 <section class="section reelsec" id="showreel" style="display:none">
   <div class="wrap">
     <div class="head" style="display:block;text-align:center;margin-bottom:26px">
@@ -462,8 +1200,12 @@ footer{padding:26px 0 40px;color:var(--muted);font-size:12px;display:flex;justif
       <div class="head">
         <span class="eyebrow"><span class="dot"></span>Selected results</span>
         <h2 id="resultsHeading"></h2>
+        <p class="sub" id="resultsSub" style="display:none"></p>
       </div>
       <div class="results" id="resultsGrid"></div>
+      <div class="morewrap" id="resultsMorewrap" style="display:none">
+        <button class="morebtn" id="resultsMoreBtn" type="button">View more results</button>
+      </div>
       <p class="swipehint">Swipe for more &rarr;</p>
     </div>
   </section>
@@ -476,8 +1218,107 @@ footer{padding:26px 0 40px;color:var(--muted);font-size:12px;display:flex;justif
         <p class="sub" id="approachSub"></p>
         <div class="fgrid" id="approachGrid"></div>
         <div class="fit-image" id="approachImageWrap" style="display:none">
-          <img id="approachImageEl" alt="">
+          <img id="approachImageEl" alt="" loading="lazy">
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       Optional section modules, phase 2, batch 1: Opportunity,
+       Strategy, One Marketing System. Same guarded pattern as the
+       phase-1 modules further down — off unless
+       data.sections?.<key> === true; missing "sections" (KAIA, AWC,
+       every portfolio today) means all three stay hidden.
+       ============================================================ -->
+  <section id="opportunitySection" style="display:none">
+    <div class="wrap">
+      <div class="fit">
+        <span class="eyebrow"><span class="dot"></span><span id="oppEyebrow"></span></span>
+        <h2 id="oppHeading"></h2>
+        <div class="sub" id="oppBody"></div>
+        <div class="fit-callout" id="oppCalloutWrap" style="display:none"><strong id="oppCallout"></strong></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="strategySection" style="display:none">
+    <div class="wrap">
+      <div class="fit">
+        <span class="eyebrow"><span class="dot"></span><span id="stratEyebrow"></span></span>
+        <h2 id="stratHeading"></h2>
+        <p class="sub" id="stratSub"></p>
+        <div class="fgrid" id="stratGrid"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="marketingSystemSection" style="display:none">
+    <div class="wrap">
+      <div class="ms-panel">
+      <div class="head" style="text-align:center">
+        <span class="eyebrow"><span class="dot"></span><span id="msBadge"></span></span>
+        <h2 id="msHeading"></h2>
+      </div>
+      <div class="ms">
+        <div class="ms-desktop">
+          <div class="ms-cols">
+            <div class="ms-path">
+              <div class="ms-path-head">
+                <div class="ms-eyebrow-label" id="msLeftEyebrow"></div>
+                <div class="ms-source" id="msLeftSource"></div>
+                <div class="ms-arrow">&darr;</div>
+              </div>
+              <div class="ms-channel meta">
+                <h4 id="msLeftChannel"></h4>
+                <div class="ms-chips" id="msPlatforms"></div>
+                <div class="ms-actions" id="msLeftItems"></div>
+              </div>
+            </div>
+            <div class="ms-path">
+              <div class="ms-path-head">
+                <div class="ms-eyebrow-label" id="msRightEyebrow"></div>
+                <div class="ms-source" id="msRightSource"></div>
+                <div class="ms-arrow">&darr;</div>
+              </div>
+              <div class="ms-channel google">
+                <h4 id="msRightChannel"></h4>
+                <div class="ms-chips" id="msRightItems"></div>
+              </div>
+            </div>
+          </div>
+          <div class="ms-arrows-in"><div class="ms-arrow">&darr;</div><div class="ms-arrow">&darr;</div></div>
+          <div class="ms-outcome" id="msOutcomeDesktop"></div>
+          <div class="ms-optimise">
+            <span class="ms-optimise-label" id="msFeedbackLabelDesktop"></span>
+            <span class="ms-optimise-items" id="msFeedbackItemsDesktop"></span>
+          </div>
+        </div>
+
+        <div class="ms-mobile">
+          <div class="ms-eyebrow-label" id="msLeftEyebrowM"></div>
+          <div class="ms-source" id="msLeftSourceM"></div>
+          <div class="ms-arrow">&darr;</div>
+          <div class="ms-channel meta">
+            <h4 id="msLeftChannelM"></h4>
+            <div class="ms-chips" id="msPlatformsM"></div>
+            <div class="ms-actions" id="msLeftItemsM"></div>
+          </div>
+          <div class="ms-eyebrow-label" id="msRightEyebrowM"></div>
+          <div class="ms-source" id="msRightSourceM"></div>
+          <div class="ms-arrow">&darr;</div>
+          <div class="ms-channel google">
+            <h4 id="msRightChannelM"></h4>
+            <div class="ms-chips" id="msRightItemsM"></div>
+          </div>
+          <div class="ms-arrow">&darr;</div>
+          <div class="ms-outcome" id="msOutcomeMobile"></div>
+          <div class="ms-optimise">
+            <span class="ms-optimise-label" id="msFeedbackLabelMobile"></span>
+            <span class="ms-optimise-items" id="msFeedbackItemsMobile"></span>
+          </div>
+        </div>
+      </div>
       </div>
     </div>
   </section>
@@ -485,36 +1326,26 @@ footer{padding:26px 0 40px;color:var(--muted);font-size:12px;display:flex;justif
   <section id="servicesSection">
     <div class="wrap">
       <div class="head">
-        <span class="eyebrow"><span class="dot"></span>Ways to work together</span>
-        <h2>Production only,<br>or the whole system.</h2>
-        <p class="sub">Some brands only need the film. Others want the media behind it too. Both are normal, and you can start with the first and add the second later.</p>
+        <span class="eyebrow"><span class="dot"></span><span id="svcEyebrow"></span></span>
+        <h2 id="svcHeading"></h2>
+        <p class="sub" id="svcSub"></p>
       </div>
       <div class="ways">
 
         <article class="way">
-          <span class="waytag">Option one</span>
-          <h3>Production only</h3>
-          <p class="waylead">We plan, shoot and deliver. Your own team publishes.</p>
-          <ul>
-            <li><strong>A mood and concept board for every property</strong> before anything is filmed &mdash; palette, tone, framing, subject, pace. It is the step that decides whether the content looks considered or assembled.</li>
-            <li><strong>One visual identity across every branch.</strong> Properties under the same brand get a shared direction, so a group reads as one name rather than several hotels each drifting in their own direction.</li>
-            <li><strong>Photography and short-form video</strong> shot by our own crew and equipment, graded and cut for feed, reels and paid placements.</li>
-            <li><strong>Delivered as finished assets</strong> in the formats your team already works in, ready to schedule.</li>
-          </ul>
-          <p class="wayfoot">Suits a property with a capable in-house social team that needs the craft, not the management.</p>
+          <span class="waytag" id="svc1Tag"></span>
+          <h3 id="svc1Title"></h3>
+          <p class="waylead" id="svc1Lead"></p>
+          <ul id="svc1List"></ul>
+          <p class="wayfoot" id="svc1Foot"></p>
         </article>
 
         <article class="way lead">
-          <span class="waytag">Option two</span>
-          <h3>Full scope</h3>
-          <p class="waylead">Everything above, and we run it.</p>
-          <ul>
-            <li><strong>Content strategy and publishing.</strong> Pillars, calendar, copywriting and community management in Thai and English.</li>
-            <li><strong>Paid media</strong> across Meta, TikTok, Google and Google Maps, built around bookings, covers and footfall rather than reach.</li>
-            <li><strong>Creators and KOLs</strong> from a network of 3,000+, matched and briefed to the property instead of booked on follower count.</li>
-            <li><strong>Monthly reporting</strong> against revenue and visits, with the direction adjusted on what the numbers actually show.</li>
-          </ul>
-          <p class="wayfoot">The creative and the media budget sit with the same team, so nothing is lost in the handover between them.</p>
+          <span class="waytag" id="svc2Tag"></span>
+          <h3 id="svc2Title"></h3>
+          <p class="waylead" id="svc2Lead"></p>
+          <ul id="svc2List"></ul>
+          <p class="wayfoot" id="svc2Foot"></p>
         </article>
 
       </div>
@@ -533,6 +1364,312 @@ footer{padding:26px 0 40px;color:var(--muted);font-size:12px;display:flex;justif
     </div>
   </section>
 
+  <!-- ============================================================
+       Optional section modules (phase 1 of the portfolio refactor).
+       Each is off unless data.sections?.<key> === true on the
+       Firestore doc; missing "sections" (KAIA, AWC, every existing
+       portfolio) means every one of these stays hidden exactly as
+       it is today. See render() for the guarded render path.
+       ============================================================ -->
+  <section id="performanceMeasurementSection" style="display:none">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow"><span class="dot"></span><span id="pmEyebrow"></span></span>
+        <h2 id="pmHeading"></h2>
+      </div>
+      <div class="ways" id="pmGrid"></div>
+      <p class="pricingnote" id="pmFooterNote" style="display:none"></p>
+    </div>
+  </section>
+
+  <section id="includedExcludedSection" style="display:none">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow"><span class="dot"></span><span id="ieEyebrow"></span></span>
+      </div>
+      <div class="ways" id="ieGrid"></div>
+      <p class="pricingnote" id="ieFooterNote" style="display:none"></p>
+    </div>
+  </section>
+
+  <section id="eventsActivationsSection" style="display:none">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow"><span class="dot"></span><span id="eaEyebrow"></span></span>
+        <h2 id="eaHeading"></h2>
+        <p class="sub" id="eaSub"></p>
+      </div>
+      <div class="examples" id="eaGrid"></div>
+      <p class="pricingnote" id="eaFooterNote" style="display:none"></p>
+      <p class="pricingnote" id="eaScopeNote" style="display:none;margin-top:8px"></p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       Optional section modules, phase 2, batch 2: Content Pillars,
+       First 90 Days, Recommended Partnership, Recommended Media
+       Investment. Same guarded pattern as every module above.
+       ============================================================ -->
+  <section id="contentPillarsSection" style="display:none">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow"><span class="dot"></span><span id="cpEyebrow"></span></span>
+        <h2 id="cpHeading"></h2>
+      </div>
+      <div class="pillars" id="cpGrid"></div>
+      <p class="pricingnote" id="cpFooterNote" style="display:none"></p>
+    </div>
+  </section>
+
+  <section id="roadmapSection" style="display:none">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow"><span class="dot"></span><span id="rmEyebrow"></span></span>
+        <h2 id="rmHeading"></h2>
+        <p class="sub" id="rmSub"></p>
+      </div>
+      <div class="roadmap-grid" id="rmGrid"></div>
+      <div class="rmcompound" id="rmCompoundWrap" style="display:none">
+        <span class="n" id="rmCompoundLabel"></span>
+        <h3 id="rmCompoundHeading"></h3>
+        <p id="rmCompoundBody"></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="partnershipSection" style="display:none">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow"><span class="dot"></span><span id="ptEyebrow"></span></span>
+        <h2 id="ptHeading"></h2>
+      </div>
+      <div class="price-hero">
+        <div class="pill-row" id="ptPillRow"></div>
+        <h3 id="ptTitle"></h3>
+        <div class="pfees">
+          <div class="pfee"><span>Setup</span><strong id="ptSetup"></strong></div>
+          <div class="pfee"><span>Monthly</span><strong id="ptMonthly"></strong></div>
+          <div class="pfee total"><span>Total</span><strong id="ptTotal"></strong><span class="pfee-caption">BOKKO professional fees</span></div>
+        </div>
+        <div id="ptBody"></div>
+        <div id="ptScopeGroups"></div>
+        <div class="price-note" id="ptSetupWrap" style="display:none"><strong id="ptSetupLabel"></strong><span id="ptSetupIntro"></span></div>
+        <div class="pillars" id="ptSetupGrid" style="display:none;margin-top:14px"></div>
+        <div class="price-note" id="ptConceptNoteWrap" style="display:none"><strong id="ptConceptNoteLabel"></strong><span id="ptConceptNoteBody"></span></div>
+        <div class="price-note" id="ptNote1Wrap" style="display:none"><strong id="ptNote1Label"></strong><span id="ptNote1Body"></span></div>
+        <div class="price-note" id="ptNote2Wrap" style="display:none"><strong id="ptNote2Label"></strong><span id="ptNote2Body"></span></div>
+        <div class="price-note" id="ptCreatorNoteWrap" style="display:none">
+          <strong id="ptCreatorNoteLabel"></strong><span id="ptCreatorNoteBody"></span>
+          <span id="ptCreatorNoteSecondary" style="display:block;margin-top:6px"></span>
+        </div>
+        <div class="price-note" id="ptPaidMediaWrap" style="display:none">
+          <strong id="ptPaidMediaLabel"></strong><span id="ptPaidMediaBody"></span>
+          <span id="ptPaidMediaSecondary" style="display:block;margin-top:6px"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="mediaInvestmentSection" style="display:none">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow"><span class="dot"></span><span id="miEyebrow"></span></span>
+      </div>
+      <div class="media-card">
+        <div class="media-headline" id="miHeadline"></div>
+        <div id="miBody"></div>
+        <div class="ways" id="miGrid" style="margin-top:22px"></div>
+        <div class="media-banner" id="miBanner"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       Optional section modules, phase 2, batch 3: Audience Strategy,
+       Search & High-Intent Media, Creator Marketing. All content
+       (cards, channel lists, stages) is admin-editable — nothing
+       Tulum-specific is hardcoded, unlike marketingSystemSection
+       above which is intentionally a fixed diagram.
+       ============================================================ -->
+  <section id="audienceStrategySection" style="display:none">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow"><span class="dot"></span><span id="asEyebrow"></span></span>
+        <h2 id="asHeading"></h2>
+        <p class="sub" id="asSub"></p>
+      </div>
+      <div class="astrat" id="asGrid"></div>
+      <p class="pricingnote" id="asFooterNote" style="display:none"></p>
+    </div>
+  </section>
+
+  <section id="searchIntentSection" style="display:none">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow"><span class="dot"></span><span id="siEyebrow"></span></span>
+        <h2 id="siHeading"></h2>
+        <div class="sub" id="siSub"></div>
+      </div>
+      <div class="intent-grid" id="siGrid"></div>
+      <div class="split-callout" id="siCalloutWrap" style="display:none"><strong id="siCallout"></strong></div>
+      <p class="pricingnote" id="siFooterNote" style="display:none"></p>
+    </div>
+  </section>
+
+  <!-- Review panels: expandable categories (e.g. "What we'd like to review").
+       Optional module; hidden unless sections.reviewPanels === true. -->
+  <section id="reviewPanelsSection" style="display:none">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow"><span class="dot"></span><span id="rvEyebrow"></span></span>
+        <h2 id="rvHeading"></h2>
+        <div class="sub" id="rvSub"></div>
+      </div>
+      <div class="rvlist" id="rvList"></div>
+      <div class="rvclose" id="rvClose" style="display:none"></div>
+      <p class="pricingnote" id="rvFooterNote" style="display:none"></p>
+    </div>
+  </section>
+
+  <!-- Branch / location plans: one card per site, optional highlighted lead.
+       Optional module; hidden unless sections.branchPlans === true. -->
+  <section id="branchPlansSection" style="display:none">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow"><span class="dot"></span><span id="brEyebrow"></span></span>
+        <h2 id="brHeading"></h2>
+        <div class="sub" id="brSub"></div>
+      </div>
+      <div class="brgrid" id="brGrid"></div>
+      <p class="pricingnote" id="brFooterNote" style="display:none"></p>
+    </div>
+  </section>
+
+  <section id="creatorMarketingSection" style="display:none">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow"><span class="dot"></span><span id="cmEyebrow"></span></span>
+        <h2 id="cmHeading"></h2>
+        <p class="sub" id="cmSub"></p>
+      </div>
+      <div class="stageflow" id="cmGrid"></div>
+      <p class="pricingnote" id="cmFooterNote" style="display:none"></p>
+      <p class="pricingnote" id="cmNote" style="display:none;margin-top:8px"></p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       Group-proposal modules: Properties, Deliverables, Production
+       logistics, Group investment, Terms. Same guarded pattern as
+       every optional module above: hidden unless
+       sections.<key> === true on the portfolio.
+       ============================================================ -->
+  <section id="propertiesSection" style="display:none">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow"><span class="dot"></span><span id="prEyebrow"></span></span>
+        <h2 id="prHeading"></h2>
+        <div class="sub" id="prSub"></div>
+      </div>
+    </div>
+    <div id="prList"></div>
+  </section>
+
+  <section id="gallerySection" style="display:none">
+    <div class="wrap">
+      <div class="gal reveal" id="galGrid"></div>
+      <p class="pricingnote" id="galNote" style="display:none"></p>
+    </div>
+  </section>
+
+  <section id="showcaseSection" style="display:none">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow"><span class="dot"></span><span id="scEyebrow"></span></span>
+        <h2 id="scHeading"></h2>
+        <div class="sub" id="scSub"></div>
+      </div>
+      <div class="sc-grid" id="scGrid"></div>
+      <p class="pricingnote" id="scNote" style="display:none"></p>
+    </div>
+  </section>
+
+  <section id="deliverablesSection" style="display:none">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow"><span class="dot"></span><span id="dlEyebrow"></span></span>
+        <h2 id="dlHeading"></h2>
+        <div class="sub" id="dlSub"></div>
+      </div>
+      <table class="dt reveal" id="dlTable"></table>
+      <ul class="mod-notes" id="dlNotes"></ul>
+    </div>
+  </section>
+
+  <section id="productionLogisticsSection" style="display:none">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow"><span class="dot"></span><span id="plEyebrow"></span></span>
+        <h2 id="plHeading"></h2>
+        <div class="sub" id="plSub"></div>
+      </div>
+      <div class="pl-facts reveal" id="plFacts"></div>
+      <p class="dt-cap" id="plCap"></p>
+      <table class="dt reveal" id="plTable"></table>
+      <ul class="mod-notes" id="plNotes"></ul>
+    </div>
+  </section>
+
+  <section id="groupInvestmentSection" style="display:none">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow"><span class="dot"></span><span id="giEyebrow"></span></span>
+        <h2 id="giHeading"></h2>
+        <div class="sub" id="giIntro"></div>
+      </div>
+      <p class="dt-cap" id="giStdCap"></p>
+      <table class="dt reveal" id="giStd"></table>
+      <p class="gi-bridge serif reveal" id="giBridge"></p>
+      <div class="gi-offer reveal" id="giOffer">
+        <div>
+          <span class="gi-label" id="giOfferLabel"></span>
+          <div class="gi-price serif"><span id="giPrice"></span><small id="giUnit"></small></div>
+          <p class="gi-offer-title" id="giOfferTitle"></p>
+        </div>
+        <ul class="gi-points" id="giPoints"></ul>
+      </div>
+      <h3 class="gi-h3 serif" id="giCompareTitle"></h3>
+      <table class="dt reveal" id="giCompare"></table>
+      <div class="gi-adv reveal" id="giAdv">
+        <span class="gi-label" id="giAdvLabel"></span>
+        <div class="gi-adv-value serif" id="giAdvValue"></div>
+        <div class="gi-bar" id="giBar" aria-hidden="true"></div>
+        <div class="gi-parts" id="giParts"></div>
+      </div>
+      <p class="gi-foot" id="giFoot"></p>
+    </div>
+  </section>
+
+  <section id="termsSection" class="tm" style="display:none">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow"><span class="dot"></span><span id="tmEyebrow"></span></span>
+        <h2 id="tmHeading"></h2>
+      </div>
+      <div class="tm-grid">
+        <div>
+          <dl id="tmRows"></dl>
+          <p class="tm-rownote" id="tmRowNote"></p>
+        </div>
+        <div>
+          <h3 id="tmListTitle"></h3>
+          <ul class="tm-list" id="tmList"></ul>
+        </div>
+      </div>
+      <ul class="mod-notes" id="tmNotes"></ul>
+    </div>
+  </section>
+
   <section id="trustSection">
     <div class="wrap">
       <div class="head">
@@ -548,6 +1685,7 @@ footer{padding:26px 0 40px;color:var(--muted);font-size:12px;display:flex;justif
       </div>
     </div>
   </section>
+</div>
 
   <section id="contact">
     <div class="wrap">
@@ -556,7 +1694,7 @@ footer{padding:26px 0 40px;color:var(--muted);font-size:12px;display:flex;justif
         <h2 id="ctaHeading"></h2>
         <p id="ctaBody"></p>
         <div class="btns-primary">
-          <a class="btn solid btn-hero" href="mailto:jack@bokko.co?subject=Confirm%20scope">Confirm scope with Jack</a>
+          <a class="btn solid btn-hero" id="ctaPrimaryBtn" href="mailto:jack@bokko.co?subject=Confirm%20scope">Confirm scope with Jack</a>
         </div>
         <div class="btns btns-secondary">
           <a class="btn" href="mailto:jack@bokko.co">jack@bokko.co</a>
@@ -683,6 +1821,12 @@ function esc(s){
 function rich(s){
   return esc(s).replace(/\*\*(.+?)\*\*/g, '<span class="pink">$1</span>').replace(/\n/g,'<br>');
 }
+// Same **star** convention as rich(), but plain bold rather than the brand-
+// pink highlight — for copy that needs a bolded lead-in phrase mid-sentence
+// (e.g. a "Ways to work together" list item).
+function boldRich(s){
+  return esc(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n/g,'<br>');
+}
 // A blank line in the admin becomes a real paragraph. Long copy set as one
 // unbroken block is the main thing that makes these pages hard to read.
 function paras(el, text){
@@ -693,6 +1837,104 @@ function paras(el, text){
   el.innerHTML = blocks.map(function(b){
     return '<p>' + esc(b).replace(/\n/g, '<br>') + '</p>';
   }).join('');
+}
+// Optional section modules (phase 1): strict `=== true` against an optional
+// map, so a doc with no "sections" field at all (every portfolio today,
+// including KAIA and AWC) never shows any of these. Each is wrapped so a
+// bad doc for one section can't break the rest of the page render.
+//
+// populateFn may return `false` to say "toggle is on, but there's nothing
+// meaningful to show" (e.g. the array of cards is empty) — the section stays
+// hidden rather than rendering an empty heading with a blank grid under it.
+// Returning nothing/true means "rendered, show it".
+function renderOptionalSection(d, key, populateFn){
+  var el = document.getElementById(key + 'Section');
+  if (!el) return;
+  var on = d.sections && d.sections[key] === true;
+  if (!on) { el.style.display = 'none'; return; }
+  try {
+    var rendered = populateFn(d[key] || {});
+    el.style.display = (rendered === false) ? 'none' : '';
+  } catch (e) {
+    console.warn('Optional section "' + key + '" failed to render; hiding it.', e);
+    el.style.display = 'none';
+  }
+}
+
+/* ============================================================
+   Section Order Manager (phase 2, batch A infrastructure).
+   All reorderable sections live inside #sectionsFlow in this exact
+   sequence, which is also the mandatory fallback when a doc has no
+   sectionOrder field — every portfolio today (KAIA, AWC, everything
+   else) renders with this same order, unchanged.
+   Keep SECTION_ELEMENT_ID/DEFAULT_SECTION_ORDER in sync with the
+   matching constants in admin.html's Page Section Order panel.
+   ============================================================ */
+var SECTION_ELEMENT_ID = {
+  showreel: 'showreel', work: 'reels', results: 'results', approach: 'approach',
+  opportunity: 'opportunitySection', strategy: 'strategySection', marketingSystem: 'marketingSystemSection',
+  services: 'servicesSection', pricing: 'pricingSection',
+  performanceMeasurement: 'performanceMeasurementSection', includedExcluded: 'includedExcludedSection',
+  eventsActivations: 'eventsActivationsSection', contentPillars: 'contentPillarsSection',
+  roadmap: 'roadmapSection', partnership: 'partnershipSection', mediaInvestment: 'mediaInvestmentSection',
+  audienceStrategy: 'audienceStrategySection', searchIntent: 'searchIntentSection',
+  creatorMarketing: 'creatorMarketingSection', reviewPanels: 'reviewPanelsSection',
+  branchPlans: 'branchPlansSection', properties: 'propertiesSection',
+  gallery: 'gallerySection', showcase: 'showcaseSection',
+  deliverables: 'deliverablesSection', productionLogistics: 'productionLogisticsSection',
+  groupInvestment: 'groupInvestmentSection', terms: 'termsSection', trust: 'trustSection'
+};
+var DEFAULT_SECTION_ORDER = [
+  'showreel','work','results','approach','opportunity','strategy','marketingSystem',
+  'services','pricing','performanceMeasurement','includedExcluded','eventsActivations',
+  'contentPillars','roadmap','partnership','mediaInvestment','audienceStrategy',
+  'searchIntent','creatorMarketing','reviewPanels','branchPlans',
+  'properties','gallery','showcase','deliverables','productionLogistics','groupInvestment','terms','trust'
+];
+function applySectionOrder(d){
+  var flow = document.getElementById('sectionsFlow');
+  if (!flow) return;
+  var requested = Array.isArray(d.sectionOrder) ? d.sectionOrder.filter(function(k){ return SECTION_ELEMENT_ID[k]; }) : [];
+  var finalOrder = requested.slice();
+  DEFAULT_SECTION_ORDER.forEach(function(k){ if (finalOrder.indexOf(k) === -1) finalOrder.push(k); });
+  finalOrder.forEach(function(key){
+    var el = document.getElementById(SECTION_ELEMENT_ID[key]);
+    if (el) flow.appendChild(el);
+  });
+}
+// Jump-nav labels for the sections worth a shortcut. showreel/services/trust
+// are deliberately absent — they never appeared in the old fixed 4-link nav
+// either, so leaving them out here keeps a plain portfolio's generated nav
+// identical to what it has always shown.
+var NAV_LABELS = {
+  work: 'Video', results: 'Results', approach: 'Approach',
+  opportunity: 'Opportunity', strategy: "Where We'd Start", marketingSystem: 'Marketing System',
+  pricing: 'Pricing', performanceMeasurement: 'Measurement', includedExcluded: 'Scope',
+  eventsActivations: 'Events', contentPillars: 'Content', roadmap: 'Roadmap',
+  partnership: 'Investment', mediaInvestment: 'Media Investment',
+  audienceStrategy: 'Audience', searchIntent: 'Search', creatorMarketing: 'Creators',
+  reviewPanels: 'Review', branchPlans: 'Branches',
+  properties: 'Properties', showcase: 'Creative', deliverables: 'Deliverables', productionLogistics: 'Production',
+  groupInvestment: 'Investment', terms: 'Terms'
+};
+var ELEMENT_ID_TO_KEY = Object.keys(SECTION_ELEMENT_ID).reduce(function(m, k){ m[SECTION_ELEMENT_ID[k]] = k; return m; }, {});
+// Reads the #sectionsFlow DOM directly, after every section's own strict
+// `=== true` visibility check has already run and applySectionOrder has put
+// everything in its final order — so this can never link to a hidden or
+// nonexistent section, and never needs to duplicate any section's own gating
+// logic. Only called when the portfolio has no manual nav override.
+function buildDynamicNav(){
+  var flow = document.getElementById('sectionsFlow');
+  if (!flow) return [];
+  var links = [];
+  Array.prototype.forEach.call(flow.children, function(el){
+    var key = ELEMENT_ID_TO_KEY[el.id];
+    var label = key && NAV_LABELS[key];
+    if (label && el.style.display !== 'none') {
+      links.push({ label: label, anchor: '#' + el.id });
+    }
+  });
+  return links;
 }
 function formatMonthYear(date){
   try { return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' }); }
@@ -712,8 +1954,159 @@ function showNotFound(){
 }
 
 /* ---------- render ---------- */
+// Nav links: optional per-portfolio override, defaulting to the links every
+// portfolio has always had. Anchors are stable element ids, unaffected by
+// section reordering (appendChild moves an element, never its id).
+var DEFAULT_NAV = [
+  { label: 'Video', anchor: '#reels' },
+  { label: 'Results', anchor: '#results' },
+  { label: 'Approach', anchor: '#approach' },
+  { label: 'Pricing', anchor: '#pricingSection' }
+];
+// "Ways to work together" default copy — the exact wording every portfolio
+// has always shown. Optional per-portfolio via d.services; any doc without
+// it (KAIA, AWC, everything today) renders this, unchanged.
+var DEFAULT_SERVICE_ITEMS_1 = [
+  '**A mood and concept board for every property** before anything is filmed — palette, tone, framing, subject, pace. It is the step that decides whether the content looks considered or assembled.',
+  '**One visual identity across every branch.** Properties under the same brand get a shared direction, so a group reads as one name rather than several hotels each drifting in their own direction.',
+  '**Photography and short-form video** shot by our own crew and equipment, graded and cut for feed, reels and paid placements.',
+  '**Delivered as finished assets** in the formats your team already works in, ready to schedule.'
+];
+var DEFAULT_SERVICE_ITEMS_2 = [
+  '**Content strategy and publishing.** Pillars, calendar, copywriting and community management in Thai and English.',
+  '**Paid media** across Meta, TikTok, Google and Google Maps, built around bookings, covers and footfall rather than reach.',
+  '**Creators and KOLs** from a network of 3,000+, matched and briefed to the property instead of booked on follower count.',
+  '**Monthly reporting** against revenue and visits, with the direction adjusted on what the numbers actually show.'
+];
+/* ---------- group-proposal helpers ---------- */
+// Figures table. cols: [string]; rows: [{ cells: [string], total: bool }].
+// hlCol marks one column (the preferred option) in the accent colour.
+function pfTable(el, cols, rows, hlCol){
+  cols = Array.isArray(cols) ? cols : [];
+  rows = (Array.isArray(rows) ? rows : []).filter(function(r){ return r && (r.cells || []).some(Boolean); });
+  if (!el) return false;
+  if (!rows.length) { el.style.display = 'none'; el.innerHTML = ''; return false; }
+  el.style.display = '';
+  el.innerHTML =
+    (cols.some(Boolean) ? '<thead><tr>' + cols.map(function(c, i){
+      return '<th scope="col"' + (i === hlCol ? ' class="hl"' : '') + '>' + esc(c) + '</th>';
+    }).join('') + '</tr></thead>' : '') +
+    '<tbody>' + rows.map(function(r){
+      return '<tr' + (r.total === true ? ' class="total"' : '') + '>' + (r.cells || []).map(function(c, i){
+        return i === 0 ? '<th scope="row">' + esc(c) + '</th>'
+                       : '<td class="' + (/^[^A-Za-z\u0E00-\u0E7F]*(THB )?[\d,.\u2013\s-]+( \u0E1A\u0E32\u0E17)?$/.test(String(c)) ? 'num' : '') + (i === hlCol ? ' hl' : '') + '">' + esc(c) + '</td>';
+      }).join('') + '</tr>';
+    }).join('') + '</tbody>';
+  return true;
+}
+function pfNotes(el, notes){
+  var list = (Array.isArray(notes) ? notes : []).filter(Boolean);
+  el.style.display = list.length ? '' : 'none';
+  el.innerHTML = list.map(function(n){ return '<li>' + esc(n) + '</li>'; }).join('');
+}
+function pfText(id, text){
+  var el = document.getElementById(id);
+  if (!el) return;
+  el.textContent = text || '';
+  el.style.display = text ? '' : 'none';
+}
+function pfEditorialOn(){
+  document.getElementById('page').classList.add('ed');
+  document.body.classList.add('pf-ed');
+}
+// heroPanels: [{ image, label }] — up to four images side by side behind the
+// headline. Returns false when the portfolio has none, so the ordinary banner
+// (or no banner) is used exactly as before.
+function pfHeroPanels(d, band, heroHead){
+  var panels = (Array.isArray(d.heroPanels) ? d.heroPanels : []).filter(function(p){ return p && p.image; }).slice(0, 4);
+  if (!panels.length || !band) return false;
+  var media = document.getElementById('pfBannerMedia');
+  media.style.backgroundImage = 'none';
+  if (d.heroPanorama === true) {
+    media.innerHTML = '<div class="pfpano"><i style="background-image:url(\'' + esc(panels[0].image) + '\')"></i>' +
+      (panels[0].label ? '<span class="imgcap">' + esc(panels[0].label) + '</span>' : '') + '</div>';
+    document.getElementById('pfBannerInner').appendChild(heroHead);
+    band.classList.add('is-pano');
+    band.style.display = '';
+    return true;
+  }
+  media.innerHTML = '<div class="pfpanels" style="--n:' + panels.length + '">' + panels.map(function(p){
+    return '<div class="pfpanel"><i style="background-image:url(\'' + esc(p.image) + '\')"></i>' +
+      (p.label ? '<span>' + esc(p.label) + '</span>' : '') + '</div>';
+  }).join('') + '</div>';
+  document.getElementById('pfBannerInner').appendChild(heroHead);
+  band.classList.add('has-panels');
+  band.style.display = '';
+  return true;
+}
+// Fades each marked block in as it scrolls into view. Skipped when the visitor
+// prefers reduced motion or the browser cannot observe; nothing is hidden then.
+window.addEventListener('beforeprint', function(){
+  Array.prototype.forEach.call(document.querySelectorAll('#page .reveal'), function(el){ el.classList.add('in'); });
+  Array.prototype.forEach.call(document.querySelectorAll('#page details'), function(el){ el.open = true; });
+  Array.prototype.forEach.call(document.querySelectorAll('#page img[loading="lazy"]'), function(el){ el.loading = 'eager'; });
+});
+function pfStartReveal(){
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced || !('IntersectionObserver' in window)) return;
+  var els = document.querySelectorAll('#page .reveal');
+  if (!els.length) return;
+  document.documentElement.classList.add('pf-anim');
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+  Array.prototype.forEach.call(els, function(el){ io.observe(el); });
+}
+
+var PF_COMPACT = false;
 function render(d){
   document.title = d.metaTitle || ('BOKKO \u2014 Portfolio' + (d.recipient ? ' for ' + d.recipient : ''));
+
+  // Optional per-portfolio social-preview overrides. NOTE: this only updates
+  // the tags a browser already has in the DOM \u2014 it does nothing for link
+  // unfurlers (LINE/WhatsApp/Slack/etc.), which read the static HTML before
+  // any JS runs. Real per-portfolio previews for those need a server-side
+  // piece (e.g. an edge function) that isn't part of this change; until then
+  // every portfolio shares the same static, generic fallback tags in <head>.
+  if (d.ogTitle) {
+    var ogTitleEl = document.querySelector('meta[property="og:title"]');
+    if (ogTitleEl) ogTitleEl.setAttribute('content', d.ogTitle);
+  }
+  if (d.ogDescription) {
+    var ogDescEl = document.querySelector('meta[property="og:description"]');
+    if (ogDescEl) ogDescEl.setAttribute('content', d.ogDescription);
+  }
+  if (d.ogImage) {
+    var ogImageEl = document.querySelector('meta[property="og:image"]');
+    if (ogImageEl) ogImageEl.setAttribute('content', d.ogImage);
+  }
+
+  // Compact/premium layout (phase 3, batch E): opt-in per portfolio so a
+  // content-heavy proposal can tighten its own spacing/pagination without
+  // touching any portfolio that hasn't set this flag.
+  PF_COMPACT = d.compactLayout === true;
+  document.getElementById('page').classList.toggle('compact', PF_COMPACT);
+  // Image-led layout for multi-property proposals; BOKKO type and components throughout.
+  // Opt-in per portfolio, like compactLayout above.
+  if (d.editorialLayout === true) pfEditorialOn();
+  window.PF_NO_REEL = d.showShowreel === false;
+  if (window.PF_NO_REEL) document.getElementById('showreel').style.display = 'none';
+  wallState.initialCount = (typeof d.initialClips === 'number' && d.initialClips > 0) ? d.initialClips : 10;
+
+  // Showreel: optional per-portfolio override of the shared global BOKKO
+  // reel. Applied here (render time, once data has actually loaded) rather
+  // than at parse time, since the <video>'s default src/poster already
+  // point at the shared asset and the listeners below react to a src
+  // change just as they do to the initial load. Blank fields (every
+  // portfolio today) leave the shared reel exactly as it is.
+  var reelVideoEl = document.getElementById('reelVideo');
+  if (reelVideoEl && d.showreelUrl) {
+    reelVideoEl.src = d.showreelUrl;
+    if (d.showreelPoster) reelVideoEl.poster = d.showreelPoster;
+  }
+
 
   var mark = document.getElementById('navMark');
   if (d.brandLogo) {
@@ -736,10 +2129,13 @@ function render(d){
   // with no banner, they stay exactly where they are today (no image, no gap).
   var pfBanner = document.getElementById('pfBanner');
   var heroHead = document.getElementById('heroHead');
-  if (d.bannerImage) {
-    document.getElementById('pfBannerMedia').style.backgroundImage = "url('" + esc(d.bannerImage) + "')";
+  if (pfHeroPanels(d, pfBanner, heroHead)) {
+    // One image per business sits behind the headline (heroPanels).
+  } else if (d.bannerImage) {
+    var bannerMedia = document.getElementById('pfBannerMedia');
+    bannerMedia.style.backgroundImage = "url('" + esc(d.bannerImage) + "')";
     document.getElementById('pfBannerInner').appendChild(heroHead);
-    pfBanner.style.display = '';
+    fitBanner(pfBanner, bannerMedia, d.bannerImage);   // reveals the band
   } else {
     document.getElementById('top').insertBefore(heroHead, document.getElementById('intro'));
     pfBanner.style.display = 'none';
@@ -759,7 +2155,11 @@ function render(d){
   document.getElementById('reels').style.display    = wallState.pool.length ? '' : 'none';
 
   // filter chips, built from the categories actually present
-  var labels = { hotel:'Hotels & resorts', dining:'Destination dining', travel:'Travel', lifestyle:'Lifestyle', retail:'Retail & brand' };
+  // 'bars', 'nightlife' and 'rooftops' are additive category keys for
+  // portfolios like restaurants/bars/nightlife venues, alongside the
+  // original hotel/dining/travel/retail set used by earlier portfolios.
+  var labels = { hotel:'Hotels & resorts', dining:'Destination dining', travel:'Travel', lifestyle:'Lifestyle', retail:'Retail & brand',
+    bars:'Restaurants & bars', nightlife:'Nightlife', rooftops:'Hotels & rooftops' };
   var cats = [];
   wallState.pool.forEach(function(c){ if (c.cat && cats.indexOf(c.cat) === -1) cats.push(c.cat); });
   document.getElementById('filters').innerHTML = cats.length > 1
@@ -774,6 +2174,8 @@ function render(d){
   const results = d.results || [];
   document.getElementById('results').style.display = results.length ? '' : 'none';
   document.getElementById('resultsHeading').innerHTML = rich(d.resultsHeading || '');
+  document.getElementById('resultsSub').textContent = d.resultsSub || '';
+  document.getElementById('resultsSub').style.display = d.resultsSub ? '' : 'none';
   document.getElementById('resultsGrid').innerHTML = results.map(function(r){
     return '<article class="rcard">' +
       (r.image
@@ -787,6 +2189,10 @@ function render(d){
         '<h3>' + esc(r.title) + '</h3>' +
         (r.big ? '<strong class="big">' + esc(r.big) + '</strong>' : '') +
         (r.body ? '<p>' + esc(r.body) + '</p>' : '') +
+        (r.link
+          ? '<a class="rlink" href="' + esc(r.link) + '">' +
+              esc(r.linkLabel || 'Read the case study') + ' <span>&rarr;</span></a>'
+          : '') +
       '</div>' +
     '</article>';
   }).join('');
@@ -823,8 +2229,13 @@ function render(d){
     document.getElementById('pricingBadge').textContent = pricing.badge || 'Packages & pricing';
     document.getElementById('pricingHeading').innerHTML  = rich(pricing.heading || '');
     paras(document.getElementById('pricingIntro'), pricing.intro);
+    document.getElementById('pricingGrid').className = 'pricing-grid' + (pkgs.length === 1 ? ' solo' : '');
     document.getElementById('pricingGrid').innerHTML = pkgs.map(function(pk){
-      return '<article class="pcard">' +
+      var tags = (pk.capabilityTags || []).filter(Boolean);
+      var groups = (pk.scopeGroups || []).filter(function(g){ return g && g.heading && (g.items || []).some(Boolean); });
+      return '<article class="pcard' + (pk.featured ? ' featured' : '') + '">' +
+        (pk.featured ? '<span class="pcard-featured-badge">Recommended</span>' : '') +
+        (tags.length ? '<div class="pill-row">' + tags.map(function(t){ return '<span>' + esc(t) + '</span>'; }).join('') + '</div>' : '') +
         '<h3>' + esc(pk.title) + '</h3>' +
         '<div class="pfees">' +
           (pk.setupFee   ? '<div class="pfee"><span>Setup</span><strong>'   + esc(pk.setupFee)   + '</strong></div>' : '') +
@@ -832,14 +2243,621 @@ function render(d){
           (pk.total      ? '<div class="pfee total"><span>Total</span><strong>' + esc(pk.total)  + '</strong></div>' : '') +
         '</div>' +
         (pk.description ? '<p>' + esc(pk.description).replace(/\n/g,'<br>') + '</p>' : '') +
+        groups.map(function(g){
+          return '<div class="pcard-scope"><h4>' + esc(g.heading) + '</h4><ul>' +
+            (g.items || []).filter(Boolean).map(function(it){ return '<li>' + esc(it) + '</li>'; }).join('') +
+          '</ul></div>';
+        }).join('') +
+        (pk.productionNote ? '<div class="price-note"><strong>Production</strong>' + esc(pk.productionNote) + '</div>' : '') +
+        (pk.secondaryNote ? '<div class="price-note">' + esc(pk.secondaryNote) + '</div>' : '') +
       '</article>';
     }).join('');
     document.getElementById('pricingFooterNote').textContent = pricing.footerNote || '';
     document.getElementById('pricingFooterNote').style.display = pricing.footerNote ? '' : 'none';
   }
 
+  // ---- optional section modules (phase 2, batch 1) ----
+  renderOptionalSection(d, 'opportunity', function(content){
+    if (!content.heading && !content.body && !content.callout) return false;
+    document.getElementById('oppEyebrow').textContent = content.eyebrow || 'The opportunity';
+    document.getElementById('oppHeading').innerHTML = rich(content.heading || '');
+    paras(document.getElementById('oppBody'), content.body);
+    var calloutWrap = document.getElementById('oppCalloutWrap');
+    if (content.callout) {
+      document.getElementById('oppCallout').textContent = content.callout;
+      calloutWrap.style.display = '';
+    } else {
+      calloutWrap.style.display = 'none';
+    }
+  });
+
+  renderOptionalSection(d, 'strategy', function(content){
+    var cards = (content.cards || []).filter(function(c){ return c && (c.n || c.h || c.p); });
+    if (!cards.length) return false;
+    document.getElementById('stratEyebrow').textContent = content.eyebrow || "Where we'd start";
+    document.getElementById('stratHeading').innerHTML = rich(content.heading || '');
+    document.getElementById('stratSub').textContent = content.sub || '';
+    document.getElementById('stratGrid').innerHTML = cards.map(function(c){
+      return '<div class="fcard">' +
+        (c.n ? '<span class="n">' + esc(c.n) + '</span>' : '') +
+        (c.h ? '<h3>' + esc(c.h) + '</h3>' : '') +
+        (c.p ? '<p>' + esc(c.p) + '</p>' : '') +
+      '</div>';
+    }).join('');
+  });
+
+  renderOptionalSection(d, 'marketingSystem', function(content){
+    var leftItems = (content.leftItems || []).filter(Boolean);
+    var rightItems = (content.rightItems || []).filter(Boolean);
+    var leftPlatforms = (content.leftPlatforms || []).filter(Boolean);
+    var feedbackItems = (content.feedbackItems || []).filter(Boolean);
+    if (!content.heading && !content.leftSource && !content.leftChannel && !content.rightChannel && !content.outcome) return false;
+
+    document.getElementById('msBadge').textContent = content.badge || 'How it connects';
+    document.getElementById('msHeading').innerHTML = rich(content.heading || 'From attention\nto action.');
+
+    var leftEyebrow = content.leftEyebrow || 'Create demand';
+    document.getElementById('msLeftEyebrow').textContent = leftEyebrow;
+    document.getElementById('msLeftEyebrowM').textContent = leftEyebrow;
+    document.getElementById('msLeftSource').textContent = content.leftSource || '';
+    document.getElementById('msLeftSourceM').textContent = content.leftSource || '';
+    document.getElementById('msLeftSource').style.display = content.leftSource ? '' : 'none';
+    document.getElementById('msLeftSourceM').style.display = content.leftSource ? '' : 'none';
+    var leftChannel = content.leftChannel || 'Meta';
+    document.getElementById('msLeftChannel').textContent = leftChannel;
+    document.getElementById('msLeftChannelM').textContent = leftChannel;
+    // Optional, repeatable: lets one channel card represent more than one
+    // paid-social platform (e.g. Meta + TikTok) without hardcoding either
+    // name into the component. Empty (every doc before this field existed)
+    // renders nothing — the card works exactly as it did before.
+    var platformsHtml = leftPlatforms.map(function(p){ return '<span>' + esc(p) + '</span>'; }).join('');
+    document.getElementById('msPlatforms').innerHTML = platformsHtml;
+    document.getElementById('msPlatforms').style.display = leftPlatforms.length ? '' : 'none';
+    document.getElementById('msPlatformsM').innerHTML = platformsHtml;
+    document.getElementById('msPlatformsM').style.display = leftPlatforms.length ? '' : 'none';
+    // Commercial-role layer: a quiet bulleted list, not another chip, so it
+    // reads as "what this does" rather than a third row of tags.
+    var actionsHtml = leftItems.map(function(it){ return '<div class="ms-action-row"><span class="dot"></span>' + esc(it) + '</div>'; }).join('');
+    document.getElementById('msLeftItems').innerHTML = actionsHtml;
+    document.getElementById('msLeftItemsM').innerHTML = actionsHtml;
+
+    var rightEyebrow = content.rightEyebrow || 'Capture intent';
+    document.getElementById('msRightEyebrow').textContent = rightEyebrow;
+    document.getElementById('msRightEyebrowM').textContent = rightEyebrow;
+    // Optional, symmetrical counterpart to leftSource — kept optional so a
+    // doc without it (every portfolio before this field existed) simply
+    // hides the box rather than rendering an empty tinted rectangle.
+    document.getElementById('msRightSource').textContent = content.rightSource || '';
+    document.getElementById('msRightSourceM').textContent = content.rightSource || '';
+    document.getElementById('msRightSource').style.display = content.rightSource ? '' : 'none';
+    document.getElementById('msRightSourceM').style.display = content.rightSource ? '' : 'none';
+    var rightChannel = content.rightChannel || 'Google';
+    document.getElementById('msRightChannel').textContent = rightChannel;
+    document.getElementById('msRightChannelM').textContent = rightChannel;
+    // Platform/mechanism layer for Google — the same chip treatment as
+    // Meta/TikTok, since Search/Maps/High-intent are mechanisms, not a
+    // separate commercial-role layer of their own.
+    var rightChipsHtml = rightItems.map(function(it){ return '<span>' + esc(it) + '</span>'; }).join('');
+    document.getElementById('msRightItems').innerHTML = rightChipsHtml;
+    document.getElementById('msRightItemsM').innerHTML = rightChipsHtml;
+
+    var outcome = content.outcome || 'Bookings · Visits · Event enquiries';
+    document.getElementById('msOutcomeDesktop').textContent = outcome;
+    document.getElementById('msOutcomeMobile').textContent = outcome;
+
+    var feedbackLabel = content.feedbackLabel || 'Performance data improves';
+    document.getElementById('msFeedbackLabelDesktop').textContent = feedbackLabel;
+    document.getElementById('msFeedbackLabelMobile').textContent = feedbackLabel;
+    var feedbackText = feedbackItems.length ? feedbackItems.join(' · ') : 'Audience · Creative · Budget';
+    document.getElementById('msFeedbackItemsDesktop').textContent = feedbackText;
+    document.getElementById('msFeedbackItemsMobile').textContent = feedbackText;
+  });
+
+  // ---- optional section modules (phase 2, batch 2) ----
+  renderOptionalSection(d, 'contentPillars', function(content){
+    var pillars = (content.pillars || []).filter(function(p){ return p && (p.h || p.p); });
+    if (!pillars.length) return false;
+    document.getElementById('cpEyebrow').textContent = content.eyebrow || 'Content system';
+    document.getElementById('cpHeading').innerHTML = rich(content.heading || '');
+    document.getElementById('cpGrid').innerHTML = pillars.map(function(p){
+      var tags = (p.tags || []).filter(Boolean);
+      // Optional objective chain (business objective -> measurement). A doc
+      // without `chain` (every portfolio before this field) renders as before.
+      var CHAIN_LABELS = [['objective','Objective'],['concept','Content'],['audience','Audience'],['ad','Advertising'],['action','Action'],['measure','Measure']];
+      var chain = p.chain || {};
+      var chainRows = CHAIN_LABELS.filter(function(c){ return chain[c[0]]; }).map(function(c){
+        return '<div><b>' + c[1] + '</b><span>' + esc(chain[c[0]]) + '</span></div>';
+      }).join('');
+      return '<div class="pillar">' + (p.h ? '<h3>' + esc(p.h) + '</h3>' : '') + (p.p ? '<p>' + esc(p.p) + '</p>' : '') +
+        (tags.length ? '<div class="pillar-tags">' + tags.map(function(t){ return '<span>' + esc(t) + '</span>'; }).join('') + '</div>' : '') +
+        (chainRows ? '<div class="chain">' + chainRows + '</div>' : '') +
+      '</div>';
+    }).join('');
+    document.getElementById('cpFooterNote').textContent = content.footerNote || '';
+    document.getElementById('cpFooterNote').style.display = content.footerNote ? '' : 'none';
+  });
+
+  renderOptionalSection(d, 'roadmap', function(content){
+    var months = (content.months || []).filter(function(m){ return m && (m.n || m.h || m.p); });
+    if (!months.length && !content.compoundHeading && !content.compoundBody) return false;
+    document.getElementById('rmEyebrow').textContent = content.eyebrow || 'First 90 days';
+    document.getElementById('rmHeading').innerHTML = rich(content.heading || '');
+    document.getElementById('rmSub').textContent = content.sub || '';
+    document.getElementById('rmGrid').innerHTML = months.map(function(m){
+      var bullets = (m.items || []).filter(Boolean);
+      return '<div class="rmcard">' +
+        (m.n ? '<span class="n">' + esc(m.n) + '</span>' : '') +
+        (m.h ? '<h3>' + esc(m.h) + '</h3>' : '') +
+        (m.p ? '<p>' + esc(m.p) + '</p>' : '') +
+        (bullets.length ? '<ul>' + bullets.map(function(b){ return '<li>' + esc(b) + '</li>'; }).join('') + '</ul>' : '') +
+      '</div>';
+    }).join('');
+    var compoundWrap = document.getElementById('rmCompoundWrap');
+    if (content.compoundHeading || content.compoundBody) {
+      document.getElementById('rmCompoundLabel').textContent = content.compoundLabel || '';
+      document.getElementById('rmCompoundHeading').textContent = content.compoundHeading || '';
+      document.getElementById('rmCompoundBody').textContent = content.compoundBody || '';
+      compoundWrap.style.display = '';
+    } else {
+      compoundWrap.style.display = 'none';
+    }
+  });
+
+  renderOptionalSection(d, 'partnership', function(content){
+    if (!content.title && !content.setupFee && !content.monthlyFee && !content.total && !content.body) return false;
+    document.getElementById('ptEyebrow').textContent = content.eyebrow || 'Recommended partnership';
+    document.getElementById('ptHeading').innerHTML = rich(content.heading || '');
+    var pills = (content.pills || []).filter(Boolean);
+    document.getElementById('ptPillRow').innerHTML = pills.map(function(p){ return '<span>' + esc(p) + '</span>'; }).join('');
+    document.getElementById('ptTitle').textContent = content.title || '';
+    paras(document.getElementById('ptBody'), content.body);
+    document.getElementById('ptSetup').textContent = content.setupFee || '';
+    document.getElementById('ptMonthly').textContent = content.monthlyFee || '';
+    document.getElementById('ptTotal').textContent = content.total || '';
+    var scopeGroups = (content.scopeGroups || []).filter(function(g){ return g && g.heading && (g.items || []).some(Boolean); });
+    document.getElementById('ptScopeGroups').innerHTML = scopeGroups.map(function(g){
+      return '<div class="pcard-scope"><h4>' + esc(g.heading) + '</h4><ul>' +
+        (g.items || []).filter(Boolean).map(function(it){ return '<li>' + esc(it) + '</li>'; }).join('') +
+      '</ul></div>';
+    }).join('');
+    // Optional structured "one-time setup & onboarding" breakdown — sits
+    // ahead of the concept-board/production/creator/paid-media notes, since
+    // onboarding is the very first phase of the engagement. Additive: a doc
+    // without setupItems (every portfolio before this field existed) never
+    // shows this block.
+    var setupItems = (content.setupItems || []).filter(function(it){ return it && (it.title || it.text); });
+    var setupWrap = document.getElementById('ptSetupWrap');
+    var setupGrid = document.getElementById('ptSetupGrid');
+    if (setupItems.length) {
+      document.getElementById('ptSetupLabel').textContent = content.setupLabel || 'One-time setup & onboarding';
+      document.getElementById('ptSetupIntro').textContent = content.setupIntro || '';
+      setupWrap.style.display = '';
+      setupGrid.innerHTML = setupItems.map(function(it){
+        return '<div class="pillar">' + (it.title ? '<h3>' + esc(it.title) + '</h3>' : '') + (it.text ? '<p>' + esc(it.text) + '</p>' : '') + '</div>';
+      }).join('');
+      setupGrid.style.display = '';
+    } else {
+      setupWrap.style.display = 'none';
+      setupGrid.style.display = 'none';
+    }
+    // Optional note about the content concept-board process — sits right
+    // after the scope groups, ahead of the production/creator/paid-media
+    // notes, since the concept board happens before any of that.
+    var conceptNoteWrap = document.getElementById('ptConceptNoteWrap');
+    if (content.conceptNoteBody) {
+      document.getElementById('ptConceptNoteLabel').textContent = content.conceptNoteLabel || '';
+      document.getElementById('ptConceptNoteBody').textContent = content.conceptNoteBody;
+      conceptNoteWrap.style.display = '';
+    } else { conceptNoteWrap.style.display = 'none'; }
+    var note1Wrap = document.getElementById('ptNote1Wrap');
+    if (content.note1Body) {
+      document.getElementById('ptNote1Label').textContent = content.note1Label || '';
+      document.getElementById('ptNote1Body').textContent = content.note1Body;
+      note1Wrap.style.display = '';
+    } else { note1Wrap.style.display = 'none'; }
+    var note2Wrap = document.getElementById('ptNote2Wrap');
+    if (content.note2Body) {
+      document.getElementById('ptNote2Label').textContent = content.note2Label || '';
+      document.getElementById('ptNote2Body').textContent = content.note2Body;
+      note2Wrap.style.display = '';
+    } else { note2Wrap.style.display = 'none'; }
+    // Optional supporting note for the Creator/KOL scope — sourcing/coordination
+    // context plus a fee-disclaimer, kept out of the scope-group bullet list
+    // since it's prose, not a checklist item.
+    var creatorNoteWrap = document.getElementById('ptCreatorNoteWrap');
+    if (content.creatorNoteBody) {
+      document.getElementById('ptCreatorNoteLabel').textContent = content.creatorNoteLabel || '';
+      document.getElementById('ptCreatorNoteBody').textContent = content.creatorNoteBody;
+      document.getElementById('ptCreatorNoteSecondary').textContent = content.creatorNoteSecondary || '';
+      document.getElementById('ptCreatorNoteSecondary').style.display = content.creatorNoteSecondary ? '' : 'none';
+      creatorNoteWrap.style.display = '';
+    } else { creatorNoteWrap.style.display = 'none'; }
+    // Optional, small reassurance note about paid-media budgets — deliberately
+    // not another fee card. Renders only when a body is set; every doc
+    // without it (every portfolio before this field existed) is unaffected.
+    var paidMediaWrap = document.getElementById('ptPaidMediaWrap');
+    if (content.paidMediaBody) {
+      document.getElementById('ptPaidMediaLabel').textContent = content.paidMediaLabel || 'Paid media budget';
+      document.getElementById('ptPaidMediaBody').textContent = content.paidMediaBody;
+      document.getElementById('ptPaidMediaSecondary').textContent = content.paidMediaSecondary || '';
+      document.getElementById('ptPaidMediaSecondary').style.display = content.paidMediaSecondary ? '' : 'none';
+      paidMediaWrap.style.display = '';
+    } else { paidMediaWrap.style.display = 'none'; }
+  });
+
+  renderOptionalSection(d, 'mediaInvestment', function(content){
+    var metaList = (content.metaList || []).filter(Boolean);
+    var googleList = (content.googleList || []).filter(Boolean);
+    if (!content.headline && !metaList.length && !googleList.length) return false;
+    document.getElementById('miEyebrow').textContent = content.eyebrow || 'Recommended media investment';
+    document.getElementById('miHeadline').innerHTML = rich(content.headline || '');
+    paras(document.getElementById('miBody'), content.body);
+    document.getElementById('miGrid').innerHTML =
+      '<div class="way"><span class="waytag">' + esc(content.list1Title || 'Meta') + '</span><ul>' + metaList.map(function(s){ return '<li>' + esc(s) + '</li>'; }).join('') + '</ul></div>' +
+      '<div class="way"><span class="waytag">' + esc(content.list2Title || 'Google') + '</span><ul>' + googleList.map(function(s){ return '<li>' + esc(s) + '</li>'; }).join('') + '</ul></div>';
+    document.getElementById('miBanner').textContent = content.banner || '';
+    document.getElementById('miBanner').style.display = content.banner ? '' : 'none';
+  });
+
+  // ---- optional section modules (phase 2, batch 3) ----
+  renderOptionalSection(d, 'audienceStrategy', function(content){
+    var cards = (content.cards || []).filter(function(c){ return c && (c.n || c.h || c.p); });
+    if (!cards.length) return false;
+    document.getElementById('asEyebrow').textContent = content.eyebrow || 'Audience strategy';
+    document.getElementById('asHeading').innerHTML = rich(content.heading || '');
+    document.getElementById('asSub').textContent = content.sub || '';
+    document.getElementById('asGrid').innerHTML = cards.map(function(c){
+      return '<div class="acard">' +
+        (c.n ? '<span class="n">' + esc(c.n) + '</span>' : '') +
+        (c.h ? '<h3>' + esc(c.h) + '</h3>' : '') +
+        (c.p ? '<p>' + esc(c.p) + '</p>' : '') +
+      '</div>';
+    }).join('');
+    document.getElementById('asFooterNote').textContent = content.footerNote || '';
+    document.getElementById('asFooterNote').style.display = content.footerNote ? '' : 'none';
+  });
+
+  renderOptionalSection(d, 'searchIntent', function(content){
+    var cards = (content.cards || []).filter(function(c){ return c && (c.h || c.p); });
+    if (!cards.length) return false;
+    document.getElementById('siEyebrow').textContent = content.eyebrow || 'Search & high-intent media';
+    document.getElementById('siHeading').innerHTML = rich(content.heading || '');
+    paras(document.getElementById('siSub'), content.sub);
+    document.getElementById('siGrid').innerHTML = cards.map(function(c){
+      return '<div class="intent-card">' + (c.h ? '<h3>' + esc(c.h) + '</h3>' : '') + (c.p ? '<p>' + esc(c.p) + '</p>' : '') + '</div>';
+    }).join('');
+    var calloutWrap = document.getElementById('siCalloutWrap');
+    if (content.callout) {
+      document.getElementById('siCallout').textContent = content.callout;
+      calloutWrap.style.display = '';
+    } else {
+      calloutWrap.style.display = 'none';
+    }
+    document.getElementById('siFooterNote').textContent = content.footerNote || '';
+    document.getElementById('siFooterNote').style.display = content.footerNote ? '' : 'none';
+  });
+
+  renderOptionalSection(d, 'creatorMarketing', function(content){
+    var stages = (content.stages || []).filter(function(s){ return s && (s.n || s.p); });
+    if (!stages.length) return false;
+    document.getElementById('cmEyebrow').textContent = content.eyebrow || 'Creator marketing';
+    document.getElementById('cmHeading').innerHTML = rich(content.heading || '');
+    document.getElementById('cmSub').textContent = content.sub || '';
+    document.getElementById('cmGrid').innerHTML = stages.map(function(s, i){
+      var arrow = i < stages.length - 1 ? '<div class="stage-arrow">&rarr;</div>' : '';
+      return '<div class="stage"><span class="n">' + (i + 1) + '</span>' +
+        (s.n ? '<h3>' + esc(s.n) + '</h3>' : '') + (s.p ? '<p>' + esc(s.p) + '</p>' : '') + '</div>' + arrow;
+    }).join('');
+    document.getElementById('cmFooterNote').textContent = content.footerNote || '';
+    document.getElementById('cmFooterNote').style.display = content.footerNote ? '' : 'none';
+    document.getElementById('cmNote').textContent = content.note || '';
+    document.getElementById('cmNote').style.display = content.note ? '' : 'none';
+  });
+
+  // ---- optional section modules (phase 3): panels ----
+  // Shared item shape for both panel modules:
+  //   { tag, n, h, p, items: [string], foot, lead: bool }
+  function panelItems(content){
+    return (content.items || []).filter(function(it){ return it && (it.h || it.p || (it.items || []).some(Boolean)); });
+  }
+  renderOptionalSection(d, 'reviewPanels', function(content){
+    var items = panelItems(content);
+    if (!items.length) return false;
+    document.getElementById('rvEyebrow').textContent = content.eyebrow || 'Our starting point';
+    document.getElementById('rvHeading').innerHTML = rich(content.heading || '');
+    paras(document.getElementById('rvSub'), content.sub);
+    document.getElementById('rvList').innerHTML = items.map(function(it, i){
+      var bullets = (it.items || []).filter(Boolean);
+      return '<details class="rv"' + ((content.openAll === true || (i === 0 && content.openFirst === true)) ? ' open' : '') + '>' +
+        '<summary><div class="rvhead">' +
+          (it.n ? '<span class="n">' + esc(it.n) + '</span>' : '') +
+          (it.h ? '<h3>' + esc(it.h) + '</h3>' : '') +
+          (it.p ? '<p class="lead">' + esc(it.p) + '</p>' : '') +
+        '</div><span class="chev" aria-hidden="true">+</span></summary>' +
+        '<div class="body">' +
+          (it.intro ? '<p>' + esc(it.intro) + '</p>' : '') +
+          (bullets.length ? '<ul>' + bullets.map(function(b){ return '<li>' + esc(b) + '</li>'; }).join('') + '</ul>' : '') +
+          (it.foot ? '<div class="goal">' + boldRich(it.foot) + '</div>' : '') +
+        '</div>' +
+      '</details>';
+    }).join('');
+    var close = document.getElementById('rvClose');
+    close.innerHTML = content.closing ? boldRich(content.closing) : '';
+    close.style.display = content.closing ? '' : 'none';
+    document.getElementById('rvFooterNote').textContent = content.footerNote || '';
+    document.getElementById('rvFooterNote').style.display = content.footerNote ? '' : 'none';
+  });
+
+  renderOptionalSection(d, 'branchPlans', function(content){
+    var items = panelItems(content);
+    if (!items.length) return false;
+    document.getElementById('brEyebrow').textContent = content.eyebrow || 'Branch strategy';
+    document.getElementById('brHeading').innerHTML = rich(content.heading || '');
+    paras(document.getElementById('brSub'), content.sub);
+    document.getElementById('brGrid').innerHTML = items.map(function(it){
+      var bullets = (it.items || []).filter(Boolean);
+      return '<div class="br' + (it.lead === true ? ' lead' : '') + '">' +
+        (it.tag ? '<span class="tag">' + esc(it.tag) + '</span>' : '') +
+        (it.n ? '<span class="n">' + esc(it.n) + '</span>' : '') +
+        (it.h ? '<h3>' + esc(it.h) + '</h3>' : '') +
+        (it.p ? '<p>' + esc(it.p) + '</p>' : '') +
+        (bullets.length ? '<ul>' + bullets.map(function(b){ return '<li>' + esc(b) + '</li>'; }).join('') + '</ul>' : '') +
+        (it.foot ? '<div class="foot">' + esc(it.foot) + '</div>' : '') +
+      '</div>';
+    }).join('');
+    document.getElementById('brFooterNote').textContent = content.footerNote || '';
+    document.getElementById('brFooterNote').style.display = content.footerNote ? '' : 'none';
+  });
+
+  // ---- group-proposal modules ----
+  renderOptionalSection(d, 'properties', function(content){
+    var items = (content.items || []).filter(function(it){ return it && (it.name || it.heading || it.body); });
+    if (!items.length) return false;
+    document.getElementById('prEyebrow').textContent = content.eyebrow || 'The properties';
+    document.getElementById('prHeading').innerHTML = rich(content.heading || '');
+    paras(document.getElementById('prSub'), content.sub);
+    var total = items.length < 10 ? '0' + items.length : String(items.length);
+    document.getElementById('prList').innerHTML = items.map(function(it, i){
+      var pri = (it.priorities || []).filter(Boolean);
+      var body = String(it.body || '').split(/\n\s*\n/).map(function(b){ return b.trim(); }).filter(Boolean);
+      var n = (i + 1) < 10 ? '0' + (i + 1) : String(i + 1);
+      return '<article class="prop' + (i % 2 ? ' flip' : '') + '"><div class="wrap prop-grid">' +
+        (it.image ? '<figure class="prop-main reveal"><img src="' + esc(it.image) + '" alt="' + esc(it.name || '') + '" loading="lazy" decoding="async">' + (it.caption ? '<span class="imgcap">' + esc(it.caption) + '</span>' : '') + '</figure>' : '<div></div>') +
+        '<div class="prop-text reveal">' +
+          '<div class="prop-n">' + n + ' <i>/ ' + total + '</i></div>' +
+          (it.logo ? '<img class="prop-logo" src="' + esc(it.logo) + '" alt="' + esc(it.name || '') + ' logo" loading="lazy">' : '') +
+          (it.kicker ? '<p class="prop-kicker">' + esc(it.kicker) + '</p>' : '') +
+          ((it.heading || it.name) ? '<h3 class="serif">' + esc(it.heading || it.name) + '</h3>' : '') +
+          (it.line ? '<p class="prop-line serif">' + esc(it.line) + '</p>' : '') +
+          (body.length ? '<div class="prop-body">' + body.map(function(b){ return '<p>' + esc(b) + '</p>'; }).join('') + '</div>' : '') +
+          (pri.length ? '<div class="prop-pri">' + (content.prioritiesLabel ? '<h4>' + esc(content.prioritiesLabel) + '</h4>' : '') +
+            '<ol>' + pri.map(function(p){ return '<li>' + esc(p) + '</li>'; }).join('') + '</ol></div>' : '') +
+          (it.note ? '<p class="prop-note">' + esc(it.note) + '</p>' : '') +
+          (it.image2 ? '<figure class="prop-second"><img src="' + esc(it.image2) + '" alt="' + esc(it.name || '') + '" loading="lazy" decoding="async">' + ((it.caption2 || it.caption) ? '<span class="imgcap">' + esc(it.caption2 || it.caption) + '</span>' : '') + '</figure>' : '') +
+        '</div>' +
+      '</div></article>';
+    }).join('');
+  });
+
+  renderOptionalSection(d, 'gallery', function(content){
+    var items = (content.items || []).filter(function(it){ return it && it.image; }).slice(0, 4);
+    if (!items.length) return false;
+    var grid = document.getElementById('galGrid');
+    grid.className = 'gal reveal' + (items.length === 1 ? ' one' : '');
+    grid.style.setProperty('--n', items.length);
+    grid.innerHTML = items.map(function(it){
+      return '<figure><img src="' + esc(it.image) + '" alt="' + esc(it.alt || '') + '" loading="lazy" decoding="async">' +
+        (it.caption ? '<span class="imgcap">' + esc(it.caption) + '</span>' : '') + '</figure>';
+    }).join('');
+    pfText('galNote', content.note);
+  });
+
+  renderOptionalSection(d, 'showcase', function(content){
+    var items = (content.items || []).filter(function(it){ return it && (it.image || it.video); });
+    if (!items.length) return false;
+    document.getElementById('scEyebrow').textContent = content.eyebrow || 'Creative showcase';
+    document.getElementById('scHeading').innerHTML = rich(content.heading || '');
+    paras(document.getElementById('scSub'), content.sub);
+    document.getElementById('scGrid').innerHTML = items.map(function(it, i){
+      var n = (i + 1) < 10 ? '0' + (i + 1) : String(i + 1);
+      var media = it.video
+        ? '<video src="' + esc(it.video) + '"' + (it.image ? ' poster="' + esc(it.image) + '"' : '') + ' muted loop playsinline autoplay preload="metadata"></video>' +
+          (it.image ? '<img class="sc-print" src="' + esc(it.image) + '" alt="">' : '')
+        : '<img src="' + esc(it.image) + '" alt="' + esc(it.title || '') + '" loading="lazy" decoding="async">';
+      return '<figure class="sc-item reveal"><div class="sc-media">' + media +
+        (it.tag ? '<span class="sc-tag"><i></i>' + esc(it.tag) + '</span>' : '') + '</div>' +
+        '<figcaption><span class="n">' + n + '</span>' + (it.title ? '<h3>' + esc(it.title) + '</h3>' : '') +
+        (it.caption ? '<p>' + esc(it.caption) + '</p>' : '') + '</figcaption></figure>';
+    }).join('');
+    pfText('scNote', content.note);
+  });
+
+  renderOptionalSection(d, 'deliverables', function(content){
+    if (!pfTable(document.getElementById('dlTable'), content.cols, content.rows, -1)) return false;
+    document.getElementById('dlEyebrow').textContent = content.eyebrow || 'Deliverables';
+    document.getElementById('dlHeading').innerHTML = rich(content.heading || '');
+    paras(document.getElementById('dlSub'), content.sub);
+    pfNotes(document.getElementById('dlNotes'), content.notes);
+  });
+
+  renderOptionalSection(d, 'productionLogistics', function(content){
+    var facts = (content.facts || []).filter(function(f){ return f && f.value; });
+    var hasTable = pfTable(document.getElementById('plTable'), content.cols, content.rows, -1);
+    if (!facts.length && !hasTable && !content.heading) return false;
+    document.getElementById('plEyebrow').textContent = content.eyebrow || 'Production';
+    document.getElementById('plHeading').innerHTML = rich(content.heading || '');
+    paras(document.getElementById('plSub'), content.sub);
+    var fbox = document.getElementById('plFacts');
+    fbox.style.display = facts.length ? '' : 'none';
+    fbox.innerHTML = facts.map(function(f){
+      return '<div class="pl-fact"><strong class="serif">' + esc(f.value) + '</strong><span>' + esc(f.label || '') + '</span></div>';
+    }).join('');
+    pfText('plCap', hasTable ? content.tableCaption : '');
+    pfNotes(document.getElementById('plNotes'), content.notes);
+  });
+
+  renderOptionalSection(d, 'groupInvestment', function(content){
+    if (!content.offerPrice && !(content.compareRows || []).length) return false;
+    document.getElementById('giEyebrow').textContent = content.eyebrow || 'Investment';
+    document.getElementById('giHeading').innerHTML = rich(content.heading || '');
+    paras(document.getElementById('giIntro'), content.intro);
+    var hasStd = pfTable(document.getElementById('giStd'), content.standardCols, content.standardRows, -1);
+    pfText('giStdCap', hasStd ? content.standardCaption : '');
+    pfText('giBridge', content.bridge);
+
+    document.getElementById('giOffer').style.display = content.offerPrice ? '' : 'none';
+    document.getElementById('giOfferLabel').textContent = content.offerLabel || '';
+    document.getElementById('giPrice').textContent = content.offerPrice || '';
+    document.getElementById('giUnit').textContent = content.offerUnit || '';
+    pfText('giOfferTitle', content.offerTitle);
+    document.getElementById('giPoints').innerHTML = (content.offerPoints || []).filter(Boolean)
+      .map(function(p){ return '<li>' + esc(p) + '</li>'; }).join('');
+
+    var cols = content.compareCols || [];
+    var hasCompare = pfTable(document.getElementById('giCompare'), cols, content.compareRows, cols.length - 1);
+    pfText('giCompareTitle', hasCompare ? content.compareTitle : '');
+
+    var parts = (content.parts || []).filter(function(p){ return p && p.value; });
+    var adv = document.getElementById('giAdv');
+    adv.style.display = (content.advantageValue || parts.length) ? '' : 'none';
+    document.getElementById('giAdvLabel').textContent = content.advantageLabel || '';
+    document.getElementById('giAdvValue').textContent = content.advantageValue || '';
+    // The bar is drawn to scale from each part's own figure, so the fee saving
+    // and the absorbed cost read as two different things, in proportion.
+    var weights = parts.map(function(p){ return parseFloat(String(p.value).replace(/[^0-9.]/g, '')) || 0; });
+    var sum = weights.reduce(function(a, b){ return a + b; }, 0);
+    var bar = document.getElementById('giBar');
+    bar.style.display = sum > 0 ? '' : 'none';
+    bar.innerHTML = sum > 0 ? parts.map(function(p, i){
+      return '<span class="gi-seg ' + (p.kind === 'absorbed' ? 'absorbed' : 'saving') + '" style="flex:' + weights[i] + ' 1 0"></span>';
+    }).join('') : '';
+    document.getElementById('giParts').innerHTML = parts.map(function(p){
+      return '<div class="gi-part ' + (p.kind === 'absorbed' ? 'absorbed' : 'saving') + '">' +
+        (p.tag ? '<span class="tag"><i></i>' + esc(p.tag) + '</span>' : '') +
+        '<strong class="serif">' + esc(p.value) + '</strong>' +
+        (p.label ? '<h4>' + esc(p.label) + '</h4>' : '') +
+        (p.detail ? '<p>' + esc(p.detail) + '</p>' : '') +
+      '</div>';
+    }).join('');
+    pfText('giFoot', content.footNote);
+  });
+
+  renderOptionalSection(d, 'terms', function(content){
+    var rows = (content.rows || []).filter(function(r){ return r && (r.label || r.value); });
+    var list = (content.list || []).filter(Boolean);
+    if (!rows.length && !list.length) return false;
+    document.getElementById('tmEyebrow').textContent = content.eyebrow || 'Terms';
+    document.getElementById('tmHeading').innerHTML = rich(content.heading || '');
+    document.getElementById('tmRows').innerHTML = rows.map(function(r){
+      return '<div class="tm-row"><dt>' + esc(r.label || '') + '</dt><dd>' + esc(r.value || '') + '</dd></div>';
+    }).join('');
+    pfText('tmRowNote', content.rowNote);
+    pfText('tmListTitle', list.length ? content.listTitle : '');
+    document.getElementById('tmList').innerHTML = list.map(function(x){ return '<li>' + esc(x) + '</li>'; }).join('');
+    pfNotes(document.getElementById('tmNotes'), content.notes);
+  });
+
+  // ---- optional section modules (phase 1) ----
+  // Each is fully independent: missing "sections" on the doc (every portfolio
+  // today, including KAIA and AWC) means every check below is false and the
+  // <section> stays display:none, exactly as it already is in the markup. A
+  // failure inside one module is caught locally so it cannot take the rest
+  // of the page down with it.
+  renderOptionalSection(d, 'performanceMeasurement', function(content){
+    var commercial = (content.commercialSignals || []).filter(Boolean);
+    var performance = (content.performanceSignals || []).filter(Boolean);
+    // Optional N-level layout ({title, items[]} each). When present it
+    // replaces the fixed two-column signals grid; the first level is the
+    // highlighted card. Docs without `levels` render exactly as before.
+    var levels = (content.levels || []).filter(function(l){ return l && (l.title || (l.items || []).some(Boolean)); });
+    if (!commercial.length && !performance.length && !levels.length) return false;
+    document.getElementById('pmEyebrow').textContent = content.eyebrow || 'Performance measurement';
+    document.getElementById('pmHeading').innerHTML = rich(content.heading || '');
+    var pmGrid = document.getElementById('pmGrid');
+    pmGrid.classList.toggle('three', levels.length === 3);
+    if (levels.length) {
+      pmGrid.innerHTML = levels.map(function(l, i){
+        return '<div class="way' + (i === 0 ? ' lead' : '') + '"><span class="waytag">' + esc(l.title || '') + '</span>' +
+          (l.lead ? '<p class="waylead">' + esc(l.lead) + '</p>' : '') +
+          '<ul>' + (l.items || []).filter(Boolean).map(function(s){ return '<li>' + esc(s) + '</li>'; }).join('') + '</ul></div>';
+      }).join('');
+      document.getElementById('pmFooterNote').textContent = content.footerNote || '';
+      document.getElementById('pmFooterNote').style.display = content.footerNote ? '' : 'none';
+      return;
+    }
+    pmGrid.innerHTML =
+      '<div class="way"><span class="waytag">Commercial signals</span><ul>' +
+        commercial.map(function(s){ return '<li>' + esc(s) + '</li>'; }).join('') + '</ul></div>' +
+      '<div class="way"><span class="waytag">Performance signals</span><ul>' +
+        performance.map(function(s){ return '<li>' + esc(s) + '</li>'; }).join('') + '</ul></div>';
+    document.getElementById('pmFooterNote').textContent = content.footerNote || '';
+    document.getElementById('pmFooterNote').style.display = content.footerNote ? '' : 'none';
+  });
+
+  renderOptionalSection(d, 'includedExcluded', function(content){
+    var included = (content.includedList || []).filter(Boolean);
+    var excluded = (content.excludedList || []).filter(Boolean);
+    if (!included.length && !excluded.length) return false;
+    document.getElementById('ieEyebrow').textContent = content.eyebrow || 'Included / excluded costs';
+    document.getElementById('ieGrid').innerHTML =
+      '<div class="way"><span class="waytag">Included with BOKKO</span><ul>' +
+        included.map(function(s){ return '<li>' + esc(s) + '</li>'; }).join('') + '</ul></div>' +
+      '<div class="way excl"><span class="waytag">Separate / at cost</span><ul>' +
+        excluded.map(function(s){ return '<li>' + esc(s) + '</li>'; }).join('') + '</ul></div>';
+    document.getElementById('ieFooterNote').textContent = content.footerNote || '';
+    document.getElementById('ieFooterNote').style.display = content.footerNote ? '' : 'none';
+  });
+
+  renderOptionalSection(d, 'eventsActivations', function(content){
+    var examples = (content.examples || []).filter(Boolean);
+    // Optional richer structure: title+text capability cards, in place of
+    // the flat example chips. A doc without "capabilities" (every portfolio
+    // before this field existed) falls straight through to the original
+    // examples[] chip rendering, unchanged.
+    var capabilities = (content.capabilities || []).filter(function(c){ return c && (c.title || c.text); });
+    if (!examples.length && !capabilities.length) return false;
+    document.getElementById('eaEyebrow').textContent = content.eyebrow || 'Events & activations';
+    document.getElementById('eaHeading').innerHTML = rich(content.heading || '');
+    paras(document.getElementById('eaSub'), content.sub);
+    var eaGrid = document.getElementById('eaGrid');
+    if (capabilities.length) {
+      eaGrid.className = 'pillars';
+      eaGrid.innerHTML = capabilities.map(function(c){
+        return '<div class="pillar">' + (c.title ? '<h3>' + esc(c.title) + '</h3>' : '') + (c.text ? '<p>' + esc(c.text) + '</p>' : '') + '</div>';
+      }).join('');
+    } else {
+      eaGrid.className = 'examples';
+      eaGrid.innerHTML = examples.map(function(e){
+        return '<div class="example">' + esc(e) + '</div>';
+      }).join('');
+    }
+    document.getElementById('eaFooterNote').textContent = content.footerNote || '';
+    document.getElementById('eaFooterNote').style.display = content.footerNote ? '' : 'none';
+    // Optional secondary clarification — e.g. distinguishing ongoing-scope
+    // promotion of an existing event from dedicated event production that's
+    // quoted separately. Additive; absent on every doc before this field.
+    document.getElementById('eaScopeNote').textContent = content.scopeNote || '';
+    document.getElementById('eaScopeNote').style.display = content.scopeNote ? '' : 'none';
+  });
+
   // services + trust
   document.getElementById('servicesSection').style.display = d.showServices === false ? 'none' : '';
+  var svc = d.services || {};
+  document.getElementById('svcEyebrow').textContent = svc.eyebrow || 'Ways to work together';
+  document.getElementById('svcHeading').innerHTML = rich(svc.heading || 'Production only,\nor the whole system.');
+  document.getElementById('svcSub').textContent = svc.sub || "Some brands only need the film. Others want the media behind it too. Both are normal, and you can start with the first and add the second later.";
+  document.getElementById('svc1Tag').textContent = svc.option1Tag || 'Option one';
+  document.getElementById('svc1Title').textContent = svc.option1Title || 'Production only';
+  document.getElementById('svc1Lead').textContent = svc.option1Lead || 'We plan, shoot and deliver. Your own team publishes.';
+  document.getElementById('svc1List').innerHTML = ((svc.option1Items && svc.option1Items.length) ? svc.option1Items : DEFAULT_SERVICE_ITEMS_1)
+    .map(function(it){ return '<li>' + boldRich(it) + '</li>'; }).join('');
+  document.getElementById('svc1Foot').textContent = svc.option1Foot || 'Suits a property with a capable in-house social team that needs the craft, not the management.';
+  document.getElementById('svc2Tag').textContent = svc.option2Tag || 'Option two';
+  document.getElementById('svc2Title').textContent = svc.option2Title || 'Full scope';
+  document.getElementById('svc2Lead').textContent = svc.option2Lead || 'Everything above, and we run it.';
+  document.getElementById('svc2List').innerHTML = ((svc.option2Items && svc.option2Items.length) ? svc.option2Items : DEFAULT_SERVICE_ITEMS_2)
+    .map(function(it){ return '<li>' + boldRich(it) + '</li>'; }).join('');
+  document.getElementById('svc2Foot').textContent = svc.option2Foot || 'The creative and the media budget sit with the same team, so nothing is lost in the handover between them.';
   const testis = (d.testimonials || []).filter(Boolean);
   const showTrust = d.showTrust !== false && (d.logosImage || testis.length);
   document.getElementById('trustSection').style.display = showTrust ? '' : 'none';
@@ -852,6 +2870,8 @@ function render(d){
   // cta
   document.getElementById('ctaHeading').innerHTML = rich(d.ctaHeading || '');
   paras(document.getElementById('ctaBody'), d.ctaBody);
+  document.getElementById('ctaPrimaryBtn').textContent = d.ctaButtonLabel || 'Confirm scope with Jack';
+  if (d.ctaSubject) document.getElementById('ctaPrimaryBtn').href = 'mailto:jack@bokko.co?subject=' + encodeURIComponent(d.ctaSubject);
   document.getElementById('footNote').textContent = d.footNote || ('Portfolio \u2014 ' + new Date().getFullYear());
 
   // footer credit \u2014 quiet line naming who this proposal is for, and when.
@@ -865,15 +2885,40 @@ function render(d){
     creditEl.textContent = '';
   }
 
+  applySectionOrder(d);
+
+  // Jump nav: an explicit manual override always wins (stored admin input is
+  // never silently ignored). Otherwise it's generated from whichever
+  // sections are actually visible, now that every section's own visibility
+  // has been decided and applySectionOrder has fixed their final order.
+  var navLinksEl = document.getElementById('navLinks');
+  if (navLinksEl) {
+    // The admin's 4 override inputs always save as 4 slots, blank or not, so
+    // "has a nav array" isn't enough to mean "admin actually set one" — at
+    // least one slot needs both a label and an anchor to count as a real
+    // override rather than 4 empty entries from a portfolio that has simply
+    // been saved without anyone touching these fields.
+    var manualNav = Array.isArray(d.nav) ? d.nav.filter(function(l){ return l && l.label && l.anchor; }) : [];
+    var navLinks = manualNav.length ? manualNav : buildDynamicNav();
+    if (!navLinks.length) navLinks = DEFAULT_NAV;
+    navLinksEl.insertAdjacentHTML('afterbegin', navLinks.map(function(l){
+      return '<a href="' + esc(l.anchor) + '">' + esc(l.label) + '</a>';
+    }).join(''));
+  }
+
   document.getElementById('boot').style.display = 'none';
   document.getElementById('page').style.display = 'block';
+  pfStartReveal();
   wallState.filter = 'all';
   wallState.expanded = false;
   renderWall(true);
   wireWallControls();
+  resultsState.expanded = false;
+  applyResultsCap();
+  wireResultsControls();
   window.addEventListener('resize', function(){
     clearTimeout(wallResizeTimer);
-    wallResizeTimer = setTimeout(function(){ applyWallCap(); }, 150);
+    wallResizeTimer = setTimeout(function(){ applyWallCap(); applyResultsCap(); }, 150);
   });
 }
 
@@ -942,7 +2987,8 @@ function renderTestimonials(list) {
    cutoff across breakpoints without hardcoding an item count per layout. */
 var WALL_ROWS_CAP = 4;
 
-var wallState = { pool: [], filter: 'all', expanded: false };
+var wallState = { pool: [], filter: 'all', expanded: false, initialCount: 10 };
+var WALL_MOBILE_COMPACT_CAP = 6;
 var wallObserver = null;
 var wallResizeTimer = null;
 
@@ -1004,6 +3050,29 @@ function applyWallCap() {
   var btn = document.getElementById('moreBtn');
   var cards = wall.children;
 
+  // Compact proposals (opt-in per portfolio) use an explicit visible-count
+  // cap on both breakpoints instead of the row-height measurement below,
+  // since the target is "about N cards", not "N full rows" at whatever
+  // column count the viewport happens to produce. A portfolio without the
+  // flag never reaches this branch, so its behaviour is untouched.
+  if (PF_COMPACT) {
+    if (!cards.length || wallState.expanded) {
+      Array.prototype.forEach.call(cards, function(c){ c.style.display = ''; });
+      wrap.style.display = 'none';
+      return;
+    }
+    var cap = wallMobileQuery.matches ? WALL_MOBILE_COMPACT_CAP : wallState.initialCount;
+    if (cards.length <= cap) {
+      Array.prototype.forEach.call(cards, function(c){ c.style.display = ''; });
+      wrap.style.display = 'none';
+      return;
+    }
+    Array.prototype.forEach.call(cards, function(c, i){ c.style.display = i < cap ? '' : 'none'; });
+    wrap.style.display = '';
+    btn.innerHTML = 'Load more work <span>' + (cards.length - cap) + ' more</span>';
+    return;
+  }
+
   if (!cards.length || wallState.expanded || wallMobileQuery.matches) {
     wall.style.maxHeight = '';
     wall.style.overflow = '';
@@ -1029,6 +3098,40 @@ function applyWallCap() {
   wrap.style.display = '';
   var remaining = cards.length - cols * WALL_ROWS_CAP;
   btn.innerHTML = 'Load more work <span>' + remaining + ' more</span>';
+}
+
+/* ---------- results: same compact-only cap, count-based ---------- */
+var resultsState = { expanded: false };
+var RESULTS_COMPACT_CAP = 6;
+function applyResultsCap() {
+  var grid = document.getElementById('resultsGrid');
+  var wrap = document.getElementById('resultsMorewrap');
+  var btn = document.getElementById('resultsMoreBtn');
+  var cards = grid.children;
+
+  // Not compact, or the mobile swipe-carousel breakpoint (already paginated
+  // by scrolling, and already shows a sliver of the next card) — every
+  // existing portfolio keeps showing every result with no button, exactly
+  // as today.
+  if (!PF_COMPACT || getComputedStyle(grid).display !== 'grid') {
+    Array.prototype.forEach.call(cards, function(c){ c.style.display = ''; });
+    wrap.style.display = 'none';
+    return;
+  }
+  if (!cards.length || resultsState.expanded || cards.length <= RESULTS_COMPACT_CAP) {
+    Array.prototype.forEach.call(cards, function(c){ c.style.display = ''; });
+    wrap.style.display = 'none';
+    return;
+  }
+  Array.prototype.forEach.call(cards, function(c, i){ c.style.display = i < RESULTS_COMPACT_CAP ? '' : 'none'; });
+  wrap.style.display = '';
+  btn.innerHTML = 'View more results <span>' + (cards.length - RESULTS_COMPACT_CAP) + ' more</span>';
+}
+function wireResultsControls() {
+  document.getElementById('resultsMoreBtn').addEventListener('click', function(){
+    resultsState.expanded = true;
+    applyResultsCap();
+  });
 }
 
 function wireNewCards() {
@@ -1119,6 +3222,285 @@ function libraryClips(projSnap) {
   return out;
 }
 
+/* A banner at least this many times wider than it is tall is treated as a
+   wordmark rather than a photograph. Measured against the real files: a
+   3:1 logo strip loses about three quarters of its width to a portrait
+   crop, while banners at 2.2 and below are photographs that should fill. */
+var BANNER_WIDE_RATIO = 2.5;
+
+function fitBanner(band, media, url) {
+  // The band stays hidden until the image's shape is known, otherwise a wide
+  // lockup paints once as a cropped full-height hero and then jumps.
+  var revealed = false;
+  function reveal() {
+    if (revealed) return;
+    revealed = true;
+    band.style.display = '';
+  }
+  var probe = new Image();
+  probe.onload = function () {
+    if (probe.naturalWidth && probe.naturalHeight &&
+        probe.naturalWidth / probe.naturalHeight >= BANNER_WIDE_RATIO) {
+      band.classList.add('is-wide');
+    }
+    reveal();
+  };
+  probe.onerror = reveal;
+  setTimeout(reveal, 2500);   // never hide the banner over a slow image
+  probe.src = url;
+}
+
+/* ---------- access gate ----------
+   Collects a name and email before revealing a portfolio, when that
+   portfolio has the gate switched on in the admin.
+
+   This is lead capture, not security: the page content still arrives in
+   the browser, so anyone who views source or disables JavaScript can read
+   past it. Anything genuinely confidential should not be on the page.
+
+   Each submission does two things:
+     1. writes a row to Firestore, so the Leads list in admin shows who
+        opened which portfolio and when
+     2. posts to Netlify Forms, which sends the email notification
+   Either can fail without blocking the visitor — being unable to log a
+   lead is never a reason to keep a client out of their own deck. */
+
+var GATE_KEY_PREFIX = 'bokko_pf_access_';
+
+function gateAlreadyPassed(slug){
+  try {
+    return !!localStorage.getItem(GATE_KEY_PREFIX + slug);
+  } catch (e) {
+    return false;   // private browsing: just ask again
+  }
+}
+
+function gateRemember(slug, lead){
+  try {
+    localStorage.setItem(GATE_KEY_PREFIX + slug, JSON.stringify({
+      name: lead.name, email: lead.email, at: Date.now()
+    }));
+  } catch (e) { /* nothing to do; they'll re-enter next visit */ }
+}
+
+function validEmail(v){
+  // Deliberately permissive — the job is catching typos, not policing
+  // address formats. A real address that looks odd should still get in.
+  return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+}
+
+function logLead(db, slug, portfolioName, lead){
+  if (!db) return Promise.resolve();
+  return db.collection('portfolioLeads').add({
+    name: lead.name,
+    email: lead.email,
+    slug: slug,
+    portfolioName: portfolioName || '',
+    userAgent: (navigator.userAgent || '').slice(0, 300),
+    referrer: (document.referrer || '').slice(0, 300),
+    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+  });
+}
+
+function notifyLead(slug, portfolioName, lead){
+  // Netlify Forms: urlencoded POST to any path on the site, with form-name.
+  var body = new URLSearchParams({
+    'form-name': 'portfolio-access',
+    name: lead.name,
+    email: lead.email,
+    portfolio: (portfolioName ? portfolioName + ' — ' : '') + '/portfolio/' + slug
+  }).toString();
+  return fetch('/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: body
+  });
+}
+
+/* Resolves once the visitor is allowed through. */
+function requireAccess(db, slug, data){
+  return new Promise(function(resolve){
+    var gate  = document.getElementById('gate');
+    var form  = document.getElementById('gateForm');
+    var btn   = document.getElementById('gateBtn');
+    var errEl = document.getElementById('gateErr');
+    var nameEl  = document.getElementById('gateName');
+    var emailEl = document.getElementById('gateEmail');
+
+    if (data.gateHeading) document.getElementById('gateHeading').innerHTML = rich(data.gateHeading);
+    if (data.gateBody)    document.getElementById('gateLead').textContent  = data.gateBody;
+    var forEl = document.getElementById('gateFor');
+    if (data.recipient) forEl.textContent = data.recipient; else forEl.style.display = 'none';
+    if (data.brandLogo) {
+      var m = document.getElementById('gateMark');
+      m.classList.add('has-logo');
+      m.innerHTML = '<img src="' + esc(data.brandLogo) + '" alt="BOKKO">';
+    }
+
+    document.getElementById('boot').style.display = 'none';
+    gate.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    document.title = 'BOKKO — Portfolio access';
+    setTimeout(function(){ nameEl.focus(); }, 60);
+
+    function fail(msg, el){
+      errEl.textContent = msg;
+      errEl.classList.add('show');
+      if (el) { el.classList.add('bad'); el.focus(); }
+    }
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      errEl.classList.remove('show');
+      nameEl.classList.remove('bad');
+      emailEl.classList.remove('bad');
+
+      var lead = {
+        name: nameEl.value.trim().slice(0, 120),
+        email: emailEl.value.trim().slice(0, 160)
+      };
+      if (lead.name.length < 2)      return fail('Please enter your name.', nameEl);
+      if (!validEmail(lead.email))   return fail('That email address doesn’t look right — please check it.', emailEl);
+
+      btn.disabled = true;
+      btn.textContent = 'Opening…';
+
+      // Log and notify in the background. Neither gates entry: a failed
+      // write must not cost us the meeting.
+      Promise.allSettled([
+        logLead(db, slug, data.name, lead).catch(function(err){
+          console.warn('Lead not logged:', err && err.message);
+        }),
+        notifyLead(slug, data.name, lead).catch(function(err){
+          console.warn('Lead notification not sent:', err && err.message);
+        })
+      ]).then(function(){
+        gateRemember(slug, lead);
+        gate.classList.remove('open');
+        document.body.style.overflow = '';
+        resolve(lead);
+      });
+    });
+  });
+}
+
+/* ============================================================
+   THAI VERSION (optional, per portfolio)
+   A portfolio with thEnabled === true and a thDict ([{en, th}], edited in
+   admin > Portfolios > Thai version) gets an EN / ไทย switch. Thai is chosen
+   with ?lang=th or by the switch (remembered on the device). The record's
+   own text is swapped through thDict before rendering; the labels built
+   into this file are swapped through PF_UI_TH. A portfolio without thEnabled
+   (every portfolio before this existed) never reaches any of this.
+   ============================================================ */
+var PF_LANG = 'en';
+(function(){
+  try {
+    var q = new URLSearchParams(location.search).get('lang');
+    if (q === 'th' || q === 'en') { PF_LANG = q; try { localStorage.setItem('bokko_pf_lang', q); } catch (e) {} }
+    else { var s = null; try { s = localStorage.getItem('bokko_pf_lang'); } catch (e) {} if (s === 'th') PF_LANG = 'th'; }
+  } catch (e) {}
+})();
+var PF_UI_TH = {"Contact": "ติดต่อ", "Selected results": "ผลงานที่คัดสรร", "Read the case study": "อ่านกรณีศึกษา", "View more results": "ดูผลงานเพิ่มเติม", "Swipe for more →": "เลื่อนเพื่อดูเพิ่มเติม →", "Setup": "ค่าแรกเข้า", "Monthly": "รายเดือน", "Total": "รวม", "BOKKO professional fees": "ค่าบริการของ BOKKO", "Showreel": "โชว์รีล", "A minute of what": "หนึ่งนาที", "we make.": "กับผลงานของเรา", "Sound on": "เปิดเสียง", "Mute": "ปิดเสียง", "Tap for sound": "แตะเพื่อเปิดเสียง", "Showreel — 2026": "โชว์รีล — 2026", "Production samples": "ตัวอย่างผลงาน", "Load more work": "ดูผลงานเพิ่มเติม", "More work, including full campaign feeds:": "ผลงานเพิ่มเติม รวมถึงฟีดแคมเปญฉบับเต็ม:", "Trusted by": "ได้รับความไว้วางใจจาก", "Some of the brands": "แบรนด์ส่วนหนึ่ง", "we work with.": "ที่ร่วมงานกับเรา", "Tap to read": "แตะเพื่ออ่าน", "Swipe for more — tap any card to read it in full.": "เลื่อนเพื่อดูเพิ่มเติม แตะที่การ์ดเพื่ออ่านฉบับเต็ม", "Tap to read in full.": "แตะเพื่ออ่านฉบับเต็ม", "Next step": "ขั้นตอนถัดไป", "← Back to the main BOKKO site": "← กลับไปที่เว็บไซต์หลักของ BOKKO", "All work": "ผลงานทั้งหมด", "Hotels & resorts": "โรงแรมและรีสอร์ต", "Destination dining": "ร้านอาหาร", "Travel": "ท่องเที่ยว", "Lifestyle": "ไลฟ์สไตล์", "Retail & brand": "ค้าปลีกและแบรนด์", "Commercial signals": "สัญญาณทางธุรกิจ", "Performance signals": "สัญญาณด้านประสิทธิภาพ", "Included with BOKKO": "รวมอยู่ในบริการของ BOKKO", "Separate / at cost": "แยกต่างหาก / ตามจริง", "Confirm scope with Jack": "ยืนยันขอบเขตงานกับ Jack", "Video": "วิดีโอ", "Results": "ผลงาน", "Approach": "แนวทาง", "Pricing": "ราคา", "This portfolio is": "เอกสารนี้แชร์", "shared privately.": "แบบส่วนตัว", "Tell us who you are and we’ll open it straight away.": "กรุณาแจ้งชื่อและอีเมลของท่าน เพื่อเปิดดูได้ทันที", "Your name": "ชื่อของท่าน", "Work email": "อีเมลที่ทำงาน", "View the portfolio": "เปิดดูเอกสาร", "Opening…": "กำลังเปิด…", "We use this only to know who we’re speaking with about this proposal. Questions?": "เราใช้ข้อมูลนี้เพื่อทราบว่ากำลังติดต่อกับท่านใดเกี่ยวกับข้อเสนอนี้เท่านั้น มีคำถาม?", "Please enter your name.": "กรุณากรอกชื่อของท่าน", "That email address doesn’t look right — please check it.": "อีเมลไม่ถูกต้อง กรุณาตรวจสอบอีกครั้ง", "BOKKO — Portfolio access": "BOKKO — เปิดดูเอกสาร"};
+var PF_UI_TH_RULES = [
+  [/^(\d+) more$/, 'อีก $1 รายการ'],
+  [/^Private proposal prepared for (.+)$/, 'ข้อเสนอเฉพาะสำหรับ $1'],
+  [/^Portfolio — (\d+)$/, 'พอร์ตโฟลิโอ — $1']
+];
+function pfThaiMap(data){
+  var map = {}, n = 0;
+  if (data && data.thEnabled === true && Array.isArray(data.thDict)) {
+    data.thDict.forEach(function(p){
+      if (p && typeof p.en === 'string' && typeof p.th === 'string' && p.th.trim()) { map[p.en] = p.th; n++; }
+    });
+  }
+  return n ? map : null;
+}
+// Swaps every piece of wording in the record that has Thai saved for it.
+// Only plain objects and arrays are walked, so dates and other database
+// values pass through untouched.
+function pfTranslateInPlace(node, map, key){
+  if (Array.isArray(node)) {
+    for (var i = 0; i < node.length; i++) {
+      if (typeof node[i] === 'string') { if (Object.prototype.hasOwnProperty.call(map, node[i])) node[i] = map[node[i]]; }
+      else pfTranslateInPlace(node[i], map, key);
+    }
+  } else if (node && typeof node === 'object' && Object.getPrototypeOf(node) === Object.prototype) {
+    Object.keys(node).forEach(function(k){
+      if (k === 'thDict' || k === 'name' || k === 'slug' || k === 'slugLower') return;
+      var v = node[k];
+      if (typeof v === 'string') {
+        if (k === 'link' && v.indexOf('/case-studies/') === 0) node[k] = '/th' + v;
+        else if (Object.prototype.hasOwnProperty.call(map, v)) node[k] = map[v];
+      } else pfTranslateInPlace(v, map, k);
+    });
+  }
+}
+function pfUiThaiText(node){
+  var raw = node.nodeValue, key = raw.replace(/\s+/g, ' ').trim();
+  if (!key) return;
+  var out = null;
+  if (Object.prototype.hasOwnProperty.call(PF_UI_TH, key)) out = PF_UI_TH[key];
+  else for (var i = 0; i < PF_UI_TH_RULES.length; i++) {
+    if (PF_UI_TH_RULES[i][0].test(key)) { out = key.replace(PF_UI_TH_RULES[i][0], PF_UI_TH_RULES[i][1]); break; }
+  }
+  if (out === null || out === key) return;
+  var lead = /^\s/.test(raw) ? ' ' : '', trail = /\s$/.test(raw) ? ' ' : '';
+  node.nodeValue = lead + out + trail;
+}
+function pfUiThaiWalk(root){
+  if (!root) return;
+  if (root.nodeType === 3) { pfUiThaiText(root); return; }
+  if (root.nodeType !== 1 || /^(SCRIPT|STYLE)$/.test(root.tagName)) return;
+  var w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null), n, list = [];
+  while ((n = w.nextNode())) { if (n.parentNode && !/^(SCRIPT|STYLE)$/.test(n.parentNode.nodeName)) list.push(n); }
+  list.forEach(pfUiThaiText);
+}
+function pfStartUiThai(){
+  document.documentElement.lang = 'th';
+  pfUiThaiWalk(document.body);
+  if (!('MutationObserver' in window)) return;
+  new MutationObserver(function(muts){
+    muts.forEach(function(m){
+      if (m.type === 'characterData') pfUiThaiText(m.target);
+      else Array.prototype.forEach.call(m.addedNodes, pfUiThaiWalk);
+    });
+  }).observe(document.body, { childList: true, subtree: true, characterData: true });
+}
+function pfLangSwitchEl(){
+  var box = document.createElement('span');
+  box.className = 'langsw';
+  box.setAttribute('role', 'group');
+  box.setAttribute('aria-label', 'Language');
+  [['en', 'EN'], ['th', 'ไทย']].forEach(function(l){
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.textContent = l[1];
+    b.setAttribute('lang', l[0]);
+    b.setAttribute('aria-pressed', String(PF_LANG === l[0]));
+    b.addEventListener('click', function(){
+      if (PF_LANG === l[0]) return;
+      try { localStorage.setItem('bokko_pf_lang', l[0]); } catch (e) {}
+      var u = new URL(location.href);
+      u.searchParams.set('lang', l[0]);
+      location.href = u.toString();
+    });
+    box.appendChild(b);
+  });
+  return box;
+}
+function pfMountLangSwitch(){
+  var nav = document.getElementById('navLinks');
+  if (nav && !nav.querySelector('.langsw')) nav.insertBefore(pfLangSwitchEl(), nav.querySelector('.navback'));
+  var brand = document.querySelector('#gate .gate-brand');
+  if (brand && !document.querySelector('#gate .gate-lang')) {
+    var row = document.createElement('div');
+    row.className = 'gate-lang';
+    row.appendChild(pfLangSwitchEl());
+    brand.parentNode.insertBefore(row, brand);
+  }
+}
+
 /* ---------- boot ---------- */
 (async function(){
   const slug = slugFromUrl();
@@ -1156,10 +3538,17 @@ function libraryClips(projSnap) {
     if (!data.results || !data.results.length) merged.results = FALLBACK.results;
     if (!data.stats   || !data.stats.length)   merged.stats   = FALLBACK.stats;
 
-    // Site-wide assets, unless this portfolio overrides them.
+    // Site-wide assets, unless this portfolio overrides them. Logos are a
+    // single pre-composited image (there's no per-logo library to select
+    // from), so a portfolio's own logosImage — when explicitly set — is a
+    // full-image override rather than a curated subset; that's the only
+    // "which logos show for this client" control this data model supports.
+    // Absent, both behave exactly as before this change.
     if (data.showTrust !== false) {
-      const l = logosDoc.exists ? logosDoc.data() : null;
-      if (l && (l.imageDesktop || l.image)) merged.logosImage = l.imageDesktop || l.image;
+      if (!data.logosImage) {
+        const l = logosDoc.exists ? logosDoc.data() : null;
+        if (l && (l.imageDesktop || l.image)) merged.logosImage = l.imageDesktop || l.image;
+      }
       const t = testiDoc.exists ? testiDoc.data() : null;
       if (data.testimonials && data.testimonials.length) merged.testimonials = data.testimonials;
       else if (t && t.items && t.items.length)           merged.testimonials = t.items;
@@ -1172,6 +3561,21 @@ function libraryClips(projSnap) {
     // an unconverted .mov would fail to play for a large share of viewers,
     // which is worse than not showing it at all.
     if (data.showLibrary !== false) merged.extraClips = libraryClips(projSnap);
+
+    // Ask who's opening it, when this portfolio asks for that. Someone who
+    // already identified themselves on this device goes straight in.
+    // Thai version: swap the record's wording and the built-in labels before
+    // anything is shown, and offer the switch. Skipped entirely unless this
+    // portfolio has a Thai version switched on.
+    const thMap = pfThaiMap(data);
+    if (thMap) {
+      if (PF_LANG === 'th') { pfTranslateInPlace(merged, thMap); pfStartUiThai(); }
+      pfMountLangSwitch();
+    }
+
+    if (data.gateEnabled === true && !gateAlreadyPassed(slug)) {
+      await requireAccess(db, slug, merged);
+    }
 
     render(merged);
 
@@ -1215,7 +3619,7 @@ function libraryClips(projSnap) {
   v.addEventListener('loadedmetadata', function(){
     if (!v.videoWidth) { sec.style.display = 'none'; return; }
     if (v.videoHeight > v.videoWidth) box.classList.add('portrait');
-    sec.style.display = '';
+    sec.style.display = window.PF_NO_REEL ? 'none' : '';
 
     if (wide && !reduced && 'IntersectionObserver' in window) {
       var io = new IntersectionObserver(function(entries){

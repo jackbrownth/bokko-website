@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Performance report | BOKKO</title>
+<link rel="icon" href="/favicon.ico">
+<style>
+:root{--aqua:#00c4d8;--aquad:#007b8a;--deep:#062f3d;--deep2:#0b5062;--ice:#effdff;--soft:#f7feff;--muted:#5f7782;--line:#d5eef2;--pink:#ff4faf;--pink2:#ffe4f3;--pinkd:#d81f86;
+  --fb:#009db0;--ig:#d81f86;--meta:#4f6bd8;--google:#c97a00;--grid:#e6f1f3}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ice);color:var(--deep);font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.5}
+a{color:var(--aquad)}
+.staff{background:var(--deep);color:#fff;font-size:13px;padding:8px 16px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;text-align:center}
+.staff a{color:#9fecf5;font-weight:700}
+.wrap{max-width:1080px;margin:0 auto;padding:0 18px 60px}
+header.top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0 8px;flex-wrap:wrap}
+.logo{display:flex;gap:10px;align-items:center;text-decoration:none;color:var(--deep)}
+.logo img{width:40px;height:40px;object-fit:contain;display:block}
+.logo strong{display:block;letter-spacing:.24em;font-size:16px;line-height:1}
+.logo span{display:block;margin-top:4px;color:var(--muted);font-size:9px;letter-spacing:.11em;text-transform:uppercase}
+.picker{display:flex;gap:6px;align-items:center}
+.picker select,.picker button{font:inherit;font-weight:700;color:var(--deep);background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 14px;cursor:pointer}
+.picker button{width:40px;padding:9px 0}
+.picker button:disabled{opacity:.35;cursor:default}
+.picker select:focus-visible,.picker button:focus-visible{outline:2px solid var(--aquad);outline-offset:2px}
+.hero{padding:26px 0 6px}
+.eyebrow{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--aquad);font-weight:700}
+h1{font-size:clamp(28px,5vw,44px);line-height:1.08;margin:6px 0 4px;letter-spacing:-.01em}
+.period{font-size:17px;color:var(--deep2);font-weight:700}
+.period small{font-weight:400;color:var(--muted);font-size:14px}
+.note{background:var(--pink2);border-left:4px solid var(--pink);border-radius:8px;padding:10px 14px;margin:14px 0 0;font-size:14px}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;margin-top:18px}
+.card h2{margin:0 0 4px;font-size:19px}
+.card .sub{margin:0 0 14px;color:var(--muted);font-size:13.5px}
+.summary{font-size:16px;line-height:1.65;margin:0}
+.draft{display:inline-block;background:var(--pink2);color:var(--pinkd);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border-radius:999px;padding:3px 9px;margin-bottom:8px}
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}
+.tile{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px}
+.tile .k{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.tile .v{font-size:28px;font-weight:700;line-height:1.15;margin-top:6px;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.tile .d{font-size:12.5px;color:var(--muted);margin-top:4px;min-height:18px}
+.tile .d b{color:var(--deep)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.grid2>.card{margin-top:18px;min-width:0}
+.chart{position:relative}
+.chart svg{display:block;width:100%;height:auto;overflow:visible}
+.chart text{font-family:Arial,Helvetica,sans-serif;font-size:11px;fill:var(--muted)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--deep2);margin:0 0 8px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.tip{position:fixed;z-index:20;pointer-events:none;background:var(--deep);color:#fff;border-radius:10px;padding:8px 11px;font-size:12.5px;line-height:1.45;max-width:240px;box-shadow:0 8px 24px rgba(6,47,61,.25);opacity:0;transition:opacity .08s}
+.tip.on{opacity:1}
+.tip b{display:block;font-size:12px;color:#9fecf5;margin-bottom:2px}
+.tip i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:6px}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th{text-align:right;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);padding:6px 8px;border-bottom:1px solid var(--line);white-space:nowrap}
+th:first-child,td:first-child{text-align:left;padding-left:0}
+td{text-align:right;padding:8px;border-bottom:1px solid var(--grid);font-variant-numeric:tabular-nums;white-space:nowrap}
+td:first-child{white-space:normal;min-width:150px}
+tr.camp td{font-weight:700;background:var(--soft)}
+tr.set td:first-child{padding-left:14px;color:var(--deep2)}
+tr.total td{font-weight:700;border-top:2px solid var(--deep);border-bottom:0}
+.scroll{overflow-x:auto}
+.bars{display:grid;gap:7px;margin:0}
+.bar{display:grid;grid-template-columns:128px 1fr 46px;gap:10px;align-items:center;font-size:13.5px}
+.bar span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bar .track{height:10px;background:var(--grid);border-radius:5px;overflow:hidden}
+.bar .fill{height:100%;border-radius:5px}
+.bar em{font-style:normal;text-align:right;font-variant-numeric:tabular-nums;color:var(--deep2)}
+.split{display:flex;height:14px;border-radius:7px;overflow:hidden;gap:2px;margin:6px 0 4px}
+.split div{height:100%}
+.mini{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:16px 0 8px}
+.mini:first-child{margin-top:0}
+ul.notes{margin:10px 0 0;padding-left:18px;color:var(--deep2)}
+ul.notes li{margin:3px 0}
+.budget td{font-size:15px}
+.budget tr.total td{font-size:17px}
+.center{max-width:520px;margin:12vh auto 0;text-align:center}
+.center .card{padding:30px}
+.btn{display:inline-block;background:var(--pink);color:#fff;font-weight:700;border-radius:999px;padding:11px 20px;text-decoration:none;margin-top:10px}
+footer{margin-top:34px;color:var(--muted);font-size:12.5px;text-align:center}
+.tabs{display:inline-flex;background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px;margin-top:18px;gap:4px}
+.tabs button{font:inherit;font-weight:700;font-size:14px;color:var(--deep2);background:transparent;border:0;border-radius:999px;padding:8px 16px;cursor:pointer}
+.tabs button[aria-pressed="true"]{background:var(--deep);color:#fff}
+.tabs button:focus-visible,.chip:focus-visible,.range select:focus-visible{outline:2px solid var(--aquad);outline-offset:2px}
+.pending{color:var(--deep2)}
+.cap{margin:12px 0 0;padding-top:12px;border-top:1px solid var(--grid);font-size:12.5px;line-height:1.55;color:var(--muted)}
+.cap b{color:var(--deep2)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 16px}
+.chip{font:inherit;font-size:13.5px;font-weight:700;color:var(--deep);background:var(--soft);border:1px solid var(--line);border-radius:999px;padding:8px 14px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--pink2);border-color:var(--pink)}
+.ranges{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.range{background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:14px}
+.range h3{margin:0 0 8px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.range .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:13.5px;color:var(--muted)}
+.range select{font:inherit;font-weight:700;color:var(--deep);background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 10px;max-width:100%}
+.range p{margin:10px 0 0;font-size:13px;color:var(--deep2)}
+.range p.warn{color:var(--pinkd);font-weight:700}
+table.cmp td,table.cmp th{padding:9px 8px}
+table.cmp tr.sec td{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;background:var(--soft);text-align:left;padding:7px 8px 7px 0}
+table.cmp td.chg{color:var(--muted);font-size:13.5px}
+table.cmp td.chg b{color:var(--deep)}
+@media(max-width:820px){.ranges{grid-template-columns:1fr}}
+@media(max-width:820px){.tiles{grid-template-columns:1fr 1fr}.grid2{grid-template-columns:1fr}.tile .v{font-size:24px}.card{padding:18px}.bar{grid-template-columns:104px 1fr 42px}}
+@media print{.staff,.picker,.tabs,.chips{display:none}body{background:#fff}.card,.tile{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div id="app"><div class="center"><p style="color:#5f7782">Loading…</p></div></div>
+<div class="tip" id="tip" role="status"></div>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+<script>
+/* BOKKO client dashboard. Staff preview: it reads the months saved under admin > Reports
+   and needs a signed-in admin account. Nothing on this page is stored here; without a
+   sign-in the database refuses every request. Points to confirm and the change history
+   are internal and are never shown on this page. */
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyBEI6vInrFoifeHr6CLh36rZ_nw1cryzIw",
+  authDomain: "bokko-6dc83.firebaseapp.com",
+  projectId: "bokko-6dc83",
+  storageBucket: "bokko-6dc83.firebasestorage.app",
+  messagingSenderId: "1042847995730",
+  appId: "1:1042847995730:web:4caed79529d2bcb418cc8b",
+  measurementId: "G-KFC3JDC13S"
+};
+const app = firebase.initializeApp(FIREBASE_CONFIG);
+const db = firebase.firestore();
+const $app = document.getElementById('app'), $tip = document.getElementById('tip');
+const Q = new URLSearchParams(location.search);
+let client = null, months = [], cur = 0;
+let view = 'month', P1 = [0, 0], P2 = [0, 0];   // compare view: two runs of whole reporting months, as [first index, last index]
+
+const esc = v => String(v == null ? '' : v).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+const N = v => (v == null || v === '' || isNaN(Number(v)) ? 0 : Number(v));
+const has = v => !(v == null || v === '' || isNaN(Number(v)));
+const fmt = v => (has(v) ? Number(v).toLocaleString('en-US', { maximumFractionDigits: 2 }) : '–');
+const money = v => (has(v) ? (v < 0 ? '(' : '') + Math.abs(Number(v)).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + (v < 0 ? ')' : '') : '–');
+const baht = v => (has(v) ? '฿' + Math.round(Number(v)).toLocaleString('en-US') : '–');
+const short = v => { v = Number(v); const a = Math.abs(v); return a >= 1e6 ? (v / 1e6).toFixed(a >= 1e7 ? 0 : 1).replace(/\.0$/, '') + 'M' : a >= 1e4 ? Math.round(v / 1e3) + 'K' : a >= 1e3 ? (v / 1e3).toFixed(1).replace(/\.0$/, '') + 'K' : String(Math.round(v)); };
+const r2 = x => Math.round((Number(x) + Number.EPSILON) * 100) / 100;
+const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const day = s => { const p = String(s).split('-'); return new Date(+p[0], +p[1] - 1, +p[2]); };
+function label(r) {
+  const a = day(r.cycle.start), b = day(r.cycle.end);
+  const f = (d, y) => d.getDate() + ' ' + MON[d.getMonth()] + (y ? ' ' + d.getFullYear() : '');
+  if (a.getFullYear() !== b.getFullYear()) return f(a, true) + ' – ' + f(b, true);
+  if (a.getMonth() !== b.getMonth()) return f(a) + ' – ' + f(b, true);
+  return a.getDate() + ' – ' + f(b, true);
+}
+// Short name for chart axes: "Oct" for a calendar month, "8 Dec" for a cycle that starts mid-month.
+const tick = r => { const a = day(r.cycle.start); return a.getDate() === 1 ? MON[a.getMonth()] : a.getDate() + ' ' + MON[a.getMonth()]; };
+const days = r => Math.round((day(r.cycle.end) - day(r.cycle.start)) / 86400000) + 1;
+
+function calc(r) {
+  const s = r.adSpend || {}, g = r.googleAds, out = {};
+  out.credits = r2((s.credits || []).reduce((a, c) => a + N(c.amount), 0));
+  out.total = r2(N(s.metaSpend) + N(s.googleSpend) + N(s.tiktokSpend));
+  out.after = r2(out.total - out.credits);
+  out.closing = r2(N(s.openingBalance) + N(s.budgetProvided) - out.after);
+  if (!g) out.g = null;
+  else if (g.view === 'account') out.g = Object.assign({ view: 'account' }, g.totals || {});
+  else { out.g = { view: 'campaigns' }; ['directions', 'calls', 'storeVisits', 'pageViews'].forEach(k => { out.g[k] = r2((g.campaigns || []).reduce((a, c) => a + N((c.results || {})[k]), 0)); }); }
+  out.followers = N(((r.social || {}).facebook || {}).newFollowers) + N(((r.social || {}).instagram || {}).newFollowers);
+  out.messages = N(((r.social || {}).facebook || {}).newMessages) + N(((r.social || {}).instagram || {}).newMessages);
+  return out;
+}
+const prevNormal = i => { for (let j = i - 1; j >= 0; j--) if (!months[j].closed) return months[j]; return null; };
+function delta(now, before, p) {
+  if (!p || !has(now) || !has(before) || !N(before)) return '';
+  const x = (N(now) - N(before)) / N(before) * 100;
+  return `<b>${x >= 0 ? '▲' : '▼'} ${Math.abs(x).toFixed(1)}%</b> vs ${esc(tick(p))}`;
+}
+
+/* ---------- charts ---------- */
+function showTip(html, x, y) {
+  $tip.innerHTML = html; $tip.classList.add('on');
+  const w = $tip.offsetWidth, h = $tip.offsetHeight;
+  $tip.style.left = Math.max(8, Math.min(window.innerWidth - w - 8, x - w / 2)) + 'px';
+  $tip.style.top = (y - h - 14 < 8 ? y + 18 : y - h - 14) + 'px';
+}
+const hideTip = () => $tip.classList.remove('on');
+function niceMax(v) { if (v <= 0) return 1; const p = Math.pow(10, Math.floor(Math.log10(v))); const m = v / p; return (m <= 1 ? 1 : m <= 2 ? 2 : m <= 2.5 ? 2.5 : m <= 5 ? 5 : 10) * p; }
+// series: [{ name, color, values[] }]. type 'line' (one series) or 'bars' (stacked when more than one).
+function chart(id, type, series, opts) {
+  opts = opts || {};
+  const el = document.getElementById(id); if (!el) return;
+  const W = Math.max(300, Math.round(el.clientWidth)), H = 210, L = 44, R = 12, T = 12, B = 30;
+  const n = months.length, iw = (W - L - R) / n;
+  const tot = i => series.reduce((a, s) => a + (has(s.values[i]) ? Number(s.values[i]) : 0), 0);
+  const max = niceMax(Math.max.apply(null, months.map((m, i) => tot(i)).concat([1])));
+  const x = i => L + iw * (i + 0.5), y = v => T + (H - T - B) * (1 - v / max);
+  const every = iw < 34 ? 2 : 1;
+  let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(opts.title || '')}">`;
+  [0, 0.5, 1].forEach(f => { s += `<line x1="${L}" x2="${W - R}" y1="${y(max * f)}" y2="${y(max * f)}" stroke="var(--grid)" stroke-width="1"/><text x="${L - 8}" y="${y(max * f) + 4}" text-anchor="end">${short(max * f)}</text>`; });
+  months.forEach((m, i) => {
+    if (m.closed) s += `<rect x="${L + iw * i + 2}" y="${T}" width="${iw - 4}" height="${H - T - B}" fill="var(--pink2)" opacity=".55" rx="4"/>`;
+    if (i === cur) s += `<rect x="${L + iw * i + 1}" y="${H - B + 4}" width="${iw - 2}" height="20" rx="10" fill="var(--deep)"/>`;
+    if (i % every === 0 || i === cur) s += `<text x="${x(i)}" y="${H - B + 18}" text-anchor="middle"${i === cur ? ' style="fill:#fff;font-weight:700"' : ''}>${esc(tick(m))}</text>`;
+  });
+  if (opts.breakAfter != null && opts.breakAfter >= 0 && opts.breakAfter < n - 1) {
+    const bx = L + iw * (opts.breakAfter + 1);
+    s += `<line x1="${bx}" x2="${bx}" y1="${T}" y2="${H - B}" stroke="var(--muted)" stroke-width="1"/><text x="${bx + 5}" y="${T + 9}">${esc(opts.breakLabel || '')}</text>`;
+  }
+  if (type === 'line') {
+    const sr = series[0], pts = months.map((m, i) => (has(sr.values[i]) ? [x(i), y(Number(sr.values[i]))] : null));
+    let d = '', pen = false;
+    pts.forEach(p => { if (!p) { pen = false; return; } d += (pen ? 'L' : 'M') + p[0].toFixed(1) + ' ' + p[1].toFixed(1); pen = true; });
+    s += `<path d="${d}" fill="none" stroke="${sr.color}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>`;
+    pts.forEach((p, i) => { if (p) s += `<circle cx="${p[0]}" cy="${p[1]}" r="${i === cur ? 6 : 4}" fill="${months[i].closed ? '#fff' : sr.color}" stroke="${months[i].closed ? sr.color : '#fff'}" stroke-width="2"/>`; });
+  } else {
+    const bw = Math.min(24, Math.max(6, iw - 8));
+    months.forEach((m, i) => {
+      let base = 0;
+      const live = series.filter(sr => has(sr.values[i]) && Number(sr.values[i]) > 0);
+      live.forEach((sr, k) => {
+        const v = Number(sr.values[i]), y0 = y(base), y1 = y(base + v), top = k === live.length - 1, h = Math.max(1, y0 - y1 - (k ? 2 : 0));
+        const yy = y1, r = top ? Math.min(4, h) : 0, bx = x(i) - bw / 2;
+        s += top
+          ? `<path d="M${bx} ${yy + h}V${yy + r}Q${bx} ${yy} ${bx + r} ${yy}H${bx + bw - r}Q${bx + bw} ${yy} ${bx + bw} ${yy + r}V${yy + h}Z" fill="${sr.color}"/>`
+          : `<rect x="${bx}" y="${yy}" width="${bw}" height="${h}" fill="${sr.color}"/>`;
+        base += v;
+      });
+    });
+  }
+  months.forEach((m, i) => { s += `<rect data-i="${i}" x="${L + iw * i}" y="${T}" width="${iw}" height="${H - T}" fill="transparent" style="cursor:pointer"><title>${esc(label(m))}</title></rect>`; });
+  s += '</svg>';
+  el.innerHTML = s;
+  const svg = el.querySelector('svg');
+  const over = e => {
+    const t = e.target.closest('[data-i]'); if (!t) { hideTip(); return; }
+    const i = +t.dataset.i, m = months[i], pt = e.touches ? e.touches[0] : e;
+    const f = opts.money ? v => '฿' + money(v) : fmt;
+    const rows = series.map(sr => `<div><i style="background:${sr.color}"></i>${esc(sr.name)}: ${has(sr.values[i]) ? f(sr.values[i]) : 'no figure'}</div>`).join('');
+    showTip(`<b>${esc(label(m))}${m.closed ? ' · not a normal month' : ''}</b>${rows}${series.length > 1 ? `<div>Total: ${f(tot(i))}</div>` : ''}`, pt.clientX, pt.clientY);
+  };
+  svg.addEventListener('mousemove', over); svg.addEventListener('touchstart', over, { passive: true });
+  svg.addEventListener('mouseleave', hideTip);
+  svg.addEventListener('click', e => { const t = e.target.closest('[data-i]'); if (t) { hideTip(); go(+t.dataset.i); } });
+}
+
+/* ---------- sections ---------- */
+function audience(a, color, name) {
+  if (!a) return `<p class="sub" style="margin:0">No ${name} audience figures for this month.</p>`;
+  const list = (rows, cls) => `<div class="bars">${(rows || []).slice(0, 6).map(c => `<div class="bar"><span title="${esc(c.name)}">${esc(c.name)}</span><span class="track"><span class="fill" style="display:block;width:${Math.max(1, Math.min(100, N(c.pct)))}%;background:${color}"></span></span><em>${fmt(c.pct)}%</em></div>`).join('')}</div>`;
+  return `${has(a.menPct) && has(a.womenPct) ? `<div class="mini">Women ${fmt(a.womenPct)}% · Men ${fmt(a.menPct)}%${a.largestAgeGroup ? ' · largest age group ' + esc(a.largestAgeGroup) : ''}</div>
+    <div class="split" aria-hidden="true"><div style="width:${N(a.womenPct)}%;background:${color}"></div><div style="width:${N(a.menPct)}%;background:var(--deep2)"></div></div>` : ''}
+    <div class="mini">Top towns and cities</div>${list(a.cities)}
+    <div class="mini">Top countries</div>${list(a.countries)}`;
+}
+const MC = [['reach', 'Reach'], ['impressions', 'Impressions'], ['frequency', 'Freq.'], ['spend', 'Spend ฿'], ['reactions', 'Reactions'], ['shares', 'Shares'], ['comments', 'Comments'], ['linkClicks', 'Link clicks'], ['clicksAll', 'Clicks']];
+const mcell = (o, k) => `<td>${k === 'spend' ? money(o[k]) : fmt(o[k])}</td>`;
+function metaTable(m) {
+  if (!m || !(m.campaigns || []).length) return '<p class="sub" style="margin:0">No Meta ads this month.</p>';
+  return `<div class="scroll"><table><thead><tr><th>Campaign / ad set</th>${MC.map(c => `<th>${c[1]}</th>`).join('')}</tr></thead><tbody>
+    ${m.campaigns.map(c => `<tr class="camp"><td>${esc(c.name || 'Campaign')}</td>${MC.map(k => mcell(c, k[0])).join('')}</tr>` + ((c.adSets || []).length > 1 ? c.adSets.map(a => `<tr class="set"><td>${esc(a.name || 'Ad set')}</td>${MC.map(k => mcell(a, k[0])).join('')}</tr>`).join('') : '')).join('')}
+    <tr class="total"><td>Total</td>${MC.map(k => mcell(m.totals || {}, k[0])).join('')}</tr></tbody></table></div>
+    ${(m.focus || []).length ? `<div class="mini">Focus this month</div><ul class="notes">${m.focus.map(f => `<li>${esc(f)}</li>`).join('')}</ul>` : ''}`;
+}
+function googleBlock(r, c) {
+  const g = r.googleAds;
+  if (!g) return '<p class="sub" style="margin:0">Google Ads were paused this month.</p>';
+  if (g.view === 'account') {
+    const t = g.totals || {};
+    const rows = [['Direction requests', t.directions], ['Calls', t.calls], ['Store visits', t.storeVisits], ['Website visits', t.websiteVisits], ['Menu views', t.menuViews], ['Orders', t.orders]].filter(x => has(x[1]));
+    return `<div class="scroll"><table><thead><tr><th>Result</th><th>This month</th></tr></thead><tbody>${rows.map(x => `<tr><td>${x[0]}</td><td>${fmt(x[1])}</td></tr>`).join('')}
+      <tr class="total"><td>Spend</td><td>฿${money(g.spend)}</td></tr></tbody></table></div>`;
+  }
+  const cols = [['Impressions', x => fmt(x.impressions)], ['Clicks', x => fmt(x.clicks)], ['CTR', x => (has(x.ctrPct) ? fmt(x.ctrPct) + '%' : '–')], ['Directions', x => fmt((x.results || {}).directions)], ['Calls', x => fmt((x.results || {}).calls)], ['Store visits', x => fmt((x.results || {}).storeVisits)], ['Cost ฿', x => money(x.cost)]];
+  return `<div class="scroll"><table><thead><tr><th>Campaign</th>${cols.map(k => `<th>${k[0]}</th>`).join('')}</tr></thead><tbody>
+    ${(g.campaigns || []).map(x => `<tr><td>${esc(x.name || 'Campaign')}${x.type ? `<br><span style="color:var(--muted);font-size:12.5px">${esc(x.type)}</span>` : ''}</td>${cols.map(k => `<td>${k[1](x)}</td>`).join('')}</tr>`).join('')}
+    <tr class="total"><td>Total</td><td></td><td></td><td></td><td>${fmt(c.g.directions)}</td><td>${fmt(c.g.calls)}</td><td>${c.g.storeVisits ? fmt(c.g.storeVisits) : '–'}</td><td>${money((r.adSpend || {}).googleSpend)}</td></tr></tbody></table></div>`;
+}
+// No written summary saved yet: say so, with the date it is due (5 days after the cycle ends) while that is still ahead.
+function pending(r) {
+  const due = day(r.cycle.end); due.setDate(due.getDate() + 5);
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  return 'The written summary for this month is in progress.' + (due >= today ? ` It is added within 5 days of the cycle ending, by ${due.getDate()} ${MON[due.getMonth()]} ${due.getFullYear()}.` : '');
+}
+// Shown under both views charts: views follow the ad plan, so they are exposure, not a measure of progress.
+const VIEWS_NOTE = '<p class="cap"><b>How to read views.</b> Views count every time content is shown, including paid placements. The total rises and falls with each month\u2019s advertising plan: the budget, the campaign objective and where the ads run. Read it as a measure of exposure, not of progress. Messages, direction requests and calls are the better guide to performance.</p>';
+const tabs = () => `<div class="tabs" role="group" aria-label="View"><button type="button" data-view="month" aria-pressed="${view === 'month'}">Monthly report</button><button type="button" data-view="compare" aria-pressed="${view === 'compare'}">Compare periods</button></div>`;
+const staffBar = '<div class="staff"><span>Staff preview. Clients cannot open this page yet.</span><a href="/admin.html">Back to admin</a></div>';
+const logo = '<a class="logo" href="/"><img src="/logo.png" alt=""><div><strong>BOKKO</strong><span>Marketing Specialists</span></div></a>';
+const foot = '<footer>Prepared by BOKKO Digital Co., Ltd. · <a href="https://bokko.co">bokko.co</a> · hello@bokko.co</footer>';
+
+/* ---------- compare two periods ---------- */
+// Only figures that can honestly be added up across months are compared here.
+const CMP = [
+  ['Facebook', 'Views', m => m.social.facebook.views], ['Facebook', 'Profile visits', m => m.social.facebook.profileVisits], ['Facebook', 'New followers', m => m.social.facebook.newFollowers], ['Facebook', 'Messages', m => m.social.facebook.newMessages],
+  ['Instagram', 'Views', m => m.social.instagram.views], ['Instagram', 'Profile visits', m => m.social.instagram.profileVisits], ['Instagram', 'New followers', m => m.social.instagram.newFollowers], ['Instagram', 'Messages', m => m.social.instagram.newMessages],
+  ['Content', 'Pieces published', m => m.content.total], ['Content', 'Photo / artwork', m => m.content.photoArtwork], ['Content', 'Reels', m => m.content.reels],
+  ['Meta ads', 'Spend', m => m.metaAds.totals.spend, 'money'], ['Meta ads', 'Impressions', m => m.metaAds.totals.impressions], ['Meta ads', 'Reactions', m => m.metaAds.totals.reactions], ['Meta ads', 'Shares', m => m.metaAds.totals.shares], ['Meta ads', 'Comments', m => m.metaAds.totals.comments], ['Meta ads', 'Link clicks', m => m.metaAds.totals.linkClicks], ['Meta ads', 'Clicks (all)', m => m.metaAds.totals.clicksAll],
+  ['Google Ads', 'Spend', m => m.adSpend.googleSpend, 'money'], ['Google Ads', 'Direction requests', m => (m._c.g || {}).directions, 'g'], ['Google Ads', 'Calls', m => (m._c.g || {}).calls, 'g'], ['Google Ads', 'Store visits', m => (m._c.g || {}).storeVisits, 'g'],
+  ['Ad budget', 'Ad budget provided', m => m.adSpend.budgetProvided, 'money'], ['Ad budget', 'Credits', m => m._c.credits || null, 'money'], ['Ad budget', 'Total spent after credits', m => m._c.after, 'money']
+];
+const safe = m => Object.assign({}, m, { social: { facebook: (m.social || {}).facebook || {}, instagram: (m.social || {}).instagram || {} }, content: m.content || {}, metaAds: { totals: (m.metaAds || {}).totals || {} }, adSpend: m.adSpend || {}, _c: calc(m) });
+function period(p) {
+  const ms = months.slice(p[0], p[1] + 1).map(safe);
+  const sum = f => { let any = false, t = 0; ms.forEach(m => { const v = f(m); if (has(v)) { any = true; t += Number(v); } }); return any ? r2(t) : null; };
+  return { ms, sum, days: ms.reduce((a, m) => a + days(m), 0), closed: ms.filter(m => m.closed),
+    gviews: Array.from(new Set(ms.filter(m => m.googleAds).map(m => (m.googleAds.view === 'account' ? 'account' : 'campaigns')))),
+    name: ms.length === 1 ? label(ms[0]) : label({ cycle: { start: ms[0].cycle.start, end: ms[ms.length - 1].cycle.end } }),
+    opening: ms[0].adSpend.openingBalance, closing: ms[ms.length - 1]._c.closing };
+}
+const presets = () => [1, 3, 6].filter(n => months.length >= 2 * n).map(n => ({ n, text: n === 1 ? 'Latest month vs the month before' : `Latest ${n} months vs the ${n} before`, p1: [months.length - 2 * n, months.length - n - 1], p2: [months.length - n, months.length - 1] }));
+function renderCompare() {
+  const a = period(P1), b = period(P2);
+  const overlap = P1[0] <= P2[1] && P2[0] <= P1[1];
+  const mixedG = new Set(a.gviews.concat(b.gviews)).size > 1;
+  const opt = sel => months.map((m, i) => `<option value="${i}"${i === sel ? ' selected' : ''}>${esc(label(m))}</option>`).join('');
+  const box = (n, p, P) => `<div class="range"><h3>Period ${n}${n === 1 ? ' (the starting point)' : ''}</h3>
+      <div class="row"><span>From</span><select data-p="${n}" data-e="0" aria-label="Period ${n} from">${opt(P[0])}</select><span>to</span><select data-p="${n}" data-e="1" aria-label="Period ${n} to">${opt(P[1])}</select></div>
+      <p><b>${esc(p.name)}</b> · ${p.ms.length} reporting month${p.ms.length === 1 ? '' : 's'} · ${p.days} days</p>
+      ${p.closed.map(m => `<p class="warn">Includes ${esc(label(m))}: ${esc(m.closedNote || 'not a normal month')}</p>`).join('')}</div>`;
+  const cell = (v, kind) => (v == null ? '–' : kind === 'money' ? money(v) : fmt(v));
+  const change = (x, y, kind) => {
+    if (kind === 'g' && mixedG) return '<span title="Google changed how these are counted in July 2026">counted differently</span>';
+    if (x == null || y == null || !x) return '–';
+    const d = (y - x) / x * 100;
+    return Math.abs(d) < 0.05 ? 'no change' : `<b>${d >= 0 ? '▲' : '▼'} ${Math.abs(d).toFixed(1)}%</b>`;
+  };
+  let last = '', rows = '';
+  CMP.forEach(r => {
+    const x = a.sum(r[2]), y = b.sum(r[2]);
+    if (x == null && y == null) return;
+    if (r[0] !== last) { rows += `<tr class="sec"><td colspan="4">${r[0]}${r[3] === 'money' || r[0] === 'Ad budget' ? ' · Thai baht' : ''}</td></tr>`; last = r[0]; }
+    rows += `<tr><td>${r[1]}${r[3] === 'money' && r[0] !== 'Ad budget' ? ' ฿' : ''}</td><td>${cell(x, r[3])}</td><td>${cell(y, r[3])}</td><td class="chg">${change(x, y, r[3])}</td></tr>`;
+  });
+  rows += `<tr><td>Balance at the start of the period</td><td>${money(a.opening)}</td><td>${money(b.opening)}</td><td class="chg">–</td></tr>
+    <tr><td>Balance at the end of the period</td><td>${money(a.closing)}</td><td>${money(b.closing)}</td><td class="chg">–</td></tr>`;
+  const pre = presets();
+  document.title = `${client.name} · Compare periods | BOKKO`;
+  $app.innerHTML = `${staffBar}
+  <div class="wrap">
+    <header class="top">${logo}</header>
+    <section class="hero"><div class="eyebrow">Performance report</div><h1>${esc(client.name)}</h1><div class="period">Compare two periods</div>${tabs()}</section>
+    <div class="card"><h2>Choose the periods</h2><p class="sub">Periods are made of whole reporting months, so any run of months can be compared with any other.</p>
+      ${pre.length ? `<div class="chips">${pre.map(x => `<button type="button" class="chip" data-n="${x.n}" aria-pressed="${x.p1[0] === P1[0] && x.p1[1] === P1[1] && x.p2[0] === P2[0] && x.p2[1] === P2[1]}">${x.text}</button>`).join('')}</div>` : ''}
+      <div class="ranges">${box(1, a, P1)}${box(2, b, P2)}</div>
+      ${overlap ? '<p class="note">These two periods share at least one month, so some figures are counted in both.</p>' : ''}
+      ${a.days !== b.days && Math.abs(a.days - b.days) > 4 ? `<p class="note">The periods are not the same length (${a.days} and ${b.days} days), which affects every total below.</p>` : ''}
+    </div>
+    <div class="card"><h2>Totals for each period</h2><p class="sub">Change is period 2 against period 1.</p>
+      <div class="scroll"><table class="cmp"><thead><tr><th>Figure</th><th>Period 1<br>${esc(a.name)}</th><th>Period 2<br>${esc(b.name)}</th><th>Change</th></tr></thead><tbody>${rows}</tbody></table></div>
+    </div>
+    <div class="card"><h2>What is left out, and why</h2>
+      <ul class="notes" style="margin-top:0">
+        <li><b>Reach and frequency.</b> The same person can be reached in more than one month, so monthly reach cannot be added up.</li>
+        <li><b>Audience percentages.</b> Gender, age and location are shares of the audience at one moment, not totals.</li>
+        <li><b>Google Business Profile.</b> Its figures are compared with the same month last year, month by month.</li>
+        ${mixedG ? '<li><b>Google Ads results across July 2026.</b> Google changed how direction requests, calls and store visits are counted, so the totals are shown but no change is worked out. Spend is unaffected.</li>' : ''}
+      </ul>
+    </div>
+    ${foot}
+  </div>`;
+  wire();
+  document.querySelectorAll('.range select').forEach(el => { el.onchange = () => {
+    const P = el.dataset.p === '1' ? P1 : P2; P[+el.dataset.e] = +el.value;
+    if (P[0] > P[1]) { if (el.dataset.e === '0') P[1] = P[0]; else P[0] = P[1]; }
+    remember(); renderCompare();
+  }; });
+  document.querySelectorAll('.chip').forEach(el => { el.onclick = () => { const x = presets().find(q => q.n === +el.dataset.n); P1 = x.p1.slice(); P2 = x.p2.slice(); remember(); renderCompare(); }; });
+}
+function remember() {
+  const u = new URL(location.href);
+  if (view === 'compare') { u.searchParams.set('view', 'compare'); u.searchParams.set('p1', months[P1[0]].cycle.start + '~' + months[P1[1]].cycle.start); u.searchParams.set('p2', months[P2[0]].cycle.start + '~' + months[P2[1]].cycle.start); }
+  else { ['view', 'p1', 'p2'].forEach(k => u.searchParams.delete(k)); u.searchParams.set('month', months[cur].cycle.start); }
+  history.replaceState(null, '', u);
+}
+const wire = () => document.querySelectorAll('.tabs button').forEach(el => { el.onclick = () => { if (el.dataset.view === view) return; view = el.dataset.view; remember(); hideTip(); render(); window.scrollTo(0, 0); }; });
+
+function render() {
+  if (view === 'compare') { renderCompare(); return; }
+  const r = months[cur], c = calc(r), p = r.closed ? null : prevNormal(cur), pc = p ? calc(p) : null;
+  const f = (r.social || {}).facebook || {}, ig = (r.social || {}).instagram || {}, pf = p ? ((p.social || {}).facebook || {}) : {}, pig = p ? ((p.social || {}).instagram || {}) : {};
+  const mt = (r.metaAds || {}).totals || {}, ct = r.content || {}, s = r.adSpend || {}, gp = r.googleProfile;
+  const sameG = p && c.g && pc.g && c.g.view === pc.g.view;
+  const tile = (k, v, d) => `<div class="tile"><div class="k">${k}</div><div class="v">${v}</div><div class="d">${d || ''}</div></div>`;
+  const firstCamp = months.findIndex(m => m.googleAds && m.googleAds.view !== 'account');
+  document.title = `${client.name} · ${label(r)} | BOKKO`;
+  $app.innerHTML = `
+  ${staffBar}
+  <div class="wrap">
+    <header class="top">
+      ${logo}
+      <div class="picker">
+        <button type="button" id="prev" aria-label="Earlier month"${cur === 0 ? ' disabled' : ''}>‹</button>
+        <select id="pick" aria-label="Month">${months.map((m, i) => `<option value="${i}"${i === cur ? ' selected' : ''}>${esc(label(m))}</option>`).reverse().join('')}</select>
+        <button type="button" id="next" aria-label="Later month"${cur === months.length - 1 ? ' disabled' : ''}>›</button>
+      </div>
+    </header>
+    <section class="hero">
+      <div class="eyebrow">Performance report</div>
+      <h1>${esc(client.name)}</h1>
+      <div class="period">${esc(label(r))} <small>· ${days(r)} days</small></div>
+      ${r.closed ? `<div class="note">${esc(r.closedNote || 'Not a normal month.')} Figures for this month are not compared with other months.</div>` : ''}
+      ${months.length > 1 ? tabs() : ''}
+    </section>
+    <div class="card">${r.summary ? `<p class="summary">${esc(r.summary)}</p>` : `<span class="draft">Summary pending</span><p class="summary pending">${esc(pending(r))}</p>`}</div>
+    <div class="tiles">
+      ${tile('Facebook views', fmt(f.views), delta(f.views, pf.views, p))}
+      ${tile('Instagram views', fmt(ig.views), delta(ig.views, pig.views, p))}
+      ${tile('New followers', fmt(c.followers), pc ? delta(c.followers, pc.followers, p) : '')}
+      ${tile('Messages', fmt(c.messages), pc ? delta(c.messages, pc.messages, p) : '')}
+      ${tile('Content published', fmt(ct.total), has(ct.photoArtwork) ? `${fmt(ct.photoArtwork)} photo / artwork · ${fmt(ct.reels)} Reels` : '')}
+      ${tile('People reached by Meta ads', fmt(mt.reach), p ? delta(mt.reach, ((p.metaAds || {}).totals || {}).reach, p) : '')}
+      ${tile('Direction requests from Google Ads', c.g ? fmt(c.g.directions) : '–', c.g ? (sameG ? delta(c.g.directions, pc.g.directions, p) : '') : 'Google Ads paused')}
+      ${tile('Calls from Google Ads', c.g ? fmt(c.g.calls) : '–', c.g ? (sameG ? delta(c.g.calls, pc.g.calls, p) : '') : 'Google Ads paused')}
+    </div>
+    ${months.length > 1 ? `
+    <div class="grid2">
+      <div class="card"><h2>Facebook views</h2><p class="sub">Each reporting month. Tap a month to open it.${months.some(m => m.closed) ? ' The shaded month was not a normal month.' : ''}</p><div class="chart" id="c1"></div>${VIEWS_NOTE}</div>
+      <div class="card"><h2>Instagram views</h2><p class="sub">Each reporting month.</p><div class="chart" id="c2"></div>${VIEWS_NOTE}</div>
+      <div class="card"><h2>New followers</h2><div class="legend"><span><i style="background:var(--fb)"></i>Facebook</span><span><i style="background:var(--ig)"></i>Instagram</span></div><div class="chart" id="c3"></div></div>
+      <div class="card"><h2>Ad spend</h2><div class="legend"><span><i style="background:var(--meta)"></i>Meta</span><span><i style="background:var(--google)"></i>Google</span></div><div class="chart" id="c4"></div></div>
+    </div>
+    <div class="card"><h2>Direction requests from Google Ads</h2><p class="sub">${firstCamp > 0 ? `Google changed how these are counted from ${esc(tick(months[firstCamp]))}, so compare months on the same side of the line.` : 'Each reporting month.'}</p><div class="chart" id="c5"></div></div>` : ''}
+    <div class="grid2">
+      <div class="card"><h2>Facebook</h2><p class="sub">${fmt(f.views)} views · ${fmt(f.profileVisits)} profile visits · ${fmt(f.newFollowers)} new followers · ${fmt(f.newMessages)} messages</p>${audience((r.audience || {}).facebook, 'var(--fb)', 'Facebook')}</div>
+      <div class="card"><h2>Instagram</h2><p class="sub">${fmt(ig.views)} views · ${fmt(ig.profileVisits)} profile visits · ${fmt(ig.newFollowers)} new followers · ${fmt(ig.newMessages)} messages</p>${audience((r.audience || {}).instagram, 'var(--ig)', 'Instagram')}</div>
+    </div>
+    ${(ct.posts || []).length ? `<div class="card"><h2>Content published</h2><p class="sub">${esc((ct.platforms || []).join(' · '))}</p><div class="scroll"><table><thead><tr><th>Published</th><th style="text-align:left">Platform</th><th style="text-align:left">Type</th><th style="text-align:left">Post</th></tr></thead><tbody>
+      ${ct.posts.map(x => `<tr><td>${esc(x.date || '')}</td><td style="text-align:left">${esc(x.platform || '')}</td><td style="text-align:left">${esc(x.type || '')}</td><td style="text-align:left;white-space:normal">${/^https:\/\//.test(x.url || '') ? `<a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.title || 'Open post')}</a>` : esc(x.title || '')}</td></tr>`).join('')}</tbody></table></div></div>` : ''}
+    <div class="card"><h2>Meta ads</h2><p class="sub">Facebook and Instagram advertising · ฿${money(mt.spend)} spent</p>${metaTable(r.metaAds)}</div>
+    ${gp ? `<div class="card"><h2>Google Business Profile</h2><p class="sub">Compared with the same month last year.</p><div class="tiles" style="margin-top:0">
+      ${[['interactions', 'Interactions'], ['profileViews', 'Profile views'], ['directionRequests', 'Direction requests'], ['searches', 'Searches'], ['menuViews', 'Menu views']].filter(k => gp[k[0]] && has(gp[k[0]].value)).map(k => tile(k[1], fmt(gp[k[0]].value), has(gp[k[0]].vsSameMonthLastYearPct) ? `<b>${gp[k[0]].vsSameMonthLastYearPct >= 0 ? '▲' : '▼'} ${Math.abs(gp[k[0]].vsSameMonthLastYearPct).toFixed(1)}%</b> vs last year` : '')).join('')}</div></div>` : ''}
+    <div class="card"><h2>Google Ads</h2><p class="sub">Search, Maps and Performance Max advertising</p>${googleBlock(r, c)}</div>
+    <div class="card"><h2>Ad budget</h2><p class="sub">Thai baht. Brackets mean the budget is overspent.</p>
+      <table class="budget"><tbody>
+        <tr><td>Balance at start of cycle</td><td>${money(s.openingBalance)}</td></tr>
+        <tr><td>Ad budget provided</td><td>${money(s.budgetProvided)}</td></tr>
+        <tr><td>Meta ad spend</td><td>${money(s.metaSpend)}</td></tr>
+        <tr><td>Google ad spend</td><td>${s.googleSpend == null ? 'paused' : money(s.googleSpend)}</td></tr>
+        ${has(s.tiktokSpend) && N(s.tiktokSpend) ? `<tr><td>TikTok ad spend</td><td>${money(s.tiktokSpend)}</td></tr>` : ''}
+        ${(s.credits || []).map(x => `<tr><td>${esc(x.label || 'Credit')}</td><td>(${money(Math.abs(N(x.amount)))})</td></tr>`).join('')}
+        <tr><td>Total spent${c.credits ? ' after credits' : ''}</td><td>${money(c.after)}</td></tr>
+        <tr class="total"><td>Ad budget balance</td><td>${money(c.closing)}</td></tr>
+      </tbody></table>
+      ${(s.notes || []).length ? `<div class="mini">Next cycle</div><ul class="notes">${s.notes.map(x => `<li>${esc(x)}</li>`).join('')}</ul>` : ''}
+    </div>
+    ${(r.marketingActions || []).length ? `<div class="card"><h2>Marketing actions</h2><ul class="notes" style="margin-top:0">${r.marketingActions.map(x => `<li>${x.date ? `<b>${esc(x.date)}</b> · ` : ''}${esc(x.text || '')}</li>`).join('')}</ul></div>` : ''}
+    ${foot}
+  </div>`;
+  wire();
+  document.getElementById('prev').onclick = () => go(cur - 1);
+  document.getElementById('next').onclick = () => go(cur + 1);
+  document.getElementById('pick').onchange = e => go(+e.target.value);
+  draw();
+}
+function draw() {
+  if (months.length < 2) return;
+  const all = months.map(calc);
+  const soc = (pl, k) => months.map(m => (((m.social || {})[pl] || {})[k]));
+  chart('c1', 'line', [{ name: 'Facebook views', color: 'var(--fb)', values: soc('facebook', 'views') }], { title: 'Facebook views by month' });
+  chart('c2', 'line', [{ name: 'Instagram views', color: 'var(--ig)', values: soc('instagram', 'views') }], { title: 'Instagram views by month' });
+  chart('c3', 'bars', [{ name: 'Facebook', color: 'var(--fb)', values: soc('facebook', 'newFollowers') }, { name: 'Instagram', color: 'var(--ig)', values: soc('instagram', 'newFollowers') }], { title: 'New followers by month' });
+  chart('c4', 'bars', [{ name: 'Meta', color: 'var(--meta)', values: months.map(m => (m.adSpend || {}).metaSpend) }, { name: 'Google', color: 'var(--google)', values: months.map(m => (m.adSpend || {}).googleSpend) }], { title: 'Ad spend by month', money: true });
+  const firstCamp = months.findIndex(m => m.googleAds && m.googleAds.view !== 'account');
+  chart('c5', 'bars', [{ name: 'Direction requests', color: 'var(--google)', values: all.map(c => (c.g ? c.g.directions : null)) }], { title: 'Direction requests from Google Ads by month', breakAfter: firstCamp > 0 ? firstCamp - 1 : null, breakLabel: 'counted differently from here' });
+}
+function go(i) {
+  if (i < 0 || i >= months.length || i === cur) return;
+  cur = i;
+  remember();
+  const yy = window.scrollY; render(); window.scrollTo(0, yy);
+}
+let rz; window.addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(() => { if (view === 'month') draw(); }, 150); });
+window.addEventListener('scroll', hideTip, { passive: true });
+
+const message = (title, body, link) => { $app.innerHTML = `<div class="center"><div class="card"><a class="logo" href="/" style="justify-content:center;margin-bottom:14px"><img src="/logo.png" alt=""><div style="text-align:left"><strong>BOKKO</strong><span>Marketing Specialists</span></div></a><h2>${esc(title)}</h2><p style="color:var(--muted);margin:6px 0 0">${body}</p>${link || ''}</div></div>`; };
+async function start() {
+  try {
+    const cs = (await db.collection('clients').get()).docs.map(d => Object.assign({ id: d.id }, d.data()));
+    const id = Q.get('client');
+    client = cs.find(c => c.id === id);
+    if (!client) {
+      if (!cs.length) { message('No clients yet', 'Add a client and its months in admin first.', '<a class="btn" href="/admin.html">Open admin</a>'); return; }
+      message('Choose a client', cs.sort((a, b) => String(a.name).localeCompare(String(b.name))).map(c => `<a href="?client=${encodeURIComponent(c.id)}" style="display:block;margin:8px 0;font-weight:700">${esc(c.name || 'Unnamed client')}</a>`).join(''));
+      return;
+    }
+    const snap = await db.collection('reports').where('clientId', '==', client.id).get();
+    months = snap.docs.map(d => d.data()).filter(m => m.cycle && /^\d{4}-\d\d-\d\d$/.test(m.cycle.start) && /^\d{4}-\d\d-\d\d$/.test(m.cycle.end)).sort((a, b) => a.cycle.start.localeCompare(b.cycle.start));
+    if (!months.length) { message(client.name, 'No months have been saved for this client yet.', '<a class="btn" href="/admin.html">Open admin</a>'); return; }
+    const want = months.findIndex(m => m.cycle.start === Q.get('month'));
+    cur = want >= 0 ? want : months.length - 1;
+    // compare view: the periods named in the address, otherwise the widest "latest n vs the n before" that fits
+    const idx = s => months.findIndex(m => m.cycle.start === s);
+    const read = k => { const v = (Q.get(k) || '').split('~').map(idx); return v.length === 2 && v[0] >= 0 && v[1] >= v[0] ? v : null; };
+    const pre = presets();
+    const def = pre.find(x => x.n === 3) || pre[pre.length - 1];
+    P1 = read('p1') || (def ? def.p1.slice() : [0, 0]); P2 = read('p2') || (def ? def.p2.slice() : [months.length - 1, months.length - 1]);
+    view = Q.get('view') === 'compare' && months.length > 1 ? 'compare' : 'month';
+    render();
+  } catch (err) {
+    message('This page could not be opened', /permission/i.test(err.message) ? 'Your sign-in does not have access to these reports.' : esc(err.message), '<a class="btn" href="/admin.html">Open admin</a>');
+  }
+}
+firebase.auth().onAuthStateChanged(user => {
+  if (user) start();
+  else message('Sign in first', 'This preview is for signed-in BOKKO staff. Sign in to admin, then open this page again.', '<a class="btn" href="/admin.html">Sign in to admin</a>');
+});
+</script>
+</body>
+</html>

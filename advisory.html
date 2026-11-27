@@ -9,27 +9,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-MK4JH3H4');</script>
 <!-- End Google Tag Manager -->
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1264364178210493');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1264364178210493&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
+<!-- Meta Pixel: ID is managed in admin → Branding → Tracking (see /assets/tracking.js) -->
+<script src="/assets/tracking.js" defer></script>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>Advisory &amp; Consultancy &mdash; BOKKO Hospitality Specialists</title>
-<meta name="description" content="Hospitality and F&amp;B advisory from BOKKO &mdash; feasibility, pre-opening, operations, wine programme and marketing strategy, backed by nine years of hands-on experience across 250+ hotels, airlines and travel brands.">
+<meta name="description" content="Hospitality and F&amp;B advisory from BOKKO &mdash; feasibility, pre-opening, operations, wine programme and marketing strategy, backed by hands-on experience with 80+ hospitality and travel brands.">
 <link rel="canonical" href="https://bokko.co/advisory.html">
+<link rel="alternate" hreflang="en" href="https://bokko.co/advisory.html">
+<link rel="alternate" hreflang="th" href="https://bokko.co/th/advisory.html">
+<link rel="alternate" hreflang="x-default" href="https://bokko.co/advisory.html">
+<meta property="og:title" content="Advisory &amp; Consultancy — BOKKO Hospitality Specialists">
+<meta property="og:description" content="Hospitality and F&amp;B advisory from BOKKO &mdash; feasibility, pre-opening, operations, wine programme and marketing strategy, backed by hands-on experience with 80+ hospitality and travel brands.">
+<meta property="og:image" content="https://bokko.co/poster.jpg">
 <style>
 :root{--deep:#062f3d;--deep2:#0b5062;--aqua:#00c4d8;--aquad:#007b8a;--ice:#effdff;--soft:#f7feff;--pink:#ff4faf;--pink2:#ffe4f3;--muted:#5f7782;--line:rgba(6,47,61,.13);--shadow:0 20px 55px rgba(6,47,61,.15)}
 *{box-sizing:border-box}
@@ -47,6 +41,9 @@ a{color:inherit}
 .navin{max-width:1180px;margin:auto;padding:13px 22px;display:flex;justify-content:space-between;align-items:center}
 .logo{display:flex;gap:10px;align-items:center;text-decoration:none}
 .mark{width:40px;height:40px;border-radius:14px;background:linear-gradient(135deg,var(--aqua),#d9fdff 55%,var(--pink));position:relative;overflow:hidden;box-shadow:0 12px 28px rgba(0,196,216,.24)}
+.mark img{width:100%;height:100%;object-fit:contain;display:block}
+.mark.has-logo{background:none;box-shadow:none}
+.mark.has-logo:after{display:none}
 .logo strong{display:block;font-size:16px;letter-spacing:.02em}
 .logo span{display:block;font-size:10px;font-weight:800;letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
 nav.links{display:flex;align-items:center;gap:26px}
@@ -54,6 +51,11 @@ nav.links a{font-weight:800;font-size:14.5px;color:var(--deep);text-decoration:n
 nav.links a:hover{color:var(--aquad)}
 .navcta{background:var(--deep)!important;color:#fff!important;border-radius:999px;padding:11px 18px;font-weight:900;font-size:14px}
 @media(max-width:860px){nav.links a:not(.navcta){display:none}}
+
+nav.links a.lang{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 12px;font-size:13px}
+@media(max-width:860px){nav.links a.lang{display:inline-block!important}}
+html[lang="th"] body{font-family:"Sukhumvit Set",Thonburi,"Leelawadee UI",Tahoma,Arial,sans-serif}
+html[lang="th"] h1,html[lang="th"] h2,html[lang="th"] h3{letter-spacing:-.01em!important;line-height:1.3!important}
 
 /* ---- hero / banner ---- */
 .hero{padding:64px 0 40px}
@@ -120,19 +122,20 @@ nav.links a:hover{color:var(--aquad)}
 .site-footer a:hover{color:var(--deep)}
 </style>
 </head>
-<body>
+<body data-prerendered="2026-11-20">
 
 <header class="nav">
   <div class="navin">
     <a class="logo" href="/">
-      <div class="mark"></div>
+      <div class="mark has-logo" id="siteMark"><img src="/logo.png" alt="BOKKO" width="40" height="40"></div>
       <div><strong>BOKKO</strong><span>Marketing Specialists</span></div>
     </a>
     <nav class="links">
       <a href="/#work">Work</a>
       <a href="/#services">Services</a>
       <a href="/#pricing">Pricing</a>
-      <a href="/advisory.html"><strong>Advisory</strong></a>
+      <a href='/advisory'><strong>Advisory</strong></a>
+      <a class="lang" data-lang-switch href="/th/advisory.html" hreflang="th" lang="th" aria-label="อ่านภาษาไทย">ไทย</a>
       <a class="navcta" href="#cta">Book a Consultation</a>
     </nav>
   </div>
@@ -142,28 +145,63 @@ nav.links a:hover{color:var(--aquad)}
 
   <section class="hero">
     <div class="banner" id="banner">
-      <div class="banner-overlay" id="bannerOverlay"></div>
+      <div class="banner-overlay" id="bannerOverlay"><!--pr:bannerOverlay--><!--/pr:bannerOverlay--></div>
     </div>
-    <div id="heroContent"></div>
-    <div class="stats" id="statsRow"></div>
+    <div id="heroContent"><!--pr:heroContent--><div class="eyebrow"><span class="dot"></span> Advisory &amp; Consultancy</div>
+      <h1>Before the brand, before the campaign — <span class="pink">the business has to work.</span></h1>
+      <p class="lead">BOKKO's advisory arm brings 10 years of hands-on hospitality and F&amp;B experience to the decisions that determine whether a concept succeeds — long before a single guest walks through the door.</p><!--/pr:heroContent--></div>
+    <div class="stats" id="statsRow"><!--pr:statsRow--><div class="stat"><strong>10</strong><span>Years in hospitality</span></div><div class="stat"><strong>100+</strong><span>Hospitality businesses</span></div><div class="stat"><strong>20+</strong><span>Active clients</span></div><!--/pr:statsRow--></div>
   </section>
 
   <section class="section" id="advisory-areas">
-    <div class="head" id="areasHead"></div>
-    <div class="advisory-grid" id="advisoryGrid"></div>
+    <div class="head" id="areasHead"><!--pr:areasHead--><h2>What we advise on</h2><p>Extensive, hands-on experience across the decisions that actually determine whether a hospitality or F&amp;B business succeeds.</p><!--/pr:areasHead--></div>
+    <div class="advisory-grid" id="advisoryGrid"><!--pr:advisoryGrid--><div class="acard">
+      <span class="tag">Strategy</span>
+      <h3>Feasibility &amp; Concept</h3>
+      <p>Before you commit capital, know whether the concept actually works. Market positioning, competitive landscape, site and demand assessment, and realistic revenue modelling — grounded in what genuinely performs in this market, not generic projections.</p>
+    </div>
+    <div class="acard">
+      <span class="tag">Launch</span>
+      <h3>Pre-Opening &amp; Launch</h3>
+      <p>Restaurant and hotel openings live or die in the months before they open. We advise on launch sequencing, brand identity, pre-opening marketing, and the operational readiness that determines whether opening week is a triumph or a scramble.</p>
+    </div>
+    <div class="acard">
+      <span class="tag">Operations</span>
+      <h3>Operations &amp; Cost Control</h3>
+      <p>The margin is won or lost in the details — supplier relationships, inventory discipline, portion and cost control, and the operational systems that keep a hospitality business genuinely profitable once the opening buzz fades.</p>
+    </div>
+    <div class="acard">
+      <span class="tag">Beverage</span>
+      <h3>Wine &amp; Beverage Programme</h3>
+      <p>A beverage programme is a profit centre and a guest-experience signal in equal measure. We advise on wine list construction, supplier selection, pricing strategy, and staff training that turns the beverage programme into a real point of differentiation.</p>
+    </div>
+    <div class="acard">
+      <span class="tag">Growth</span>
+      <h3>Marketing &amp; Brand Strategy</h3>
+      <p>The same revenue-first thinking behind BOKKO's marketing work, applied at the strategic level — brand positioning, marketing structure, and the growth playbook for hospitality and F&amp;B businesses that need direction before execution.</p>
+    </div><!--/pr:advisoryGrid--></div>
   </section>
 
   <section class="section">
-    <div class="why" id="whyBokko"></div>
+    <div class="why" id="whyBokko"><!--pr:whyBokko--><h2>Why BOKKO</h2><p>Most consultants advise from the outside. We've built the campaigns, run the ad accounts, sat in the production meetings, and watched which decisions actually moved revenue — across more than 100 hotels, restaurants and travel brands over 10 years. That's the difference between advice that sounds right and advice that's been tested against real P&amp;Ls, real launches, and real guests.</p><!--/pr:whyBokko--></div>
   </section>
 
   <section class="section" id="advisor">
     <div class="head"><h2>About the advisor</h2></div>
-    <div class="bio" id="bioContent"></div>
+    <div class="bio" id="bioContent"><!--pr:bioContent--><div class="bio-photo has-photo">
+      <img src="/.netlify/images?url=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Fbokko-6dc83.firebasestorage.app%2Fo%2Fadvisory%252Fphoto-1788329436913%3Falt%3Dmedia%26token%3Da3d2ab30-77a3-481f-a088-3faca82fff05&amp;w=900&amp;fm=webp" srcset="/.netlify/images?url=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Fbokko-6dc83.firebasestorage.app%2Fo%2Fadvisory%252Fphoto-1788329436913%3Falt%3Dmedia%26token%3Da3d2ab30-77a3-481f-a088-3faca82fff05&amp;w=480&amp;fm=webp 480w, /.netlify/images?url=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Fbokko-6dc83.firebasestorage.app%2Fo%2Fadvisory%252Fphoto-1788329436913%3Falt%3Dmedia%26token%3Da3d2ab30-77a3-481f-a088-3faca82fff05&amp;w=900&amp;fm=webp 900w" sizes="(max-width:760px) 320px, 465px" width="465" height="581" loading="lazy" decoding="async" alt="Jack Brown" data-orig="https://firebasestorage.googleapis.com/v0/b/bokko-6dc83.firebasestorage.app/o/advisory%2Fphoto-1788329436913?alt=media&amp;token=a3d2ab30-77a3-481f-a088-3faca82fff05" onerror="this.onerror=null;this.removeAttribute('srcset');this.src=this.dataset.orig">
+    </div>
+    <div class="bio-text">
+      <h3>Jack Brown</h3>
+      <div class="role">Founder, BOKKO</div>
+      <p>Jack Brown has spent 10 years shaping the hospitality and F&amp;B narrative for 100+ premium hotels, restaurants and travel brands — from pre-opening strategy through to the campaigns that fill rooms and tables.</p><p>BOKKO's advisory work draws directly on that operating experience, not theory — the same judgment that's guided real launches, real supplier negotiations, and real revenue outcomes, now available as a dedicated advisory service.</p>
+    </div><!--/pr:bioContent--></div>
   </section>
 
   <section class="section" id="cta">
-    <div class="cta" id="ctaContent"></div>
+    <div class="cta" id="ctaContent"><!--pr:ctaContent--><h2>Let's talk about what you're building.</h2>
+    <p>Whether you’re evaluating a new concept or trying to fix the margins on an existing one, a first conversation costs nothing and often clarifies more than a written proposal ever could.</p>
+    <a class="btn pinkbtn" href="mailto:jack@bokko.co?subject=Advisory%20Consultation">Book a Consultation →</a><!--/pr:ctaContent--></div>
   </section>
 
 </main>
@@ -171,10 +209,13 @@ nav.links a:hover{color:var(--aquad)}
 <footer class="site-footer">
   <div class="container site-footer-inner">
     <span>&copy; <span id="y"></span> BOKKO. All rights reserved.</span>
-    <a href="/privacy.html">Privacy Policy</a>
+    <a href='/privacy'>Privacy Policy</a>
   </div>
 </footer>
 
+<!--i18n-boot-->
+<script src="/assets/i18n.js"></script>
+<script src="/assets/leads.js" defer></script>
 <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
 <script>
@@ -195,10 +236,10 @@ const DEFAULT_ADVISORY = {
   bannerImage: '',
   eyebrow: 'Advisory & Consultancy',
   headline: 'Before the brand, before the campaign \u2014 **the business has to work.**',
-  lead: "BOKKO's advisory arm brings nine years of hands-on hospitality and F&B experience to the decisions that determine whether a concept succeeds \u2014 long before a single guest walks through the door.",
+  lead: "BOKKO's advisory arm brings 10 years of hands-on hospitality and F&B experience to the decisions that determine whether a concept succeeds \u2014 long before a single guest walks through the door.",
   stats: [
-    { value: '9+', label: 'Years in hospitality' },
-    { value: '250+', label: 'Hotels, airlines & travel brands' },
+    { value: '10', label: 'Years in hospitality' },
+    { value: '80+', label: 'Marketing clients' },
     { value: '80+', label: 'Active clients' }
   ],
   areasHeading: 'What we advise on',
@@ -211,16 +252,19 @@ const DEFAULT_ADVISORY = {
     { tag: 'Growth', title: 'Marketing & Brand Strategy', description: "The same revenue-first thinking behind BOKKO's marketing work, applied at the strategic level \u2014 brand positioning, marketing structure, and the growth playbook for hospitality and F&B businesses that need direction before execution." }
   ],
   whyHeading: 'Why BOKKO',
-  whyText: "Most consultants advise from the outside. We've built the campaigns, run the ad accounts, sat in the production meetings, and watched which decisions actually moved revenue \u2014 across more than 250 hotels, airlines and travel brands over nine years. That's the difference between advice that sounds right and advice that's been tested against real P&Ls, real launches, and real guests.",
+  whyText: "Most consultants advise from the outside. We've built the campaigns, run the ad accounts, sat in the production meetings, and watched which decisions actually moved revenue \u2014 across more than 80 hospitality and travel brands over 10 years. That's the difference between advice that sounds right and advice that's been tested against real P&Ls, real launches, and real guests.",
   advisorPhoto: '',
   advisorName: 'Jack Brown',
   advisorRole: 'Founder, BOKKO',
-  advisorBio: "Jack Brown has spent nine years shaping the hospitality and F&B narrative for 250+ premium hotels, airlines and travel brands \u2014 from pre-opening strategy through to the campaigns that fill rooms and tables.\n\nBOKKO's advisory work draws directly on that operating experience, not theory \u2014 the same judgment that's guided real launches, real supplier negotiations, and real revenue outcomes, now available as a dedicated advisory service.",
+  advisorBio: "Jack Brown has spent 10 years shaping the hospitality and F&B narrative for 80+ premium hotels, restaurants and travel brands \u2014 from pre-opening strategy through to the campaigns that fill rooms and tables.\n\nBOKKO's advisory work draws directly on that operating experience, not theory \u2014 the same judgment that's guided real launches, real supplier negotiations, and real revenue outcomes, now available as a dedicated advisory service.",
   ctaHeading: "Let's talk about what you're building.",
   ctaText: 'Whether you\u2019re evaluating a new concept or trying to fix the margins on an existing one, a first conversation costs nothing and often clarifies more than a written proposal ever could.',
   ctaButtonText: 'Book a Consultation \u2192',
   ctaEmail: 'jack@bokko.co'
 };
+
+/* Language helpers (see /assets/i18n.js): pass-through in English, Thai lookups on /th/. */
+const I18N = window.BOKKO_I18N || { LANG: 'en', t: s => s, trDeep: x => x, addSaved() {} };
 
 function esc(s){
   return String(s == null ? '' : s)
@@ -266,9 +310,15 @@ function render(d) {
 
   document.getElementById('whyBokko').innerHTML = `<h2>${esc(d.whyHeading)}</h2><p>${esc(d.whyText)}</p>`;
 
+  // Below-the-fold photo: served through Netlify's on-the-fly image
+  // transform (resized + WebP/AVIF per the browser's Accept header)
+  // instead of the full-size original, with explicit dimensions so the
+  // reserved box never shifts once it loads.
+  const photoSrc = d.advisorPhoto ? `/.netlify/images?url=${encodeURIComponent(d.advisorPhoto)}&w=900&fm=webp` : '';
+  const photoSrc2x = d.advisorPhoto ? `/.netlify/images?url=${encodeURIComponent(d.advisorPhoto)}&w=480&fm=webp` : '';
   document.getElementById('bioContent').innerHTML = `
     <div class="bio-photo${d.advisorPhoto ? ' has-photo' : ''}">
-      ${d.advisorPhoto ? `<img src="${d.advisorPhoto}" alt="${esc(d.advisorName)}">` : 'Photo coming soon'}
+      ${d.advisorPhoto ? `<img src="${photoSrc}" srcset="${photoSrc2x} 480w, ${photoSrc} 900w" sizes="(max-width:760px) 320px, 465px" width="465" height="581" loading="lazy" decoding="async" alt="${esc(d.advisorName)}" data-orig="${esc(d.advisorPhoto)}" onerror="this.onerror=null;this.removeAttribute('srcset');this.src=this.dataset.orig">` : I18N.t('Photo coming soon')}
     </div>
     <div class="bio-text">
       <h3>${esc(d.advisorName)}</h3>
@@ -283,32 +333,44 @@ function render(d) {
     <a class="btn pinkbtn" href="${mailto}">${esc(d.ctaButtonText)}</a>`;
 }
 
+// Advisory content rarely changes and every field has a sensible default,
+// so the page renders immediately with it rather than waiting on a
+// network round-trip to Firestore. If a saved advisory document exists
+// and differs, the fetch below re-renders in place once it resolves —
+// a silent content update, never a visible loading gap.
+// prerender.js bakes the saved content into this file's HTML (so search and
+// AI crawlers that don't run JavaScript can read it). When that has been
+// done there is nothing to draw until Firestore answers.
+function show(data) { render(I18N.trDeep(data)); }
+if (!document.body.hasAttribute('data-prerendered')) show(DEFAULT_ADVISORY);
+
 (function loadContent() {
+  const done = () => { window.__bokkoBooted = true; }; // lets prerender.js know the page has finished drawing
   const isConfigured = FIREBASE_CONFIG.apiKey && FIREBASE_CONFIG.apiKey !== 'YOUR_API_KEY';
-  if (!isConfigured || typeof firebase === 'undefined') { render(DEFAULT_ADVISORY); return; }
-  let rendered = false;
-  const renderOnce = (data) => { if (!rendered) { rendered = true; render(data); } };
-  // If Firestore is slow, blocked, or the connection hangs (bad network, an
-  // ad blocker, etc.), don't leave a real visitor staring at blank sections
-  // indefinitely - fall back to defaults after a few seconds either way.
-  const fallbackTimer = setTimeout(() => renderOnce(DEFAULT_ADVISORY), 4000);
+  if (!isConfigured || typeof firebase === 'undefined') { done(); return; }
   try {
     firebase.initializeApp(FIREBASE_CONFIG);
     const db = firebase.firestore();
-    db.collection('content').doc('advisory').get().then(doc => {
-      clearTimeout(fallbackTimer);
-      const data = (doc.exists && doc.data()) ? doc.data() : {};
+    // Keep the header logo in step with admin → Branding (logo.png is the fallback).
+    db.collection('content').doc('branding').get().then(doc => {
+      const img = document.querySelector('#siteMark img');
+      if (img && doc.exists && doc.data().logoImage) img.src = doc.data().logoImage;
+    }).catch(() => {});
+    Promise.allSettled([
+      db.collection('content').doc('advisory').get(),
+      // Thai page only: the staff's saved Thai wording from admin → Thai tab
+      I18N.LANG === 'th' ? db.collection('content').doc('th_dict').get() : Promise.resolve(null)
+    ]).then(([docRes, thRes]) => {
+      if (thRes.status === 'fulfilled' && thRes.value && thRes.value.exists) I18N.addSaved(thRes.value.data());
+      const saved = (docRes.status === 'fulfilled' && docRes.value.exists && docRes.value.data()) || {};
+      if (docRes.status !== 'fulfilled') console.warn('Could not load saved advisory content; showing defaults.', docRes.reason);
       // Merge over defaults so any field not yet saved still shows something sensible.
-      renderOnce(Object.assign({}, DEFAULT_ADVISORY, data));
-    }).catch(err => {
-      clearTimeout(fallbackTimer);
-      console.warn('Could not load advisory content, showing defaults.', err);
-      renderOnce(DEFAULT_ADVISORY);
+      show(Object.assign({}, DEFAULT_ADVISORY, saved));
+      done();
     });
   } catch (err) {
-    clearTimeout(fallbackTimer);
-    console.warn('Firebase init failed, showing defaults.', err);
-    renderOnce(DEFAULT_ADVISORY);
+    console.warn('Firebase init failed; showing defaults.', err);
+    done();
   }
 })();
 

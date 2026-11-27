@@ -1,0 +1,11 @@
+{
+  "name": "bokko-website",
+  "private": true,
+  "description": "BOKKO site tooling. The site itself is plain static files; this is only for prerender.js.",
+  "scripts": {
+    "prerender": "node prerender.js"
+  },
+  "devDependencies": {
+    "jsdom": "^26.1.0"
+  }
+}

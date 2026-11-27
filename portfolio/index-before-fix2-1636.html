@@ -1,0 +1,2720 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>BOKKO — Portfolio</title>
+<meta name="description" content="BOKKO: in-house hospitality video production, social management and performance advertising for hotels, resorts and lifestyle destinations.">
+<meta property="og:title" content="BOKKO — Hospitality Content &amp; Performance">
+<meta property="og:description" content="In-house video production, social management and performance advertising for hotels, resorts and lifestyle destinations.">
+<meta property="og:image" content="https://bokko.co/poster.jpg">
+<meta name="robots" content="noindex">
+<style>
+:root{
+  --deep:#062f3d;--deep2:#0b5062;--aqua:#00c4d8;--aquad:#007b8a;
+  --ice:#effdff;--soft:#f7feff;--pink:#ff4faf;--pink2:#ffe4f3;
+  --muted:#5f7782;--line:rgba(6,47,61,.13);--shadow:0 20px 55px rgba(6,47,61,.15);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--deep);
+  background:
+    radial-gradient(circle at 12% -6%,rgba(255,79,175,.15),transparent 320px),
+    radial-gradient(circle at 92% 2%,rgba(0,196,216,.24),transparent 420px),
+    linear-gradient(180deg,var(--ice),#fff 44%,var(--soft));
+  -webkit-font-smoothing:antialiased;
+}
+img,video{max-width:100%;display:block}
+a{color:inherit}
+button{font:inherit;cursor:pointer}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+
+.nav{position:sticky;top:0;z-index:60;background:rgba(239,253,255,.9);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-top:12px;padding-bottom:12px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none}
+.mark{width:40px;height:40px;border-radius:14px;flex:0 0 auto;
+  background:linear-gradient(135deg,var(--aqua),#d9fdff 55%,var(--pink));
+  box-shadow:0 12px 28px rgba(0,196,216,.24);display:grid;place-items:center;
+  color:#fff;font-weight:900;font-size:19px;letter-spacing:-.04em;overflow:hidden}
+.mark img{width:100%;height:100%;object-fit:contain;display:block}
+.mark.has-logo{background:none;box-shadow:none}
+.logo strong{display:block;letter-spacing:.24em;font-size:17px;line-height:1}
+.logo span{display:block;margin-top:4px;color:var(--muted);font-size:9px;letter-spacing:.11em;text-transform:uppercase}
+.navlinks{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:2px 4px;align-items:center}
+.navlinks a{color:rgba(6,47,61,.74);font-size:13px;font-weight:900;padding:10px 11px;border-radius:999px;text-decoration:none;white-space:nowrap}
+.navlinks a:hover{background:rgba(6,47,61,.06)}
+.navcta{background:var(--deep)!important;color:#fff!important}
+.navback{border:1px solid var(--line);background:rgba(255,255,255,.7)}
+.navback:hover{border-color:rgba(0,196,216,.5);background:#fff}
+.navback b{font-weight:900;letter-spacing:.1em}
+.backbar{display:flex;justify-content:center;margin-top:30px}
+.backbar a{display:inline-flex;align-items:center;gap:9px;text-decoration:none;
+  border:1px solid var(--line);background:rgba(255,255,255,.86);color:var(--deep);
+  border-radius:999px;padding:14px 24px;font-weight:900;font-size:14px;
+  box-shadow:0 12px 30px rgba(6,47,61,.07);transition:.2s}
+.backbar a:hover{border-color:rgba(0,196,216,.55);transform:translateY(-1px)}
+@media(max-width:760px){.navlinks a:not(.navcta):not(.navback){display:none}}
+
+.eyebrow{display:inline-flex;gap:8px;align-items:flex-start;color:var(--aquad);
+  background:rgba(0,196,216,.11);border:1px solid rgba(0,196,216,.2);border-radius:18px;
+  padding:8px 12px;font-size:11px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;
+  line-height:1.45;max-width:100%;text-align:left}
+.eyebrow .dot{margin-top:5px}
+@media(max-width:560px){
+  .eyebrow{font-size:9.5px;letter-spacing:.06em;padding:7px 11px;gap:7px}
+}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--pink);box-shadow:0 0 0 5px rgba(255,79,175,.13)}
+section{padding:64px 0}
+@media(max-width:720px){section{padding:44px 0}}
+h1{margin:16px 0 0;font-size:clamp(42px,7vw,84px);line-height:.91;letter-spacing:-.078em;text-wrap:balance}
+h2{margin:14px 0 0;font-size:clamp(30px,4.4vw,48px);line-height:.95;letter-spacing:-.06em;text-wrap:balance}
+/* Very tight tracking reads well at 80px and badly at 36px, so it relaxes
+   as the type gets smaller. Balanced wrapping stops a lone word on a line. */
+@media(max-width:720px){
+  h1{font-size:clamp(33px,8.6vw,44px);line-height:.98;letter-spacing:-.045em}
+  h2{font-size:clamp(27px,7.4vw,34px);line-height:1.02;letter-spacing:-.035em}
+  h3{font-size:16px}
+}
+@media(max-width:380px){
+  h1{font-size:31px}
+  h2{font-size:25px}
+}
+h3{margin:0;font-size:17px;letter-spacing:-.02em}
+.lede{color:rgba(6,47,61,.8);font-size:18px;line-height:1.68;max-width:56ch;margin:18px 0 0;
+  text-wrap:pretty;-webkit-hyphens:none;hyphens:none}
+.lede p{margin:0 0 15px}
+.lede p:last-child{margin-bottom:0}
+.sub{color:var(--muted);font-size:15px;line-height:1.64;max-width:54ch;margin:12px 0 0;text-wrap:pretty}
+.sub p{margin:0 0 12px}
+.sub p:last-child{margin-bottom:0}
+.head{margin-bottom:30px}
+.pink{color:var(--pink)}
+
+.hero{padding-top:54px;padding-bottom:44px}
+.hero .lede{font-size:19px}
+/* ---- hero banner (optional, per-portfolio) ---- */
+.pfbanner{position:relative;width:100%;height:min(86vh,780px);min-height:440px;overflow:hidden;background:var(--deep)}
+.pfbanner-media{position:absolute;inset:0;background-size:cover;background-position:center}
+/* A banner that is far wider than the band it sits in is a wordmark or a
+   logo lockup, not a photograph. Cropping one to fill a portrait phone
+   screen throws away most of it, so those are shown whole instead, on a
+   shorter band. Photographs are unaffected — see BANNER_WIDE_RATIO. */
+.pfbanner.is-wide{height:auto;min-height:0;background:var(--deep)}
+.pfbanner.is-wide .pfbanner-media{position:relative;inset:auto;width:100%;
+  aspect-ratio:var(--banner-ar,3/1);max-height:46vh;
+  background-size:contain;background-repeat:no-repeat;background-position:center;
+  background-color:var(--deep)}
+.pfbanner.is-wide .pfbanner-shade{background:linear-gradient(180deg,rgba(6,47,61,0) 0%,rgba(6,47,61,0) 55%,rgba(6,47,61,.72) 100%)}
+.pfbanner.is-wide .pfbanner-inner{position:relative;padding-top:22px}
+@media(max-width:720px){
+  .pfbanner.is-wide .pfbanner-media{max-height:34vh}
+  .pfbanner.is-wide .pfbanner-inner{padding-top:16px}
+}
+.pfbanner-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,47,61,.18) 0%,rgba(6,47,61,.32) 45%,rgba(6,47,61,.88) 100%)}
+.pfbanner-inner{position:absolute;left:0;right:0;bottom:0;padding-bottom:46px}
+.pfbanner-inner .eyebrow{color:#fff;background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.28)}
+.pfbanner-inner h1{color:#fff}
+@media(max-width:720px){
+  .pfbanner{height:min(68vh,540px);min-height:380px}
+  .pfbanner-inner{padding-bottom:26px}
+}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:34px}
+.stat{background:rgba(255,255,255,.86);border:1px solid var(--line);border-radius:18px;padding:16px;box-shadow:0 12px 30px rgba(6,47,61,.07)}
+.stat strong{display:block;font-size:clamp(22px,3vw,30px);letter-spacing:-.05em}
+.stat span{display:block;color:var(--muted);font-size:10px;letter-spacing:.06em;text-transform:uppercase;font-weight:900;margin-top:5px;line-height:1.4}
+@media(max-width:900px){.stats{grid-template-columns:repeat(2,1fr)}}
+/* Long labels like "Hotel, airline & travel brands" break badly in a narrow
+   column. Below 560px each stat becomes a single row: number left, label
+   right, nothing forced to wrap mid-phrase. */
+@media(max-width:560px){
+  .stats{grid-template-columns:1fr;gap:8px;margin-top:28px}
+  .stat{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 16px;border-radius:16px}
+  .stat strong{font-size:25px;letter-spacing:-.045em;flex:0 0 auto}
+  .stat span{margin-top:0;text-align:right;font-size:9.5px;letter-spacing:.05em;line-height:1.4;max-width:60%;text-wrap:balance}
+}
+
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0 26px}
+.chip{border:1px solid var(--line);background:#fff;color:var(--deep);border-radius:999px;
+  padding:10px 15px;font-size:13px;font-weight:900;transition:.18s}
+.chip:hover{border-color:rgba(0,196,216,.5)}
+.chip[aria-pressed="true"]{background:var(--deep);color:#fff;border-color:var(--deep)}
+.wall{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+@media(max-width:1000px){.wall{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:640px){.wall{grid-template-columns:repeat(2,1fr);gap:10px}}
+/* Below the site's mobile breakpoint, the grid becomes a single-row swipeable
+   carousel — same manual scroll-snap pattern as .work-scroll/.work-card on
+   the main site, not an auto-scrolling marquee, since these cards are tappable. */
+@media(max-width:720px){
+  .wall{display:flex;gap:10px;overflow-x:auto;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity;scroll-padding-left:22px;padding:2px 2px 4px}
+  .wall::-webkit-scrollbar{display:none}
+  .vcard{flex:0 0 82%;scroll-snap-align:start}
+}
+
+.vcard{position:relative;border-radius:22px;overflow:hidden;background:#0a2530;
+  box-shadow:var(--shadow);border:1px solid rgba(6,47,61,.08);aspect-ratio:9/16;
+  transition:transform .25s ease, box-shadow .25s ease}
+.vcard:hover{transform:translateY(-4px);box-shadow:0 26px 60px rgba(6,47,61,.22)}
+.vcard.hidden{display:none}
+.vcard video{width:100%;height:100%;object-fit:cover;background:#0a2530}
+.vcard .tap{position:absolute;inset:0;border:0;background:transparent;padding:0;width:100%;height:100%}
+.vcard .tap:focus-visible{outline:3px solid var(--aqua);outline-offset:-3px}
+.vshade{position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(6,47,61,.42) 0%,rgba(6,47,61,0) 34%,rgba(6,47,61,0) 52%,rgba(6,47,61,.72) 100%);
+  transition:opacity .25s}
+.vcard.playing .vshade{opacity:.28}
+.vmeta{position:absolute;left:12px;right:12px;bottom:12px;pointer-events:none;transition:opacity .25s}
+.vcard.playing .vmeta{opacity:0}
+.vmeta b{display:block;color:#fff;font-size:13.5px;letter-spacing:-.01em;line-height:1.25;text-shadow:0 2px 12px rgba(0,0,0,.5)}
+.vmeta i{display:block;font-style:normal;color:rgba(255,255,255,.78);font-size:10.5px;font-weight:900;
+  letter-spacing:.07em;text-transform:uppercase;margin-top:5px}
+.vtag{position:absolute;left:12px;top:12px;background:rgba(6,47,61,.72);color:#fff;font-size:9px;
+  font-weight:900;letter-spacing:.06em;text-transform:uppercase;padding:5px 9px;border-radius:999px;pointer-events:none;transition:opacity .25s}
+.vcard.playing .vtag{opacity:0}
+.play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:52px;height:52px;
+  border-radius:50%;background:rgba(255,255,255,.94);display:grid;place-items:center;pointer-events:none;
+  box-shadow:0 10px 26px rgba(0,0,0,.28);transition:opacity .2s,transform .2s}
+.play::after{content:"";border-left:15px solid var(--deep);border-top:9px solid transparent;border-bottom:9px solid transparent;margin-left:4px}
+.vcard.playing .play{opacity:0;transform:translate(-50%,-50%) scale(.8)}
+.sound{position:absolute;right:10px;top:10px;z-index:3;width:34px;height:34px;border-radius:50%;border:0;
+  background:rgba(6,47,61,.66);color:#fff;font-size:14px;display:none;place-items:center;backdrop-filter:blur(6px)}
+.vcard.playing .sound{display:grid}
+.vbar{position:absolute;left:0;bottom:0;height:3px;width:0;background:var(--aqua);z-index:2;transition:width .2s linear}
+/* ---- hero showreel ---- */
+.reelsec{padding-top:8px}
+.reelwrap{position:relative}
+.reelwrap::before{content:"";position:absolute;inset:-8% -4% -14%;z-index:0;pointer-events:none;
+  background:radial-gradient(60% 60% at 22% 8%,rgba(0,196,216,.30),transparent 70%),
+             radial-gradient(55% 55% at 82% 92%,rgba(255,79,175,.24),transparent 70%);
+  filter:blur(28px)}
+.reel{position:relative;z-index:1;border-radius:30px;overflow:hidden;background:#07222c;
+  aspect-ratio:16/9;box-shadow:0 34px 90px rgba(6,47,61,.34);border:1px solid rgba(6,47,61,.12);
+  margin:0 auto;transition:transform .3s ease}
+.reel.portrait{aspect-ratio:9/16;max-width:min(420px,44vh);border-radius:26px}
+.reel:hover{transform:translateY(-3px)}
+.reel video{width:100%;height:100%;object-fit:cover;display:block;background:#07222c}
+.reel-tap{position:absolute;inset:0;width:100%;height:100%;border:0;background:transparent;padding:0;cursor:pointer;z-index:3}
+.reel-tap:focus-visible{outline:3px solid var(--aqua);outline-offset:-4px}
+.reel-shade{position:absolute;inset:0;z-index:2;pointer-events:none;transition:opacity .35s;
+  background:linear-gradient(180deg,rgba(6,47,61,.46) 0%,rgba(6,47,61,.06) 38%,rgba(6,47,61,.10) 62%,rgba(6,47,61,.62) 100%)}
+.reel.sound-on .reel-shade{opacity:.25}
+.reel-badge{position:absolute;left:18px;top:18px;z-index:4;pointer-events:none;
+  display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.26);backdrop-filter:blur(10px);color:#fff;
+  font-size:10.5px;font-weight:900;letter-spacing:.09em;text-transform:uppercase;padding:8px 13px;border-radius:999px}
+.reel-badge i{width:6px;height:6px;border-radius:50%;background:var(--pink);font-style:normal;
+  box-shadow:0 0 0 4px rgba(255,79,175,.22)}
+.reel-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:3;pointer-events:none;
+  width:78px;height:78px;border-radius:50%;background:rgba(255,255,255,.95);display:grid;place-items:center;
+  box-shadow:0 16px 40px rgba(0,0,0,.34);transition:opacity .3s,transform .3s}
+.reel-play::after{content:"";border-left:23px solid var(--deep);border-top:14px solid transparent;
+  border-bottom:14px solid transparent;margin-left:6px}
+.reel.sound-on .reel-play{opacity:0;transform:translate(-50%,-50%) scale(.7)}
+.reel-ctl{position:absolute;right:16px;bottom:16px;z-index:4;display:flex;gap:8px}
+.reel-ctl button{border:1px solid rgba(255,255,255,.26);background:rgba(6,47,61,.6);
+  backdrop-filter:blur(10px);color:#fff;border-radius:999px;padding:10px 15px;
+  font-size:12px;font-weight:900;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:7px}
+.reel-ctl button:hover{background:rgba(6,47,61,.82)}
+.reel-cap{text-align:center;color:var(--muted);font-size:12.5px;margin:16px 0 0}
+@media(max-width:720px){
+  .reel{border-radius:22px}
+  .reel-play{width:62px;height:62px}
+  .reel-play::after{border-left-width:18px;border-top-width:11px;border-bottom-width:11px}
+  .reel-badge{left:12px;top:12px;padding:7px 11px}
+  .reel-ctl{right:10px;bottom:10px}
+  .reel-ctl button{padding:9px 12px;font-size:11px}
+}
+@media (prefers-reduced-motion:reduce){.reel:hover{transform:none}}
+
+.wallnote{margin-top:18px;color:var(--muted);font-size:13px;line-height:1.6}
+
+/* Horizontal strips (video wall, results, testimonials) are nested scrollers.
+   Without containment iOS chains the swipe up to the document, so dragging a
+   clip sideways drags the whole page with it and nothing feels anchored.
+   `clip` rather than `hidden` so the sticky nav keeps working. */
+html,body{overflow-x:clip}
+.wall,.results,.trail{overscroll-behavior-x:contain}
+@media(max-width:560px){
+  .vmeta b{font-size:12.5px}
+  .vmeta i{font-size:9.5px;letter-spacing:.05em}
+  .vtag{font-size:8.5px;padding:4px 8px}
+  .way{padding:24px 20px;border-radius:22px}
+  .way h3{font-size:21px}
+  .waylead{font-size:14.5px}
+  .fit{padding:26px 20px}
+  .cta{padding:32px 22px;border-radius:24px}
+  .big{font-size:22px}
+}
+.morewrap{display:flex;justify-content:center;margin-top:22px}
+.morebtn{border:1px solid var(--line);background:#fff;color:var(--deep);border-radius:999px;
+  padding:14px 26px;font-weight:900;font-size:14px;box-shadow:0 12px 30px rgba(6,47,61,.07);transition:.2s}
+.morebtn:hover{border-color:rgba(0,196,216,.55);transform:translateY(-1px)}
+.morebtn:focus-visible{outline:3px solid var(--aqua);outline-offset:2px}
+.morebtn span{color:var(--muted);font-weight:400;margin-left:6px}
+
+.results{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:900px){.results{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.results{grid-template-columns:1fr}}
+.rcard{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:0 14px 34px rgba(6,47,61,.08);display:flex;flex-direction:column}
+.rcard .ph{aspect-ratio:4/3;overflow:hidden;background:var(--ice);position:relative}
+.rcard .ph .fill{position:absolute;inset:0;background-size:cover;background-position:center;
+  filter:blur(20px) saturate(1.2);transform:scale(1.18);opacity:.5}
+.rcard .ph img{position:absolute;inset:11px;width:calc(100% - 22px);height:calc(100% - 22px);
+  object-fit:contain;border-radius:10px}
+.rbody{padding:16px 16px 18px}
+.rcard .kicker{color:var(--aquad);font-size:10px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+.rcard h3{margin:7px 0 0}
+.big{display:block;margin-top:12px;font-size:clamp(21px,2.4vw,27px);letter-spacing:-.05em;line-height:1.05}
+.rcard p{margin:8px 0 0;color:var(--muted);font-size:13px;line-height:1.6;text-wrap:pretty}
+/* Optional case-study link on a results tile. Tiles without a `link`
+   field render exactly as before, so existing portfolios are untouched. */
+.rcard .rlink{display:inline-flex;align-items:center;gap:6px;margin-top:12px;
+  color:var(--aquad);font-size:12px;font-weight:900;letter-spacing:.02em;text-decoration:none}
+.rcard .rlink:hover{text-decoration:underline}
+.rcard .rlink span{transition:transform .18s}
+.rcard .rlink:hover span{transform:translateX(3px)}
+.swipehint{display:none;color:var(--muted);font-size:12.5px;margin:14px 0 0}
+
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:900px){.pricing-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.pricing-grid{grid-template-columns:1fr}}
+.pcard{background:#fff;border:1px solid var(--line);border-radius:22px;padding:24px;box-shadow:0 14px 34px rgba(6,47,61,.08);display:flex;flex-direction:column}
+.pcard h3{margin:0;font-size:19px;letter-spacing:-.03em}
+.pfees{display:flex;flex-wrap:wrap;gap:14px 20px;margin:16px 0 0}
+.pfee{display:flex;flex-direction:column}
+.pfee span{color:var(--muted);font-size:10px;letter-spacing:.06em;text-transform:uppercase;font-weight:900}
+.pfee strong{font-size:19px;letter-spacing:-.03em;margin-top:3px}
+.pfee.total strong{color:var(--pink)}
+.pcard p{margin:14px 0 0;color:var(--muted);font-size:13px;line-height:1.6;text-wrap:pretty}
+.pricingnote{color:var(--muted);font-size:12.5px;line-height:1.6;margin:18px 0 0;white-space:pre-line}
+/* Optional per-package extras (phase 2, batch B). All additive — a package
+   with none of these fields renders exactly as it did before. */
+.pcard{position:relative}
+.pcard.featured{border-color:var(--pink);box-shadow:0 20px 50px rgba(255,79,175,.18)}
+.pcard-featured-badge{position:absolute;top:-11px;left:20px;background:var(--pink);color:#fff;
+  font-size:10px;font-weight:900;letter-spacing:.05em;text-transform:uppercase;padding:5px 10px;border-radius:999px}
+.pcard .pill-row{margin-bottom:14px}
+.pcard-scope{margin-top:14px}
+.pcard-scope h4{margin:0 0 6px;font-size:11px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;color:var(--aquad)}
+.pcard-scope ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.pcard-scope li{position:relative;padding-left:16px;font-size:12.5px;line-height:1.5;color:var(--muted)}
+.pcard-scope li::before{content:"";position:absolute;left:0;top:6px;width:6px;height:6px;border-radius:50%;background:var(--aqua)}
+.pcard .price-note{margin-top:14px}
+.pricing-grid.solo{grid-template-columns:1fr;max-width:640px;margin-left:auto;margin-right:auto}
+@media(max-width:720px){
+  /* A four-tile stack is a long scroll on a phone. Swipe reads better. */
+  .results{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x proximity;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;
+    padding:2px 22px 10px 0;margin-right:-22px}
+  .results::-webkit-scrollbar{display:none}
+  .rcard{flex:0 0 78vw;scroll-snap-align:start}
+  .swipehint{display:block}
+  .lede{font-size:16.5px;line-height:1.64}
+  .sub{font-size:14.5px;line-height:1.62}
+  .cta p{font-size:15px}
+}
+@media(max-width:720px){.hero .lede{font-size:17px}}
+
+.fit{background:linear-gradient(135deg,var(--deep),var(--deep2));color:#fff;border-radius:30px;padding:38px 34px}
+.fit h2{color:#fff}
+.fit .eyebrow,.cta .eyebrow{color:#bff6fd;background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.2)}
+.fit .sub{color:rgba(255,255,255,.76)}
+.fgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}
+@media(max-width:820px){.fgrid{grid-template-columns:1fr}.fit{padding:30px 22px;border-radius:24px}}
+.fit-image{margin-top:22px;border-radius:20px;overflow:hidden;box-shadow:0 14px 34px rgba(6,47,61,.22)}
+.fit-image img{width:100%;max-height:420px;object-fit:cover;display:block}
+.fcard{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16);border-radius:20px;padding:20px}
+.fcard h3{color:#fff;font-size:16px}
+.fcard p{margin:10px 0 0;color:rgba(255,255,255,.8);font-size:13.5px;line-height:1.66;text-wrap:pretty}
+.fcard .n{display:block;color:var(--aqua);font-size:11px;font-weight:900;letter-spacing:.09em;text-transform:uppercase;margin-bottom:9px}
+.fit-callout{margin-top:28px;border:1px solid rgba(255,79,175,.5);background:rgba(255,79,175,.14);
+  border-radius:20px;padding:20px 24px;text-align:center}
+.fit-callout strong{display:block;color:#fff;font-size:clamp(17px,2.6vw,23px);letter-spacing:-.03em;line-height:1.3}
+@media(max-width:560px){.fit-callout{padding:16px 18px;border-radius:16px}}
+
+/* ---- marketing system diagram (phase 2, batch C rebuild; polished in
+   batch F; unified into one dark panel in batch G) — a premium sales
+   visual, not a flowchart: the whole thing (badge, heading, both paths,
+   outcome, optimisation) sits inside one dark BOKKO container so it reads
+   as one connected system rather than several boxes floating on the page.
+   Related to the Closing CTA's dark treatment but deliberately not
+   identical — a different gradient angle/endpoint and no heavy shadow,
+   since this is a strategic panel, not a call to action. No animation. */
+.ms-panel{background:linear-gradient(160deg,var(--deep) 0%,#052a37 55%,#03181f 100%);
+  border-radius:32px;padding:48px 44px;color:#fff}
+.ms-panel .head{margin-bottom:20px}
+.ms-panel .eyebrow{color:#bff6fd;background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.22)}
+.ms-panel h2{color:#fff}
+@media(max-width:640px){.ms-panel{padding:30px 20px;border-radius:24px}}
+
+.ms{margin-top:20px}
+.ms-desktop{display:none}
+.ms-mobile{display:flex;flex-direction:column;gap:8px;max-width:480px;margin:0 auto}
+@media(min-width:860px){.ms-desktop{display:block}.ms-mobile{display:none}}
+
+.ms-cols{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+.ms-path{display:flex;flex-direction:column}
+.ms-path-head{min-height:64px}
+.ms-eyebrow-label{color:rgba(255,255,255,.62);font-size:11px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;text-align:center}
+/* Source boxes: a light, translucent panel — an input into the channel
+   below, not a standalone card competing with it. */
+.ms-source{margin-top:8px;display:flex;align-items:center;justify-content:center;min-height:44px;
+  text-align:center;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.2);border-radius:14px;
+  padding:9px 14px;font-weight:900;font-size:12.5px;color:#fff}
+/* Connectors: a slim line with a small arrowhead reads as "flowing into
+   the next stage" without looking like a technical flowchart arrow. */
+.ms-arrow{display:flex;align-items:center;justify-content:center;width:26px;height:26px;margin:7px auto 0;
+  border-radius:50%;background:rgba(0,196,216,.16);border:1px solid rgba(0,196,216,.4);
+  color:var(--aqua);font-size:12px;font-weight:900}
+/* Three-layer internal hierarchy:
+   1. h4 — the channel GROUP (Paid Social / Google). Largest, strongest.
+   2. .ms-chips — the PLATFORM/SOURCE layer (Meta+TikTok, or Google's
+      Search/Maps/High-intent mechanisms). Small, decorative, chip-shaped —
+      the same treatment on both sides so they read as the same kind of
+      information.
+   3. .ms-actions — the COMMERCIAL-ROLE layer (what the channel actually
+      does). Deliberately NOT another chip: a quiet, left-aligned, bulleted
+      list, set off from the chips above by a hairline divider, so it reads
+      as supporting copy rather than another tag. Only Paid Social has this
+      layer today (Google's three items are mechanisms, i.e. layer 2, not
+      actions) — a card with nothing for a layer just doesn't render it.
+   Paid Social is a translucent "glass" panel rather than the same solid
+   dark tone as the outer container (the two would otherwise be visually
+   indistinguishable); Google keeps its solid teal so the two panels read
+   as equally weighted despite the different treatment. */
+.ms-channel{border-radius:20px;padding:22px 18px;text-align:center}
+.ms-channel h4{margin:0;font-size:17px;letter-spacing:.03em;text-transform:uppercase;font-weight:900;color:#fff}
+.ms-channel.meta{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16)}
+.ms-channel.google{background:var(--aquad)}
+.ms-chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:9px}
+.ms-chips span{font-size:10px;font-weight:900;letter-spacing:.05em;text-transform:uppercase;color:#fff;
+  background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.36);border-radius:999px;padding:4px 11px}
+.ms-actions{margin-top:15px;padding-top:13px;border-top:1px solid rgba(255,255,255,.18);
+  display:inline-flex;flex-direction:column;gap:8px;text-align:left}
+.ms-action-row{display:flex;align-items:flex-start;gap:8px;font-size:12.5px;font-weight:700;
+  color:rgba(255,255,255,.92);line-height:1.4}
+.ms-action-row .dot{flex:0 0 auto;width:5px;height:5px;border-radius:50%;background:var(--aqua);margin-top:5px}
+.ms-arrows-in{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:4px}
+.ms-arrows-in .ms-arrow{margin-top:0}
+/* Outcome bar: the payoff — kept pink, strong against the dark panel. */
+.ms-outcome{margin-top:2px;background:linear-gradient(135deg,var(--pink),#ff77c2);color:#fff;text-align:center;
+  border-radius:20px;padding:20px 24px;font-size:17px;font-weight:900;letter-spacing:.04em;text-transform:uppercase;
+  box-shadow:0 16px 36px rgba(255,79,175,.32)}
+/* Optimisation strip: a compact, clearly secondary panel — not the
+   previous plain leftover text, and not the old large dashed loop
+   container. */
+.ms-optimise{margin-top:14px;max-width:420px;margin-left:auto;margin-right:auto;text-align:center;
+  background:rgba(255,255,255,.07);border:1px solid rgba(0,196,216,.35);border-radius:16px;padding:12px 18px}
+.ms-optimise-label{display:block;color:rgba(255,255,255,.66);font-size:10.5px;font-weight:900;letter-spacing:.05em;text-transform:uppercase}
+.ms-optimise-items{display:block;margin-top:4px;color:#fff;font-size:13px;font-weight:900}
+
+.ms-mobile .ms-source{margin-top:6px}
+.ms-mobile .ms-channel{padding:18px 16px;margin-top:6px}
+.ms-mobile .ms-actions{margin-top:13px;padding-top:11px}
+.ms-mobile .ms-eyebrow-label{margin-top:12px}
+.ms-mobile .ms-eyebrow-label:first-child{margin-top:0}
+.ms-mobile .ms-optimise{margin-top:12px}
+
+.ways{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:860px){.ways{grid-template-columns:1fr}}
+.way{background:rgba(255,255,255,.9);border:1px solid var(--line);border-radius:26px;padding:28px 26px;
+  box-shadow:0 16px 40px rgba(6,47,61,.08);display:flex;flex-direction:column}
+.way.lead{background:linear-gradient(135deg,var(--deep),var(--deep2));border:0;color:#fff;
+  box-shadow:0 26px 60px rgba(6,47,61,.28)}
+.waytag{display:inline-flex;align-items:center;gap:7px;align-self:flex-start;font-size:10px;font-weight:900;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--aquad);background:rgba(0,196,216,.12);
+  border:1px solid rgba(0,196,216,.22);border-radius:999px;padding:7px 12px;margin-bottom:14px}
+.way.lead .waytag{color:#bff6fd;background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.22)}
+.way h3{font-size:clamp(22px,2.6vw,28px);letter-spacing:-.04em;line-height:1.05}
+.way.lead h3{color:#fff}
+.waylead{margin:10px 0 0;font-size:15.5px;line-height:1.6;color:rgba(6,47,61,.8);text-wrap:pretty}
+.way.lead .waylead{color:rgba(255,255,255,.86)}
+.way ul{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:12px}
+.way li{position:relative;padding-left:24px;font-size:13.5px;line-height:1.6;color:var(--muted);text-wrap:pretty}
+.way.lead li{color:rgba(255,255,255,.8)}
+.way li::before{content:"";position:absolute;left:0;top:7px;width:9px;height:9px;border-radius:50%;
+  background:var(--aqua);box-shadow:0 0 0 4px rgba(0,196,216,.14)}
+.way.lead li::before{box-shadow:0 0 0 4px rgba(0,196,216,.22)}
+.way.excl li::before{background:var(--pink);box-shadow:0 0 0 4px rgba(255,79,175,.14)}
+.wayfoot{margin:20px 0 0;padding-top:16px;border-top:1px solid var(--line);font-size:13px;
+  line-height:1.6;color:var(--muted)}
+.way.lead .wayfoot{border-top-color:rgba(255,255,255,.18);color:rgba(255,255,255,.72)}
+
+/* ---- optional section modules (phase 1) ---- */
+.examples{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:26px}
+@media(max-width:760px){.examples{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:460px){.examples{grid-template-columns:1fr}}
+.example{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px 18px;font-weight:900;
+  font-size:13px;letter-spacing:-.005em;color:var(--deep);box-shadow:0 10px 26px rgba(6,47,61,.06);
+  display:flex;align-items:center;gap:10px;line-height:1.35}
+.example::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--pink);
+  box-shadow:0 0 0 4px rgba(255,79,175,.14);flex:0 0 auto}
+
+/* ---- optional section modules (phase 2, batch 2) ---- */
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}
+@media(max-width:900px){.pillars{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.pillars{grid-template-columns:1fr}}
+.pillar{background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px 20px;box-shadow:0 12px 30px rgba(6,47,61,.07)}
+.pillar h3{font-size:14px;letter-spacing:.05em;text-transform:uppercase;color:var(--aquad);font-weight:900}
+.pillar p{margin:10px 0 0;color:var(--deep);font-size:14.5px;line-height:1.55}
+.pillar-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.pillar-tags span{font-size:10px;font-weight:900;letter-spacing:.02em;color:var(--aquad);
+  background:rgba(0,196,216,.1);border:1px solid rgba(0,196,216,.2);border-radius:999px;padding:5px 9px}
+
+.roadmap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+@media(max-width:900px){.roadmap-grid{grid-template-columns:1fr}}
+.rmcard{background:#fff;border:1px solid var(--line);border-radius:22px;padding:24px 22px;box-shadow:0 14px 34px rgba(6,47,61,.08)}
+.rmcard .n{color:var(--aquad);font-size:10.5px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+.rmcard h3{margin:8px 0 0;font-size:17px;letter-spacing:-.02em;line-height:1.32}
+.rmcard p{margin:10px 0 0;color:var(--muted);font-size:13.5px;line-height:1.6}
+.rmcompound{margin-top:16px;background:linear-gradient(135deg,var(--deep),var(--deep2));color:#fff;border-radius:22px;padding:24px 26px}
+.rmcompound .n{color:#bff6fd}
+.rmcompound h3{color:#fff;font-size:17px}
+.rmcompound p{color:rgba(255,255,255,.85);margin:10px 0 0;font-size:13.5px;line-height:1.6}
+
+.price-hero{background:#fff;border:1px solid var(--line);border-radius:28px;padding:36px 32px;box-shadow:0 20px 50px rgba(6,47,61,.1);margin-top:28px}
+@media(max-width:640px){.price-hero{padding:26px 20px;border-radius:22px}}
+.pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.pill-row span{border:1px solid var(--line);background:var(--ice);color:var(--deep);border-radius:999px;
+  padding:7px 13px;font-size:11px;font-weight:900;letter-spacing:.03em}
+.price-hero h3{font-size:clamp(20px,2.6vw,26px);letter-spacing:-.02em}
+.price-hero > p{margin:14px 0 0;color:var(--muted);font-size:14.5px;line-height:1.64;text-wrap:pretty;max-width:70ch}
+/* Matches the standalone Tulum page's larger fee display. Scoped to
+   .price-hero only — the shared .pfees/.pfee rule above (used by the
+   existing multi-package pricing grid) is untouched. .price-hero exists
+   nowhere else in this template, so this cannot leak into that grid. */
+.price-hero .pfees{gap:16px 26px;margin-top:24px}
+.price-hero .pfee span{font-size:10.5px}
+.price-hero .pfee strong{font-size:22px;margin-top:4px}
+.price-note{margin-top:16px;padding:14px 16px;background:rgba(0,196,216,.08);border:1px solid rgba(0,196,216,.18);
+  border-radius:14px;font-size:13px;line-height:1.62;color:var(--deep);white-space:pre-line}
+.price-note strong{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--aquad);margin-bottom:4px}
+
+.media-card{background:#fff;border:1px solid var(--line);border-radius:26px;padding:30px 28px;box-shadow:0 16px 40px rgba(6,47,61,.08);margin-top:28px}
+@media(max-width:640px){.media-card{padding:22px 18px;border-radius:20px}}
+.media-headline{font-size:clamp(24px,3.6vw,34px);letter-spacing:-.03em;line-height:1.05;color:var(--deep)}
+.media-card > p{margin:14px 0 0;color:var(--muted);font-size:14.5px;line-height:1.64;max-width:70ch}
+.media-banner{margin-top:22px;text-align:center;border:1px solid rgba(0,196,216,.3);background:rgba(0,196,216,.09);
+  border-radius:16px;padding:12px 16px;font-size:12px;font-weight:900;letter-spacing:.05em;text-transform:uppercase;color:var(--aquad)}
+
+/* ---- optional section modules (phase 2, batch 3) ---- */
+.astrat{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:28px}
+@media(max-width:760px){.astrat{grid-template-columns:1fr}}
+.acard{background:#fff;border:1px solid var(--line);border-radius:22px;padding:26px 24px;box-shadow:0 14px 34px rgba(6,47,61,.08)}
+.acard .n{display:block;color:var(--aquad);font-size:11px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px}
+.acard h3{font-size:18px;letter-spacing:-.02em;line-height:1.32}
+.acard p{margin:10px 0 0;color:var(--muted);font-size:13.5px;line-height:1.62}
+
+.intent-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:28px}
+@media(max-width:1000px){.intent-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:640px){.intent-grid{grid-template-columns:repeat(2,1fr)}}
+.intent-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px 16px;box-shadow:0 12px 30px rgba(6,47,61,.07)}
+.intent-card h3{font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--deep);font-weight:900}
+.intent-card p{margin:8px 0 0;color:var(--muted);font-size:12.5px;line-height:1.5}
+.split-callout{margin-top:26px;text-align:center;border:1px solid rgba(0,196,216,.28);background:rgba(0,196,216,.08);
+  border-radius:20px;padding:18px 22px}
+.split-callout strong{display:block;font-size:clamp(15px,2vw,18px);letter-spacing:-.01em;line-height:1.5;color:var(--deep)}
+
+.stageflow{display:flex;gap:10px;margin-top:28px;flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px}
+@media(max-width:760px){.stageflow{flex-direction:column;overflow:visible}}
+.stage{flex:1 1 0;min-width:150px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px 16px;
+  box-shadow:0 12px 30px rgba(6,47,61,.07)}
+.stage .n{display:block;color:var(--aquad);font-size:10px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+.stage h3{margin:8px 0 0;font-size:15px;letter-spacing:-.01em}
+.stage p{margin:6px 0 0;color:var(--muted);font-size:12.5px;line-height:1.5}
+.stage-arrow{display:flex;align-items:center;justify-content:center;color:var(--aquad);font-size:18px;font-weight:900;flex:0 0 auto}
+@media(max-width:760px){.stage-arrow{transform:rotate(90deg);margin:-2px 0}}
+
+.logos{border:1px solid var(--line);background:rgba(255,255,255,.75);border-radius:26px;padding:24px;box-shadow:0 12px 30px rgba(6,47,61,.06)}
+.logos img{width:100%;height:auto;mix-blend-mode:multiply}
+.tblock{position:relative;margin-top:26px}
+.trail{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x proximity;
+  -webkit-overflow-scrolling:touch;scrollbar-width:none;padding:4px 2px 10px}
+.trail::-webkit-scrollbar{display:none}
+.tcard{flex:0 0 300px;scroll-snap-align:start;border:0;padding:0;background:none;cursor:zoom-in;
+  border-radius:20px;overflow:hidden;box-shadow:0 14px 34px rgba(6,47,61,.09);
+  border:1px solid var(--line);transition:transform .2s,box-shadow .2s;position:relative}
+.tcard:hover{transform:translateY(-3px);box-shadow:0 20px 44px rgba(6,47,61,.16)}
+.tcard:focus-visible{outline:3px solid var(--aqua);outline-offset:3px}
+.tcard img{width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:1}
+.tcard .zoom{position:absolute;right:10px;bottom:10px;background:rgba(6,47,61,.72);color:#fff;
+  font-size:9.5px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;
+  padding:5px 9px;border-radius:999px;pointer-events:none}
+@media(max-width:640px){.tcard{flex:0 0 76vw}}
+.tnav{position:absolute;top:50%;transform:translateY(-50%);z-index:4;width:40px;height:40px;
+  border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.95);
+  color:var(--deep);font-size:17px;font-weight:900;display:grid;place-items:center;
+  box-shadow:0 10px 26px rgba(6,47,61,.16)}
+.tnav[disabled]{opacity:0;pointer-events:none}
+.tprev{left:-12px}
+.tnext{right:-12px}
+@media(hover:none),(max-width:760px){.tnav{display:none}}
+.thint{color:var(--muted);font-size:12.5px;margin:2px 0 0}
+
+#tbox{position:fixed;inset:0;z-index:200;background:rgba(6,47,61,.88);
+  display:none;align-items:center;justify-content:center;padding:24px;overflow:auto}
+#tbox.open{display:flex}
+#tbox img{max-width:min(860px,100%);width:100%;height:auto;border-radius:20px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+#tboxClose{position:fixed;top:18px;right:18px;width:42px;height:42px;border-radius:50%;border:0;
+  background:rgba(255,255,255,.92);color:var(--deep);font-size:18px;font-weight:900;z-index:201}
+
+.cta{background:linear-gradient(135deg,var(--deep),var(--deep2));color:#fff;border-radius:30px;padding:42px 34px;text-align:center}
+.cta h2{color:#fff}
+.cta p{color:rgba(255,255,255,.82);margin:14px auto 0;max-width:48ch;font-size:16px;line-height:1.66;text-wrap:pretty}
+.cta p + p{margin-top:12px}
+.btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:26px}
+.btn{border:1px solid rgba(255,255,255,.28);background:transparent;color:#fff;border-radius:999px;
+  padding:14px 20px;font-weight:900;text-decoration:none;display:inline-flex;align-items:center;gap:8px;font-size:14px;transition:.2s}
+.btn:hover{background:rgba(255,255,255,.1)}
+.btn.solid{background:var(--pink);border-color:var(--pink)}
+.btn.solid:hover{filter:brightness(1.06)}
+.btns-primary{display:flex;justify-content:center;margin-top:26px}
+.btn-hero{padding:19px 36px;font-size:16px;border-radius:999px;box-shadow:0 18px 40px rgba(255,79,175,.34)}
+.btns-secondary{margin-top:14px}
+.btns-secondary .btn{padding:9px 15px;font-size:11.5px;border-color:rgba(255,255,255,.2)}
+footer{padding:26px 0 40px;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.pf-credit{width:100%;margin-top:2px;opacity:.85}
+
+#boot{padding:120px 22px;text-align:center;color:var(--muted);font-size:14px}
+
+/* ---- access gate ---- */
+#gate{display:none;position:fixed;inset:0;z-index:300;overflow-y:auto;
+  background:
+    radial-gradient(circle at 12% -6%,rgba(255,79,175,.17),transparent 340px),
+    radial-gradient(circle at 92% 2%,rgba(0,196,216,.26),transparent 440px),
+    linear-gradient(180deg,var(--ice),#fff 46%,var(--soft))}
+#gate.open{display:block}
+.gate-wrap{min-height:100%;display:flex;align-items:center;justify-content:center;padding:32px 22px}
+.gate-card{width:100%;max-width:440px;background:rgba(255,255,255,.92);border:1px solid var(--line);
+  border-radius:28px;padding:34px 30px;box-shadow:0 30px 80px rgba(6,47,61,.16)}
+.gate-brand{display:flex;align-items:center;gap:11px;margin-bottom:22px}
+.gate-brand .mark{width:40px;height:40px;border-radius:14px;flex:0 0 auto;overflow:hidden;
+  background:linear-gradient(135deg,var(--aqua),#d9fdff 55%,var(--pink));
+  box-shadow:0 12px 28px rgba(0,196,216,.24);display:grid;place-items:center;
+  color:#fff;font-weight:900;font-size:19px;letter-spacing:-.04em}
+.gate-brand .mark.has-logo{background:none;box-shadow:none}
+.gate-brand .mark img{width:100%;height:100%;object-fit:contain;display:block}
+.gate-brand strong{display:block;letter-spacing:.24em;font-size:17px;line-height:1}
+.gate-brand span{display:block;margin-top:4px;color:var(--muted);font-size:9px;letter-spacing:.11em;text-transform:uppercase}
+.gate-card h2{margin:0;font-size:clamp(25px,4.6vw,31px);line-height:1.04;letter-spacing:-.045em;text-wrap:balance}
+.gate-for{display:block;margin-top:12px;color:var(--aquad);font-size:11px;font-weight:900;
+  letter-spacing:.08em;text-transform:uppercase;line-height:1.5}
+.gate-card p.lead{margin:14px 0 0;color:rgba(6,47,61,.76);font-size:14.5px;line-height:1.62;text-wrap:pretty}
+.gate-field{margin-top:16px}
+.gate-field label{display:block;font-size:10.5px;font-weight:900;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.gate-field input{width:100%;border:1px solid var(--line);background:#fff;border-radius:14px;
+  padding:14px 15px;font-size:15px;color:var(--deep);font-family:inherit}
+.gate-field input:focus{outline:none;border-color:var(--aqua);box-shadow:0 0 0 3px rgba(0,196,216,.16)}
+.gate-field input.bad{border-color:#d92d20;box-shadow:0 0 0 3px rgba(217,45,32,.12)}
+.gate-btn{width:100%;margin-top:20px;border:0;border-radius:999px;padding:16px;cursor:pointer;
+  background:linear-gradient(135deg,var(--deep),var(--deep2));color:#fff;font-weight:900;font-size:15px;
+  transition:.2s;font-family:inherit}
+.gate-btn:hover{filter:brightness(1.1)}
+.gate-btn[disabled]{opacity:.6;cursor:default}
+.gate-err{display:none;margin:12px 0 0;color:#d92d20;font-size:13px;line-height:1.5;font-weight:900}
+.gate-err.show{display:block}
+.gate-foot{margin:18px 0 0;padding-top:16px;border-top:1px solid var(--line);
+  color:var(--muted);font-size:11.5px;line-height:1.6;text-wrap:pretty}
+.gate-foot a{color:var(--aquad);font-weight:900}
+@media(max-width:480px){
+  .gate-card{padding:28px 22px;border-radius:24px}
+  .gate-wrap{padding:20px 16px}
+}
+#notfound{display:none;padding:110px 22px;text-align:center}
+#notfound h2{margin-bottom:0}
+#page{display:none}
+
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+  html{scroll-behavior:auto}
+}
+
+/* ============================================================
+   Compact / premium proposal layout (phase 3, batch E).
+   Opt-in via d.compactLayout === true, applied as a `.compact`
+   class on #page. Every rule below is scoped under `.compact` so
+   a doc without the flag (KAIA, AWC, every portfolio today)
+   renders with exactly the spacing and behaviour it always has.
+   ============================================================ */
+.compact section{padding:54px 0}
+@media(max-width:720px){.compact section{padding:36px 0}}
+.compact .hero{padding-top:36px;padding-bottom:26px}
+.compact .stats{margin-top:24px}
+.compact .head{margin-bottom:22px}
+.compact .lede{max-width:70ch}
+.compact .sub{max-width:66ch}
+.compact .fit>p,.compact .fit .sub,.compact .price-hero>p,.compact .media-card>p,.compact .pcard p{max-width:70ch}
+/* dominant sections keep the most room, within the 90-120px desktop /
+   55-75px mobile target — hero is tuned separately just above */
+.compact #results,.compact #opportunitySection,.compact #marketingSystemSection,.compact #partnershipSection{padding:62px 0}
+@media(max-width:720px){
+  .compact #results,.compact #opportunitySection,.compact #marketingSystemSection,.compact #partnershipSection{padding:40px 0}
+}
+/* supporting sections read tighter still, within the 65-90px desktop /
+   55-75px mobile target */
+.compact #searchIntentSection,.compact #contentPillarsSection,.compact #roadmapSection,
+.compact #performanceMeasurementSection,.compact #includedExcludedSection{padding:54px 0}
+@media(max-width:720px){
+  .compact #searchIntentSection,.compact #contentPillarsSection,.compact #roadmapSection,
+  .compact #performanceMeasurementSection,.compact #includedExcludedSection{padding:36px 0}
+}
+.compact .ms{margin-top:18px}
+.compact .intent-grid{margin-top:20px}
+.compact .pillars{margin-top:20px}
+.compact .roadmap-grid{margin-top:20px}
+.compact .astrat{margin-top:20px}
+.compact .fgrid{margin-top:20px}
+.compact .price-hero{padding:28px 26px;margin-top:20px}
+.compact .media-card{padding:24px 22px;margin-top:20px}
+.compact .fit{padding:30px 28px}
+/* Trusted-by logo strip: reduce the CARD's own padding under compact, but
+   let the composite image keep filling the card's width — this is a
+   fixed-aspect artwork, not a photo, so a height cap it shrinks it into a
+   sliver surrounded by empty white space. Width-led sizing with a
+   sensible max-width (so it doesn't run enormous on very wide screens)
+   is the correct constraint, not height. */
+.compact .logos{padding:32px 40px;height:auto;min-height:0}
+.compact .logos img{display:block;width:100%;max-width:1150px;height:auto;margin:0 auto;object-fit:contain}
+@media(max-width:760px){
+  .compact .logos{padding:20px 16px}
+  .compact .logos img{width:100%;max-width:none}
+}
+/* Slightly larger tap targets on the proposal that has the most interactive
+   chips/controls, without touching the shared .chip/.tnav rules other
+   portfolios already use. */
+.compact .chip{padding:12px 16px}
+.compact .tnav{width:44px;height:44px}
+.compact .morebtn{padding:15px 28px}
+
+/* ---- Recommended Partnership: prominent 6-month total (Tulum-only
+   section today; safe to style unconditionally). ---- */
+.price-hero .pfee.total{flex:1 1 100%;margin-top:8px;padding-top:16px;border-top:1px dashed var(--line)}
+.price-hero .pfee.total span{color:var(--pink);font-size:11px}
+.price-hero .pfee.total strong{font-size:clamp(26px,3.4vw,32px);color:var(--pink)}
+.price-hero .pfee-caption{display:block;margin-top:4px;color:var(--muted);font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+
+/* ---- Recommended Media Investment: deliberately lighter/outlined, so it
+   reads as a different cost category from the solid-white fee card above
+   it (Tulum-only section today; safe to style unconditionally). ---- */
+.media-card{background:rgba(255,255,255,.5);border:1.5px dashed rgba(6,47,61,.24);box-shadow:none}
+
+/* ---- First 90 Days: a subtle down-arrow between stacked month cards on
+   mobile, echoing .stage-arrow, without implying an animated flow. Only
+   ever visible on portfolios that use the roadmap module (Tulum today). ---- */
+@media(max-width:900px){
+  .roadmap-grid .rmcard{position:relative}
+  .roadmap-grid .rmcard:not(:last-child)::after{
+    content:"\2193";position:absolute;left:50%;bottom:-19px;transform:translateX(-50%);
+    color:var(--aquad);font-size:16px;font-weight:900;line-height:1}
+}
+
+/* ---- Accessibility: a visible fallback focus ring for interactive
+   elements that don't already define their own :focus-visible treatment.
+   Only ever renders during keyboard navigation, so it changes nothing
+   about how any existing portfolio looks in normal mouse/touch use. ---- */
+.chip:focus-visible,.btn:focus-visible,.navlinks a:focus-visible,
+.filters button:focus-visible,.tnav:focus-visible{
+  outline:3px solid var(--aqua);outline-offset:2px}
+</style>
+</head>
+<body>
+
+<div id="boot">Loading portfolio…</div>
+
+<!-- Access gate. Shown only for portfolios with "Require name & email" on. -->
+<div id="gate" role="dialog" aria-modal="true" aria-labelledby="gateHeading">
+  <div class="gate-wrap">
+    <div class="gate-card">
+      <div class="gate-brand">
+        <span class="mark" id="gateMark">B</span>
+        <span><strong>BOKKO</strong><span>Marketing Specialists</span></span>
+      </div>
+      <h2 id="gateHeading">This portfolio is<br>shared privately.</h2>
+      <span class="gate-for" id="gateFor"></span>
+      <p class="lead" id="gateLead">Tell us who you are and we&rsquo;ll open it straight away.</p>
+
+      <form id="gateForm" novalidate>
+        <div class="gate-field">
+          <label for="gateName">Your name</label>
+          <input id="gateName" name="name" type="text" autocomplete="name" placeholder="Jane Smith" required>
+        </div>
+        <div class="gate-field">
+          <label for="gateEmail">Work email</label>
+          <input id="gateEmail" name="email" type="email" autocomplete="email" placeholder="jane@company.com" required>
+        </div>
+        <p class="gate-err" id="gateErr"></p>
+        <button class="gate-btn" id="gateBtn" type="submit">View the portfolio</button>
+      </form>
+
+      <p class="gate-foot">We use this only to know who we&rsquo;re speaking with about this proposal.
+        Questions? <a href="mailto:jack@bokko.co">jack@bokko.co</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- Netlify Forms needs a real form in the deployed HTML to detect at build
+     time. This one is never shown; the visible form above posts to it. -->
+<form name="portfolio-access" data-netlify="true" netlify-honeypot="company" hidden>
+  <input type="text" name="name">
+  <input type="email" name="email">
+  <input type="text" name="portfolio">
+  <input type="text" name="company">
+</form>
+
+<div id="notfound" class="wrap">
+  <span class="eyebrow"><span class="dot"></span>Link not found</span>
+  <h2>This portfolio link<br>isn't active.</h2>
+  <p class="sub" style="margin-left:auto;margin-right:auto">The link may have expired or been changed. Please get in touch and we'll send a current one.</p>
+  <p style="margin-top:22px"><a class="chip" style="text-decoration:none;display:inline-block" href="https://bokko.co">Go to bokko.co</a></p>
+</div>
+
+<div id="page">
+  <nav class="nav">
+    <div class="wrap">
+      <a class="brand" href="#top">
+        <span class="mark" id="navMark">B</span>
+        <span class="logo"><strong>BOKKO</strong><span>Marketing Specialists</span></span>
+      </a>
+      <div class="navlinks" id="navLinks">
+        <a class="navback" href="https://bokko.co" target="_blank" rel="noopener">&#8599; <b>BOKKO.CO</b></a>
+        <a class="navcta" href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="pfbanner" id="pfBanner" style="display:none">
+    <div class="pfbanner-media" id="pfBannerMedia"></div>
+    <div class="pfbanner-shade"></div>
+    <div class="pfbanner-inner wrap" id="pfBannerInner"></div>
+  </div>
+
+  <header class="hero wrap" id="top">
+    <div id="heroHead">
+      <span class="eyebrow" id="recipient"><span class="dot"></span><span id="recipientText"></span></span>
+      <h1 id="headline"></h1>
+    </div>
+    <p class="lede" id="intro"></p>
+    <div class="stats" id="stats"></div>
+  </header>
+
+<div id="sectionsFlow">
+<section class="section reelsec" id="showreel" style="display:none">
+  <div class="wrap">
+    <div class="head" style="display:block;text-align:center;margin-bottom:26px">
+      <span class="eyebrow"><span class="dot"></span>Showreel</span>
+      <h2>A minute of what<br>we make.</h2>
+    </div>
+    <div class="reelwrap">
+      <div class="reel" id="reelBox">
+        <video id="reelVideo" preload="metadata" playsinline loop
+               poster="/showreel/poster.jpg" src="/showreel/showreel.mp4"></video>
+        <span class="reel-shade"></span>
+        <span class="reel-badge"><i></i>Showreel</span>
+        <span class="reel-play"></span>
+        <div class="reel-ctl">
+          <button type="button" id="reelSound">Sound on</button>
+          <button type="button" id="reelFull" aria-label="Full screen">&#9974;</button>
+        </div>
+        <button class="reel-tap" id="reelTap" aria-label="Play showreel with sound"></button>
+      </div>
+      <p class="reel-cap" id="reelCap">Tap for sound</p>
+    </div>
+  </div>
+</section>
+
+  <section id="reels">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow"><span class="dot"></span>Production samples</span>
+        <h2 id="reelsHeading"></h2>
+        <p class="sub" id="reelsSub"></p>
+        <div class="filters" id="filters" role="group" aria-label="Filter clips"></div>
+      </div>
+      <div class="wall" id="wall"></div>
+      <div class="morewrap" id="morewrap" style="display:none">
+        <button class="morebtn" id="moreBtn" type="button">Load more work</button>
+      </div>
+      <p class="wallnote">More work, including full campaign feeds:
+        <a href="https://bokko.co" target="_blank" rel="noopener">bokko.co</a> ·
+        <a href="https://instagram.com/bokko_th" target="_blank" rel="noopener">@bokko_th</a></p>
+    </div>
+  </section>
+
+  <section id="results">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow"><span class="dot"></span>Selected results</span>
+        <h2 id="resultsHeading"></h2>
+        <p class="sub" id="resultsSub" style="display:none"></p>
+      </div>
+      <div class="results" id="resultsGrid"></div>
+      <div class="morewrap" id="resultsMorewrap" style="display:none">
+        <button class="morebtn" id="resultsMoreBtn" type="button">View more results</button>
+      </div>
+      <p class="swipehint">Swipe for more &rarr;</p>
+    </div>
+  </section>
+
+  <section id="approach">
+    <div class="wrap">
+      <div class="fit">
+        <span class="eyebrow"><span class="dot"></span><span id="approachEyebrow"></span></span>
+        <h2 id="approachHeading"></h2>
+        <p class="sub" id="approachSub"></p>
+        <div class="fgrid" id="approachGrid"></div>
+        <div class="fit-image" id="approachImageWrap" style="display:none">
+          <img id="approachImageEl" alt="" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       Optional section modules, phase 2, batch 1: Opportunity,
+       Strategy, One Marketing System. Same guarded pattern as the
+       phase-1 modules further down — off unless
+       data.sections?.<key> === true; missing "sections" (KAIA, AWC,
+       every portfolio today) means all three stay hidden.
+       ============================================================ -->
+  <section id="opportunitySection" style="display:none">
+    <div class="wrap">
+      <div class="fit">
+        <span class="eyebrow"><span class="dot"></span><span id="oppEyebrow"></span></span>
+        <h2 id="oppHeading"></h2>
+        <div class="sub" id="oppBody"></div>
+        <div class="fit-callout" id="oppCalloutWrap" style="display:none"><strong id="oppCallout"></strong></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="strategySection" style="display:none">
+    <div class="wrap">
+      <div class="fit">
+        <span class="eyebrow"><span class="dot"></span><span id="stratEyebrow"></span></span>
+        <h2 id="stratHeading"></h2>
+        <p class="sub" id="stratSub"></p>
+        <div class="fgrid" id="stratGrid"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="marketingSystemSection" style="display:none">
+    <div class="wrap">
+      <div class="ms-panel">
+      <div class="head" style="text-align:center">
+        <span class="eyebrow"><span class="dot"></span><span id="msBadge"></span></span>
+        <h2 id="msHeading"></h2>
+      </div>
+      <div class="ms">
+        <div class="ms-desktop">
+          <div class="ms-cols">
+            <div class="ms-path">
+              <div class="ms-path-head">
+                <div class="ms-eyebrow-label" id="msLeftEyebrow"></div>
+                <div class="ms-source" id="msLeftSource"></div>
+                <div class="ms-arrow">&darr;</div>
+              </div>
+              <div class="ms-channel meta">
+                <h4 id="msLeftChannel"></h4>
+                <div class="ms-chips" id="msPlatforms"></div>
+                <div class="ms-actions" id="msLeftItems"></div>
+              </div>
+            </div>
+            <div class="ms-path">
+              <div class="ms-path-head">
+                <div class="ms-eyebrow-label" id="msRightEyebrow"></div>
+                <div class="ms-source" id="msRightSource"></div>
+                <div class="ms-arrow">&darr;</div>
+              </div>
+              <div class="ms-channel google">
+                <h4 id="msRightChannel"></h4>
+                <div class="ms-chips" id="msRightItems"></div>
+              </div>
+            </div>
+          </div>
+          <div class="ms-arrows-in"><div class="ms-arrow">&darr;</div><div class="ms-arrow">&darr;</div></div>
+          <div class="ms-outcome" id="msOutcomeDesktop"></div>
+          <div class="ms-optimise">
+            <span class="ms-optimise-label" id="msFeedbackLabelDesktop"></span>
+            <span class="ms-optimise-items" id="msFeedbackItemsDesktop"></span>
+          </div>
+        </div>
+
+        <div class="ms-mobile">
+          <div class="ms-eyebrow-label" id="msLeftEyebrowM"></div>
+          <div class="ms-source" id="msLeftSourceM"></div>
+          <div class="ms-arrow">&darr;</div>
+          <div class="ms-channel meta">
+            <h4 id="msLeftChannelM"></h4>
+            <div class="ms-chips" id="msPlatformsM"></div>
+            <div class="ms-actions" id="msLeftItemsM"></div>
+          </div>
+          <div class="ms-eyebrow-label" id="msRightEyebrowM"></div>
+          <div class="ms-source" id="msRightSourceM"></div>
+          <div class="ms-arrow">&darr;</div>
+          <div class="ms-channel google">
+            <h4 id="msRightChannelM"></h4>
+            <div class="ms-chips" id="msRightItemsM"></div>
+          </div>
+          <div class="ms-arrow">&darr;</div>
+          <div class="ms-outcome" id="msOutcomeMobile"></div>
+          <div class="ms-optimise">
+            <span class="ms-optimise-label" id="msFeedbackLabelMobile"></span>
+            <span class="ms-optimise-items" id="msFeedbackItemsMobile"></span>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicesSection">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow"><span class="dot"></span><span id="svcEyebrow"></span></span>
+        <h2 id="svcHeading"></h2>
+        <p class="sub" id="svcSub"></p>
+      </div>
+      <div class="ways">
+
+        <article class="way">
+          <span class="waytag" id="svc1Tag"></span>
+          <h3 id="svc1Title"></h3>
+          <p class="waylead" id="svc1Lead"></p>
+          <ul id="svc1List"></ul>
+          <p class="wayfoot" id="svc1Foot"></p>
+        </article>
+
+        <article class="way lead">
+          <span class="waytag" id="svc2Tag"></span>
+          <h3 id="svc2Title"></h3>
+          <p class="waylead" id="svc2Lead"></p>
+          <ul id="svc2List"></ul>
+          <p class="wayfoot" id="svc2Foot"></p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="pricingSection">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow"><span class="dot"></span><span id="pricingBadge"></span></span>
+        <h2 id="pricingHeading"></h2>
+        <p class="sub" id="pricingIntro"></p>
+      </div>
+      <div class="pricing-grid" id="pricingGrid"></div>
+      <p class="pricingnote" id="pricingFooterNote"></p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       Optional section modules (phase 1 of the portfolio refactor).
+       Each is off unless data.sections?.<key> === true on the
+       Firestore doc; missing "sections" (KAIA, AWC, every existing
+       portfolio) means every one of these stays hidden exactly as
+       it is today. See render() for the guarded render path.
+       ============================================================ -->
+  <section id="performanceMeasurementSection" style="display:none">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow"><span class="dot"></span><span id="pmEyebrow"></span></span>
+        <h2 id="pmHeading"></h2>
+      </div>
+      <div class="ways" id="pmGrid"></div>
+      <p class="pricingnote" id="pmFooterNote" style="display:none"></p>
+    </div>
+  </section>
+
+  <section id="includedExcludedSection" style="display:none">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow"><span class="dot"></span><span id="ieEyebrow"></span></span>
+      </div>
+      <div class="ways" id="ieGrid"></div>
+      <p class="pricingnote" id="ieFooterNote" style="display:none"></p>
+    </div>
+  </section>
+
+  <section id="eventsActivationsSection" style="display:none">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow"><span class="dot"></span><span id="eaEyebrow"></span></span>
+        <h2 id="eaHeading"></h2>
+        <p class="sub" id="eaSub"></p>
+      </div>
+      <div class="examples" id="eaGrid"></div>
+      <p class="pricingnote" id="eaFooterNote" style="display:none"></p>
+      <p class="pricingnote" id="eaScopeNote" style="display:none;margin-top:8px"></p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       Optional section modules, phase 2, batch 2: Content Pillars,
+       First 90 Days, Recommended Partnership, Recommended Media
+       Investment. Same guarded pattern as every module above.
+       ============================================================ -->
+  <section id="contentPillarsSection" style="display:none">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow"><span class="dot"></span><span id="cpEyebrow"></span></span>
+        <h2 id="cpHeading"></h2>
+      </div>
+      <div class="pillars" id="cpGrid"></div>
+      <p class="pricingnote" id="cpFooterNote" style="display:none"></p>
+    </div>
+  </section>
+
+  <section id="roadmapSection" style="display:none">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow"><span class="dot"></span><span id="rmEyebrow"></span></span>
+        <h2 id="rmHeading"></h2>
+        <p class="sub" id="rmSub"></p>
+      </div>
+      <div class="roadmap-grid" id="rmGrid"></div>
+      <div class="rmcompound" id="rmCompoundWrap" style="display:none">
+        <span class="n" id="rmCompoundLabel"></span>
+        <h3 id="rmCompoundHeading"></h3>
+        <p id="rmCompoundBody"></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="partnershipSection" style="display:none">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow"><span class="dot"></span><span id="ptEyebrow"></span></span>
+        <h2 id="ptHeading"></h2>
+      </div>
+      <div class="price-hero">
+        <div class="pill-row" id="ptPillRow"></div>
+        <h3 id="ptTitle"></h3>
+        <div class="pfees">
+          <div class="pfee"><span>Setup</span><strong id="ptSetup"></strong></div>
+          <div class="pfee"><span>Monthly</span><strong id="ptMonthly"></strong></div>
+          <div class="pfee total"><span>Total</span><strong id="ptTotal"></strong><span class="pfee-caption">BOKKO professional fees</span></div>
+        </div>
+        <div id="ptBody"></div>
+        <div id="ptScopeGroups"></div>
+        <div class="price-note" id="ptSetupWrap" style="display:none"><strong id="ptSetupLabel"></strong><span id="ptSetupIntro"></span></div>
+        <div class="pillars" id="ptSetupGrid" style="display:none;margin-top:14px"></div>
+        <div class="price-note" id="ptConceptNoteWrap" style="display:none"><strong id="ptConceptNoteLabel"></strong><span id="ptConceptNoteBody"></span></div>
+        <div class="price-note" id="ptNote1Wrap" style="display:none"><strong id="ptNote1Label"></strong><span id="ptNote1Body"></span></div>
+        <div class="price-note" id="ptNote2Wrap" style="display:none"><strong id="ptNote2Label"></strong><span id="ptNote2Body"></span></div>
+        <div class="price-note" id="ptCreatorNoteWrap" style="display:none">
+          <strong id="ptCreatorNoteLabel"></strong><span id="ptCreatorNoteBody"></span>
+          <span id="ptCreatorNoteSecondary" style="display:block;margin-top:6px"></span>
+        </div>
+        <div class="price-note" id="ptPaidMediaWrap" style="display:none">
+          <strong id="ptPaidMediaLabel"></strong><span id="ptPaidMediaBody"></span>
+          <span id="ptPaidMediaSecondary" style="display:block;margin-top:6px"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="mediaInvestmentSection" style="display:none">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow"><span class="dot"></span><span id="miEyebrow"></span></span>
+      </div>
+      <div class="media-card">
+        <div class="media-headline" id="miHeadline"></div>
+        <div id="miBody"></div>
+        <div class="ways" id="miGrid" style="margin-top:22px"></div>
+        <div class="media-banner" id="miBanner"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       Optional section modules, phase 2, batch 3: Audience Strategy,
+       Search & High-Intent Media, Creator Marketing. All content
+       (cards, channel lists, stages) is admin-editable — nothing
+       Tulum-specific is hardcoded, unlike marketingSystemSection
+       above which is intentionally a fixed diagram.
+       ============================================================ -->
+  <section id="audienceStrategySection" style="display:none">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow"><span class="dot"></span><span id="asEyebrow"></span></span>
+        <h2 id="asHeading"></h2>
+        <p class="sub" id="asSub"></p>
+      </div>
+      <div class="astrat" id="asGrid"></div>
+      <p class="pricingnote" id="asFooterNote" style="display:none"></p>
+    </div>
+  </section>
+
+  <section id="searchIntentSection" style="display:none">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow"><span class="dot"></span><span id="siEyebrow"></span></span>
+        <h2 id="siHeading"></h2>
+        <div class="sub" id="siSub"></div>
+      </div>
+      <div class="intent-grid" id="siGrid"></div>
+      <div class="split-callout" id="siCalloutWrap" style="display:none"><strong id="siCallout"></strong></div>
+      <p class="pricingnote" id="siFooterNote" style="display:none"></p>
+    </div>
+  </section>
+
+  <section id="creatorMarketingSection" style="display:none">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow"><span class="dot"></span><span id="cmEyebrow"></span></span>
+        <h2 id="cmHeading"></h2>
+        <p class="sub" id="cmSub"></p>
+      </div>
+      <div class="stageflow" id="cmGrid"></div>
+      <p class="pricingnote" id="cmFooterNote" style="display:none"></p>
+      <p class="pricingnote" id="cmNote" style="display:none;margin-top:8px"></p>
+    </div>
+  </section>
+
+  <section id="trustSection">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow"><span class="dot"></span>Trusted by</span>
+        <h2>Some of the brands<br>we work with.</h2>
+      </div>
+      <div class="logos" id="logosBox"><img id="logosImg" alt="Logos of BOKKO client brands" loading="lazy"></div>
+      <div class="tblock" id="testiBlock">
+        <button class="tnav tprev" id="tPrev" type="button" aria-label="Previous testimonial">&#8249;</button>
+        <div class="trail" id="testiRail"></div>
+        <button class="tnav tnext" id="tNext" type="button" aria-label="Next testimonial">&#8250;</button>
+        <p class="thint" id="testiHint"></p>
+      </div>
+    </div>
+  </section>
+</div>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="cta">
+        <span class="eyebrow"><span class="dot"></span>Next step</span>
+        <h2 id="ctaHeading"></h2>
+        <p id="ctaBody"></p>
+        <div class="btns-primary">
+          <a class="btn solid btn-hero" id="ctaPrimaryBtn" href="mailto:jack@bokko.co?subject=Confirm%20scope">Confirm scope with Jack</a>
+        </div>
+        <div class="btns btns-secondary">
+          <a class="btn" href="mailto:jack@bokko.co">jack@bokko.co</a>
+          <a class="btn" href="tel:+66955264629">095 526 4629</a>
+          <a class="btn" href="https://bokko.co" target="_blank" rel="noopener">bokko.co</a>
+          <a class="btn" href="https://instagram.com/bokko_th" target="_blank" rel="noopener">@bokko_th</a>
+        </div>
+      </div>
+      <div class="backbar">
+        <a href="https://bokko.co">&#8592; Back to the main BOKKO site</a>
+      </div>
+      <footer class="wrap" style="padding-left:0;padding-right:0">
+        <span>BOKKO Digital Co., Ltd — Bangkok</span>
+        <span id="footNote"></span>
+        <span class="pf-credit" id="pfCredit"></span>
+      </footer>
+    </div>
+  </section>
+</div>
+
+<div id="tbox" role="dialog" aria-modal="true" aria-label="Testimonial">
+  <button id="tboxClose" type="button" aria-label="Close">&#10005;</button>
+  <img id="tboxImg" alt="Client testimonial">
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+<script>
+/* ============================================================
+   Same Firebase config as index.html / admin.html
+   ============================================================ */
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyBEI6vInrFoifeHr6CLh36rZ_nw1cryzIw",
+  authDomain: "bokko-6dc83.firebaseapp.com",
+  projectId: "bokko-6dc83",
+  storageBucket: "bokko-6dc83.firebasestorage.app",
+  messagingSenderId: "1042847995730",
+  appId: "1:1042847995730:web:4caed79529d2bcb418cc8b"
+};
+
+/* ============================================================
+   FALLBACK PORTFOLIO
+   Used when the URL has no client code, or Firestore can't be
+   reached. Everything here can be overridden per client in the
+   Portfolios tab of admin.html.
+   ============================================================ */
+const FALLBACK = {
+  bannerImage: "",
+  preparedDate: "",
+  recipient: "Hospitality content & performance",
+  headline: "We produce the content, then we make it **sell.**",
+  intro: "BOKKO is a Bangkok hospitality agency with a full in-house production team. Nothing is outsourced \u2014 we shoot it, edit it, publish it and run the media behind it, so the creative and the commercial result are managed by the same people.",
+  stats: [
+    { value: "80+",      label: "Hospitality clients" },
+    { value: "250+",     label: "Hotel, airline & travel brands" },
+    { value: "131X",     label: "Peak campaign ROAS" },
+    { value: "THB 50M+", label: "Tracked sales in four months" }
+  ],
+  reelsHeading: "Our work, in motion.",
+  reelsSub: "A cross-section of short-form work shot and edited in-house for hotels, resorts and destination venues. Tap any clip to play with sound.",
+  clips: [
+    { url:"media/anantasila-01.mp4", poster:"media/anantasila-01.jpg", title:"Anantasila",      sub:"Hua Hin \u00b7 Beachfront resort",          tag:"Resort",        cat:"hotel"  },
+    { url:"media/amara-02.mp4",      poster:"media/amara-02.jpg",      title:"Amara Bangkok",    sub:"Rooftop & skyline",                        tag:"Hotel",         cat:"hotel"  },
+    { url:"media/rancho-01.mp4",     poster:"media/rancho-01.jpg",     title:"Rancho Charnvee",  sub:"Khao Yai \u00b7 Resort & country club",     tag:"Resort",        cat:"hotel"  },
+    { url:"media/chon-01.mp4",       poster:"media/chon-01.jpg",       title:"CHON at The Siam", sub:"Riverside Thai fine dining",               tag:"Hotel dining",  cat:"dining" },
+    { url:"media/thai-01.mp4",       poster:"media/thai-01.jpg",       title:"Thai Airways",     sub:"Campaign content",                         tag:"Airline",       cat:"travel" },
+    { url:"media/anantasila-02.mp4", poster:"media/anantasila-02.jpg", title:"Anantasila",       sub:"Beachfront restaurant",                    tag:"Resort dining", cat:"hotel"  },
+    { url:"media/amara-01.mp4",      poster:"media/amara-01.jpg",      title:"Amara Bangkok",    sub:"Brand film",                               tag:"Hotel",         cat:"hotel"  },
+    { url:"media/hone-01.mp4",       poster:"media/hone-01.jpg",       title:"HONE",             sub:"Premium izakaya, Sukhumvit 24",            tag:"Restaurant",    cat:"dining" },
+    { url:"media/opera-01.mp4",      poster:"media/opera-01.jpg",      title:"Opera Italian",    sub:"Bangkok",                                  tag:"Restaurant",    cat:"dining" },
+    { url:"media/thai-02.mp4",       poster:"media/thai-02.jpg",       title:"Thai Airways",     sub:"Route campaign",                           tag:"Airline",       cat:"travel" },
+    { url:"media/jaebank-01.mp4",    poster:"media/jaebank-01.jpg",    title:"Jae Bank",         sub:"Emsphere, Bangkok",                        tag:"Restaurant launch", cat:"dining" },
+    { url:"media/townhall-01.mp4",   poster:"media/townhall-01.jpg",   title:"Town Hall",        sub:"Sukhumvit 49",                             tag:"Lifestyle",     cat:"lifestyle" },
+    { url:"media/sanehjann-01.mp4",  poster:"media/sanehjann-01.jpg",  title:"Saneh Jann",       sub:"Michelin-starred Thai",                    tag:"Restaurant",    cat:"dining" },
+    { url:"media/tasca-01.mp4",      poster:"media/tasca-01.jpg",      title:"Tasca Sabio",      sub:"Spanish dining, Surawong",                 tag:"Restaurant",    cat:"dining" },
+    { url:"media/chabatree-01.mp4",  poster:"media/chabatree-01.jpg",  title:"CHABATREE",        sub:"Craft & lifestyle brand",                  tag:"Lifestyle",     cat:"lifestyle" },
+    { url:"media/swing-01.mp4",      poster:"media/swing-01.jpg",      title:"Swing Society",    sub:"Khao Yai \u00b7 Golf & leisure destination", tag:"Lifestyle",   cat:"lifestyle" },
+    { url:"media/piman-01.mp4",      poster:"media/piman-01.jpg",      title:"Piman Terrace",    sub:"Khao Yai \u00b7 Resort restaurant",          tag:"Resort dining", cat:"hotel" },
+    { url:"media/methavalai-01.mp4", poster:"media/methavalai-01.jpg", title:"Methavalai Sorndaeng", sub:"Bangkok institution since 1957",       tag:"Restaurant",    cat:"dining" },
+    { url:"media/farina-01.mp4",     poster:"media/farina-01.jpg",     title:"Bistro Di Farina", sub:"Bangkok & Krabi",                          tag:"Restaurant",    cat:"dining" },
+    { url:"media/chezsonia-01.mp4",  poster:"media/chezsonia-01.jpg",  title:"Chez Sonia",       sub:"Khao Yai \u00b7 Dining destination",        tag:"Restaurant",    cat:"dining" }
+  ],
+  resultsHeading: "Content is the start.\nRevenue is the point.",
+  results: [
+    { image:"media/mandarin-still-0.jpg",   kicker:"Luxury hotel \u00b7 Bangkok",       title:"Mandarin Oriental Bangkok", big:"THB 6M in 24 hours",   body:"Peak campaign ROAS of 131X on a performance-led offer built to protect the hotel's positioning." },
+    { image:"media/thai-still-0.jpg",       kicker:"Airline",                          title:"Thai Airways",              big:"THB 50M+ in 4 months", body:"Peak campaign ROAS of 114X across a sustained route-sales programme." },
+    { image:"media/opera-still-0.jpg",      kicker:"Fine dining \u00b7 Bangkok",        title:"Opera Italian",             big:"THB 4.5M \u2192 12M",   body:"Monthly revenue roughly tripled by the fourth month, then held. Two years of partnership and counting." },
+    { image:"media/pisamui-still-0.jpg",    kicker:"Beach club \u00b7 Koh Samui",       title:"Pi Samui Beach Club",       big:"THB 2M \u2192 6M",      body:"Monthly revenue tripled within two months through content management, creators and paid media." },
+    { image:"media/chon-still-0.jpg",       kicker:"Hotel dining \u00b7 Bangkok",       title:"CHON at The Siam",          big:"A destination in its own right", body:"Gave the restaurant at a Michelin Three-Key hotel an identity beyond its own guests, aimed at footfall and reservations." },
+    { image:"media/piman-still-0.jpg",      kicker:"Resort restaurant \u00b7 Khao Yai", title:"Piman Terrace",             big:"+500% external guests", body:"Reached that in the second month, during low season, and kept growing from there." },
+    { image:"media/anantasila-still-0.jpg", kicker:"Beach resort \u00b7 Hua Hin",       title:"Anantasila",                big:"Non-guest demand",     body:"Established the beachfront restaurant as a destination for Hua Hin visitors, not only resident guests." },
+    { image:"media/rancho-still-0.jpg",     kicker:"Resort & country club \u00b7 Khao Yai", title:"Rancho Charnvee",       big:"One visual direction", body:"Resort, country club and destination experiences pulled into a single cohesive identity across every channel." },
+    { image:"media/hone-still-0.jpg",       kicker:"Premium izakaya \u00b7 Bangkok",    title:"HONE",                      big:"Launch demand",        body:"Immediate covers at opening and sustained awareness after, across Meta, Google, Maps, TikTok and creator activity." }
+  ],
+  showApproach: false,
+  approachEyebrow: "Where we'd start",
+  approachHeading: "",
+  approachSub: "",
+  approach: [],
+  approachImage: "",
+  showPricing: false,
+  pricing: {
+    badge: "Packages & pricing",
+    heading: "",
+    intro: "",
+    packages: [],
+    footerNote: ""
+  },
+  showServices: true,
+  showTrust: true,
+  logosImage: "media/logos.jpg",
+  testimonials: ["media/testimonial-2.jpg", "media/testimonial-1.jpg", "media/testimonial-3.jpg", "media/testimonial-4.jpg"],
+  ctaHeading: "Happy to walk you\nthrough it.",
+  ctaBody: "We can put together property-specific content concepts and a production plan ahead of a meeting \u2014 just let us know what you'd like to see first."
+};
+
+/* ---------- helpers ---------- */
+function esc(s){
+  return String(s == null ? '' : s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;');
+}
+// "make it **sell.**" -> pink; newlines -> line breaks
+function rich(s){
+  return esc(s).replace(/\*\*(.+?)\*\*/g, '<span class="pink">$1</span>').replace(/\n/g,'<br>');
+}
+// Same **star** convention as rich(), but plain bold rather than the brand-
+// pink highlight — for copy that needs a bolded lead-in phrase mid-sentence
+// (e.g. a "Ways to work together" list item).
+function boldRich(s){
+  return esc(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n/g,'<br>');
+}
+// A blank line in the admin becomes a real paragraph. Long copy set as one
+// unbroken block is the main thing that makes these pages hard to read.
+function paras(el, text){
+  var blocks = String(text == null ? '' : text).split(/\n\s*\n/)
+    .map(function(b){ return b.trim(); })
+    .filter(Boolean);
+  if (!blocks.length) { el.innerHTML = ''; return; }
+  el.innerHTML = blocks.map(function(b){
+    return '<p>' + esc(b).replace(/\n/g, '<br>') + '</p>';
+  }).join('');
+}
+// Optional section modules (phase 1): strict `=== true` against an optional
+// map, so a doc with no "sections" field at all (every portfolio today,
+// including KAIA and AWC) never shows any of these. Each is wrapped so a
+// bad doc for one section can't break the rest of the page render.
+//
+// populateFn may return `false` to say "toggle is on, but there's nothing
+// meaningful to show" (e.g. the array of cards is empty) — the section stays
+// hidden rather than rendering an empty heading with a blank grid under it.
+// Returning nothing/true means "rendered, show it".
+function renderOptionalSection(d, key, populateFn){
+  var el = document.getElementById(key + 'Section');
+  if (!el) return;
+  var on = d.sections && d.sections[key] === true;
+  if (!on) { el.style.display = 'none'; return; }
+  try {
+    var rendered = populateFn(d[key] || {});
+    el.style.display = (rendered === false) ? 'none' : '';
+  } catch (e) {
+    console.warn('Optional section "' + key + '" failed to render; hiding it.', e);
+    el.style.display = 'none';
+  }
+}
+
+/* ============================================================
+   Section Order Manager (phase 2, batch A infrastructure).
+   All reorderable sections live inside #sectionsFlow in this exact
+   sequence, which is also the mandatory fallback when a doc has no
+   sectionOrder field — every portfolio today (KAIA, AWC, everything
+   else) renders with this same order, unchanged.
+   Keep SECTION_ELEMENT_ID/DEFAULT_SECTION_ORDER in sync with the
+   matching constants in admin.html's Page Section Order panel.
+   ============================================================ */
+var SECTION_ELEMENT_ID = {
+  showreel: 'showreel', work: 'reels', results: 'results', approach: 'approach',
+  opportunity: 'opportunitySection', strategy: 'strategySection', marketingSystem: 'marketingSystemSection',
+  services: 'servicesSection', pricing: 'pricingSection',
+  performanceMeasurement: 'performanceMeasurementSection', includedExcluded: 'includedExcludedSection',
+  eventsActivations: 'eventsActivationsSection', contentPillars: 'contentPillarsSection',
+  roadmap: 'roadmapSection', partnership: 'partnershipSection', mediaInvestment: 'mediaInvestmentSection',
+  audienceStrategy: 'audienceStrategySection', searchIntent: 'searchIntentSection',
+  creatorMarketing: 'creatorMarketingSection', trust: 'trustSection'
+};
+var DEFAULT_SECTION_ORDER = [
+  'showreel','work','results','approach','opportunity','strategy','marketingSystem',
+  'services','pricing','performanceMeasurement','includedExcluded','eventsActivations',
+  'contentPillars','roadmap','partnership','mediaInvestment','audienceStrategy',
+  'searchIntent','creatorMarketing','trust'
+];
+function applySectionOrder(d){
+  var flow = document.getElementById('sectionsFlow');
+  if (!flow) return;
+  var requested = Array.isArray(d.sectionOrder) ? d.sectionOrder.filter(function(k){ return SECTION_ELEMENT_ID[k]; }) : [];
+  var finalOrder = requested.slice();
+  DEFAULT_SECTION_ORDER.forEach(function(k){ if (finalOrder.indexOf(k) === -1) finalOrder.push(k); });
+  finalOrder.forEach(function(key){
+    var el = document.getElementById(SECTION_ELEMENT_ID[key]);
+    if (el) flow.appendChild(el);
+  });
+}
+// Jump-nav labels for the sections worth a shortcut. showreel/services/trust
+// are deliberately absent — they never appeared in the old fixed 4-link nav
+// either, so leaving them out here keeps a plain portfolio's generated nav
+// identical to what it has always shown.
+var NAV_LABELS = {
+  work: 'Video', results: 'Results', approach: 'Approach',
+  opportunity: 'Opportunity', strategy: "Where We'd Start", marketingSystem: 'Marketing System',
+  pricing: 'Pricing', performanceMeasurement: 'Measurement', includedExcluded: 'Scope',
+  eventsActivations: 'Events', contentPillars: 'Content', roadmap: 'Roadmap',
+  partnership: 'Investment', mediaInvestment: 'Media Investment',
+  audienceStrategy: 'Audience', searchIntent: 'Search', creatorMarketing: 'Creators'
+};
+var ELEMENT_ID_TO_KEY = Object.keys(SECTION_ELEMENT_ID).reduce(function(m, k){ m[SECTION_ELEMENT_ID[k]] = k; return m; }, {});
+// Reads the #sectionsFlow DOM directly, after every section's own strict
+// `=== true` visibility check has already run and applySectionOrder has put
+// everything in its final order — so this can never link to a hidden or
+// nonexistent section, and never needs to duplicate any section's own gating
+// logic. Only called when the portfolio has no manual nav override.
+function buildDynamicNav(){
+  var flow = document.getElementById('sectionsFlow');
+  if (!flow) return [];
+  var links = [];
+  Array.prototype.forEach.call(flow.children, function(el){
+    var key = ELEMENT_ID_TO_KEY[el.id];
+    var label = key && NAV_LABELS[key];
+    if (label && el.style.display !== 'none') {
+      links.push({ label: label, anchor: '#' + el.id });
+    }
+  });
+  return links;
+}
+function formatMonthYear(date){
+  try { return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' }); }
+  catch (e) { return ''; }
+}
+function slugFromUrl(){
+  const q = new URLSearchParams(location.search).get('p');
+  if (q) return q.toLowerCase().trim();
+  const parts = location.pathname.split('/').filter(Boolean);   // ["portfolio","AWC1"]
+  const i = parts.indexOf('portfolio');
+  if (i > -1 && parts[i+1]) return decodeURIComponent(parts[i+1]).toLowerCase().trim();
+  return '';
+}
+function showNotFound(){
+  document.getElementById('boot').style.display = 'none';
+  document.getElementById('notfound').style.display = 'block';
+}
+
+/* ---------- render ---------- */
+// Nav links: optional per-portfolio override, defaulting to the links every
+// portfolio has always had. Anchors are stable element ids, unaffected by
+// section reordering (appendChild moves an element, never its id).
+var DEFAULT_NAV = [
+  { label: 'Video', anchor: '#reels' },
+  { label: 'Results', anchor: '#results' },
+  { label: 'Approach', anchor: '#approach' },
+  { label: 'Pricing', anchor: '#pricingSection' }
+];
+// "Ways to work together" default copy — the exact wording every portfolio
+// has always shown. Optional per-portfolio via d.services; any doc without
+// it (KAIA, AWC, everything today) renders this, unchanged.
+var DEFAULT_SERVICE_ITEMS_1 = [
+  '**A mood and concept board for every property** before anything is filmed — palette, tone, framing, subject, pace. It is the step that decides whether the content looks considered or assembled.',
+  '**One visual identity across every branch.** Properties under the same brand get a shared direction, so a group reads as one name rather than several hotels each drifting in their own direction.',
+  '**Photography and short-form video** shot by our own crew and equipment, graded and cut for feed, reels and paid placements.',
+  '**Delivered as finished assets** in the formats your team already works in, ready to schedule.'
+];
+var DEFAULT_SERVICE_ITEMS_2 = [
+  '**Content strategy and publishing.** Pillars, calendar, copywriting and community management in Thai and English.',
+  '**Paid media** across Meta, TikTok, Google and Google Maps, built around bookings, covers and footfall rather than reach.',
+  '**Creators and KOLs** from a network of 3,000+, matched and briefed to the property instead of booked on follower count.',
+  '**Monthly reporting** against revenue and visits, with the direction adjusted on what the numbers actually show.'
+];
+var PF_COMPACT = false;
+function render(d){
+  document.title = d.metaTitle || ('BOKKO \u2014 Portfolio' + (d.recipient ? ' for ' + d.recipient : ''));
+
+  // Optional per-portfolio social-preview overrides. NOTE: this only updates
+  // the tags a browser already has in the DOM \u2014 it does nothing for link
+  // unfurlers (LINE/WhatsApp/Slack/etc.), which read the static HTML before
+  // any JS runs. Real per-portfolio previews for those need a server-side
+  // piece (e.g. an edge function) that isn't part of this change; until then
+  // every portfolio shares the same static, generic fallback tags in <head>.
+  if (d.ogTitle) {
+    var ogTitleEl = document.querySelector('meta[property="og:title"]');
+    if (ogTitleEl) ogTitleEl.setAttribute('content', d.ogTitle);
+  }
+  if (d.ogDescription) {
+    var ogDescEl = document.querySelector('meta[property="og:description"]');
+    if (ogDescEl) ogDescEl.setAttribute('content', d.ogDescription);
+  }
+  if (d.ogImage) {
+    var ogImageEl = document.querySelector('meta[property="og:image"]');
+    if (ogImageEl) ogImageEl.setAttribute('content', d.ogImage);
+  }
+
+  // Compact/premium layout (phase 3, batch E): opt-in per portfolio so a
+  // content-heavy proposal can tighten its own spacing/pagination without
+  // touching any portfolio that hasn't set this flag.
+  PF_COMPACT = d.compactLayout === true;
+  document.getElementById('page').classList.toggle('compact', PF_COMPACT);
+  wallState.initialCount = (typeof d.initialClips === 'number' && d.initialClips > 0) ? d.initialClips : 10;
+
+  // Showreel: optional per-portfolio override of the shared global BOKKO
+  // reel. Applied here (render time, once data has actually loaded) rather
+  // than at parse time, since the <video>'s default src/poster already
+  // point at the shared asset and the listeners below react to a src
+  // change just as they do to the initial load. Blank fields (every
+  // portfolio today) leave the shared reel exactly as it is.
+  var reelVideoEl = document.getElementById('reelVideo');
+  if (reelVideoEl && d.showreelUrl) {
+    reelVideoEl.src = d.showreelUrl;
+    if (d.showreelPoster) reelVideoEl.poster = d.showreelPoster;
+  }
+
+
+  var mark = document.getElementById('navMark');
+  if (d.brandLogo) {
+    // Same treatment as bokko.co: the logo replaces the gradient tile rather
+    // than sitting on top of it, and is contained rather than cropped.
+    mark.classList.add('has-logo');
+    mark.innerHTML = '<img src="' + esc(d.brandLogo) + '" alt="BOKKO">';
+  }
+
+  // hero
+  if (d.recipient) { document.getElementById('recipientText').textContent = d.recipient; }
+  else { document.getElementById('recipient').style.display = 'none'; }
+  document.getElementById('headline').innerHTML = rich(d.headline);
+  paras(document.getElementById('intro'), d.intro);
+  document.getElementById('stats').innerHTML = (d.stats || []).map(function(s){
+    return '<div class="stat"><strong>' + esc(s.value) + '</strong><span>' + esc(s.label) + '</span></div>';
+  }).join('');
+
+  // hero banner — badge + headline move onto the image when one is uploaded;
+  // with no banner, they stay exactly where they are today (no image, no gap).
+  var pfBanner = document.getElementById('pfBanner');
+  var heroHead = document.getElementById('heroHead');
+  if (d.bannerImage) {
+    var bannerMedia = document.getElementById('pfBannerMedia');
+    bannerMedia.style.backgroundImage = "url('" + esc(d.bannerImage) + "')";
+    fitBanner(pfBanner, bannerMedia, d.bannerImage);
+    document.getElementById('pfBannerInner').appendChild(heroHead);
+    pfBanner.style.display = '';
+  } else {
+    document.getElementById('top').insertBefore(heroHead, document.getElementById('intro'));
+    pfBanner.style.display = 'none';
+  }
+
+  // clips — curated first, then anything extra pulled from the library
+  wallState.pool = (d.clips || []).filter(function(c){ return c && c.url; });
+  if (d.extraClips && d.extraClips.length) {
+    var seen = {};
+    wallState.pool.forEach(function(c){ seen[c.url] = 1; });
+    d.extraClips.forEach(function(c){
+      if (c && c.url && !seen[c.url]) { seen[c.url] = 1; wallState.pool.push(c); }
+    });
+  }
+  document.getElementById('reelsHeading').innerHTML = rich(d.reelsHeading || 'Our work, in motion.');
+  paras(document.getElementById('reelsSub'), d.reelsSub);
+  document.getElementById('reels').style.display    = wallState.pool.length ? '' : 'none';
+
+  // filter chips, built from the categories actually present
+  // 'bars', 'nightlife' and 'rooftops' are additive category keys for
+  // portfolios like restaurants/bars/nightlife venues, alongside the
+  // original hotel/dining/travel/retail set used by earlier portfolios.
+  var labels = { hotel:'Hotels & resorts', dining:'Destination dining', travel:'Travel', lifestyle:'Lifestyle', retail:'Retail & brand',
+    bars:'Restaurants & bars', nightlife:'Nightlife', rooftops:'Hotels & rooftops' };
+  var cats = [];
+  wallState.pool.forEach(function(c){ if (c.cat && cats.indexOf(c.cat) === -1) cats.push(c.cat); });
+  document.getElementById('filters').innerHTML = cats.length > 1
+    ? '<button class="chip" data-filter="all" aria-pressed="true">All work</button>' +
+      cats.map(function(c){
+        return '<button class="chip" data-filter="' + esc(c) + '" aria-pressed="false">' +
+          esc(labels[c] || (c.charAt(0).toUpperCase() + c.slice(1))) + '</button>';
+      }).join('')
+    : '';
+
+  // results
+  const results = d.results || [];
+  document.getElementById('results').style.display = results.length ? '' : 'none';
+  document.getElementById('resultsHeading').innerHTML = rich(d.resultsHeading || '');
+  document.getElementById('resultsSub').textContent = d.resultsSub || '';
+  document.getElementById('resultsSub').style.display = d.resultsSub ? '' : 'none';
+  document.getElementById('resultsGrid').innerHTML = results.map(function(r){
+    return '<article class="rcard">' +
+      (r.image
+        ? '<div class="ph">' +
+            '<div class="fill" style="background-image:url(\'' + esc(r.image) + '\')"></div>' +
+            '<img src="' + esc(r.image) + '" alt="' + esc(r.title) + '" loading="lazy">' +
+          '</div>'
+        : '') +
+      '<div class="rbody">' +
+        (r.kicker ? '<span class="kicker">' + esc(r.kicker) + '</span>' : '') +
+        '<h3>' + esc(r.title) + '</h3>' +
+        (r.big ? '<strong class="big">' + esc(r.big) + '</strong>' : '') +
+        (r.body ? '<p>' + esc(r.body) + '</p>' : '') +
+        (r.link
+          ? '<a class="rlink" href="' + esc(r.link) + '">' +
+              esc(r.linkLabel || 'Read the case study') + ' <span>&rarr;</span></a>'
+          : '') +
+      '</div>' +
+    '</article>';
+  }).join('');
+
+  // approach
+  const appr = (d.approach || []).filter(function(a){ return a && (a.title || a.body); });
+  const showAppr = d.showApproach !== false && appr.length > 0;
+  document.getElementById('approach').style.display = showAppr ? '' : 'none';
+  if (showAppr) {
+    document.getElementById('approachEyebrow').textContent = d.approachEyebrow || 'Where we\u2019d start';
+    document.getElementById('approachHeading').innerHTML   = rich(d.approachHeading || '');
+    paras(document.getElementById('approachSub'), d.approachSub);
+    document.getElementById('approachGrid').innerHTML = appr.map(function(a){
+      return '<div class="fcard">' +
+        (a.label ? '<span class="n">' + esc(a.label) + '</span>' : '') +
+        '<h3>' + esc(a.title) + '</h3>' +
+        (a.body ? '<p>' + esc(a.body) + '</p>' : '') +
+      '</div>';
+    }).join('');
+    if (d.approachImage) {
+      document.getElementById('approachImageEl').src = d.approachImage;
+      document.getElementById('approachImageWrap').style.display = '';
+    } else {
+      document.getElementById('approachImageWrap').style.display = 'none';
+    }
+  }
+
+  // pricing
+  const pricing = d.pricing || {};
+  const pkgs = (pricing.packages || []).filter(function(pk){ return pk && (pk.title || pk.setupFee || pk.monthlyFee || pk.total || pk.description); });
+  const showPricing = d.showPricing !== false && pkgs.length > 0;
+  document.getElementById('pricingSection').style.display = showPricing ? '' : 'none';
+  if (showPricing) {
+    document.getElementById('pricingBadge').textContent = pricing.badge || 'Packages & pricing';
+    document.getElementById('pricingHeading').innerHTML  = rich(pricing.heading || '');
+    paras(document.getElementById('pricingIntro'), pricing.intro);
+    document.getElementById('pricingGrid').className = 'pricing-grid' + (pkgs.length === 1 ? ' solo' : '');
+    document.getElementById('pricingGrid').innerHTML = pkgs.map(function(pk){
+      var tags = (pk.capabilityTags || []).filter(Boolean);
+      var groups = (pk.scopeGroups || []).filter(function(g){ return g && g.heading && (g.items || []).some(Boolean); });
+      return '<article class="pcard' + (pk.featured ? ' featured' : '') + '">' +
+        (pk.featured ? '<span class="pcard-featured-badge">Recommended</span>' : '') +
+        (tags.length ? '<div class="pill-row">' + tags.map(function(t){ return '<span>' + esc(t) + '</span>'; }).join('') + '</div>' : '') +
+        '<h3>' + esc(pk.title) + '</h3>' +
+        '<div class="pfees">' +
+          (pk.setupFee   ? '<div class="pfee"><span>Setup</span><strong>'   + esc(pk.setupFee)   + '</strong></div>' : '') +
+          (pk.monthlyFee ? '<div class="pfee"><span>Monthly</span><strong>' + esc(pk.monthlyFee) + '</strong></div>' : '') +
+          (pk.total      ? '<div class="pfee total"><span>Total</span><strong>' + esc(pk.total)  + '</strong></div>' : '') +
+        '</div>' +
+        (pk.description ? '<p>' + esc(pk.description).replace(/\n/g,'<br>') + '</p>' : '') +
+        groups.map(function(g){
+          return '<div class="pcard-scope"><h4>' + esc(g.heading) + '</h4><ul>' +
+            (g.items || []).filter(Boolean).map(function(it){ return '<li>' + esc(it) + '</li>'; }).join('') +
+          '</ul></div>';
+        }).join('') +
+        (pk.productionNote ? '<div class="price-note"><strong>Production</strong>' + esc(pk.productionNote) + '</div>' : '') +
+        (pk.secondaryNote ? '<div class="price-note">' + esc(pk.secondaryNote) + '</div>' : '') +
+      '</article>';
+    }).join('');
+    document.getElementById('pricingFooterNote').textContent = pricing.footerNote || '';
+    document.getElementById('pricingFooterNote').style.display = pricing.footerNote ? '' : 'none';
+  }
+
+  // ---- optional section modules (phase 2, batch 1) ----
+  renderOptionalSection(d, 'opportunity', function(content){
+    if (!content.heading && !content.body && !content.callout) return false;
+    document.getElementById('oppEyebrow').textContent = content.eyebrow || 'The opportunity';
+    document.getElementById('oppHeading').innerHTML = rich(content.heading || '');
+    paras(document.getElementById('oppBody'), content.body);
+    var calloutWrap = document.getElementById('oppCalloutWrap');
+    if (content.callout) {
+      document.getElementById('oppCallout').textContent = content.callout;
+      calloutWrap.style.display = '';
+    } else {
+      calloutWrap.style.display = 'none';
+    }
+  });
+
+  renderOptionalSection(d, 'strategy', function(content){
+    var cards = (content.cards || []).filter(function(c){ return c && (c.n || c.h || c.p); });
+    if (!cards.length) return false;
+    document.getElementById('stratEyebrow').textContent = content.eyebrow || "Where we'd start";
+    document.getElementById('stratHeading').innerHTML = rich(content.heading || '');
+    document.getElementById('stratSub').textContent = content.sub || '';
+    document.getElementById('stratGrid').innerHTML = cards.map(function(c){
+      return '<div class="fcard">' +
+        (c.n ? '<span class="n">' + esc(c.n) + '</span>' : '') +
+        (c.h ? '<h3>' + esc(c.h) + '</h3>' : '') +
+        (c.p ? '<p>' + esc(c.p) + '</p>' : '') +
+      '</div>';
+    }).join('');
+  });
+
+  renderOptionalSection(d, 'marketingSystem', function(content){
+    var leftItems = (content.leftItems || []).filter(Boolean);
+    var rightItems = (content.rightItems || []).filter(Boolean);
+    var leftPlatforms = (content.leftPlatforms || []).filter(Boolean);
+    var feedbackItems = (content.feedbackItems || []).filter(Boolean);
+    if (!content.heading && !content.leftSource && !content.leftChannel && !content.rightChannel && !content.outcome) return false;
+
+    document.getElementById('msBadge').textContent = content.badge || 'How it connects';
+    document.getElementById('msHeading').innerHTML = rich(content.heading || 'From attention\nto action.');
+
+    var leftEyebrow = content.leftEyebrow || 'Create demand';
+    document.getElementById('msLeftEyebrow').textContent = leftEyebrow;
+    document.getElementById('msLeftEyebrowM').textContent = leftEyebrow;
+    document.getElementById('msLeftSource').textContent = content.leftSource || '';
+    document.getElementById('msLeftSourceM').textContent = content.leftSource || '';
+    document.getElementById('msLeftSource').style.display = content.leftSource ? '' : 'none';
+    document.getElementById('msLeftSourceM').style.display = content.leftSource ? '' : 'none';
+    var leftChannel = content.leftChannel || 'Meta';
+    document.getElementById('msLeftChannel').textContent = leftChannel;
+    document.getElementById('msLeftChannelM').textContent = leftChannel;
+    // Optional, repeatable: lets one channel card represent more than one
+    // paid-social platform (e.g. Meta + TikTok) without hardcoding either
+    // name into the component. Empty (every doc before this field existed)
+    // renders nothing — the card works exactly as it did before.
+    var platformsHtml = leftPlatforms.map(function(p){ return '<span>' + esc(p) + '</span>'; }).join('');
+    document.getElementById('msPlatforms').innerHTML = platformsHtml;
+    document.getElementById('msPlatforms').style.display = leftPlatforms.length ? '' : 'none';
+    document.getElementById('msPlatformsM').innerHTML = platformsHtml;
+    document.getElementById('msPlatformsM').style.display = leftPlatforms.length ? '' : 'none';
+    // Commercial-role layer: a quiet bulleted list, not another chip, so it
+    // reads as "what this does" rather than a third row of tags.
+    var actionsHtml = leftItems.map(function(it){ return '<div class="ms-action-row"><span class="dot"></span>' + esc(it) + '</div>'; }).join('');
+    document.getElementById('msLeftItems').innerHTML = actionsHtml;
+    document.getElementById('msLeftItemsM').innerHTML = actionsHtml;
+
+    var rightEyebrow = content.rightEyebrow || 'Capture intent';
+    document.getElementById('msRightEyebrow').textContent = rightEyebrow;
+    document.getElementById('msRightEyebrowM').textContent = rightEyebrow;
+    // Optional, symmetrical counterpart to leftSource — kept optional so a
+    // doc without it (every portfolio before this field existed) simply
+    // hides the box rather than rendering an empty tinted rectangle.
+    document.getElementById('msRightSource').textContent = content.rightSource || '';
+    document.getElementById('msRightSourceM').textContent = content.rightSource || '';
+    document.getElementById('msRightSource').style.display = content.rightSource ? '' : 'none';
+    document.getElementById('msRightSourceM').style.display = content.rightSource ? '' : 'none';
+    var rightChannel = content.rightChannel || 'Google';
+    document.getElementById('msRightChannel').textContent = rightChannel;
+    document.getElementById('msRightChannelM').textContent = rightChannel;
+    // Platform/mechanism layer for Google — the same chip treatment as
+    // Meta/TikTok, since Search/Maps/High-intent are mechanisms, not a
+    // separate commercial-role layer of their own.
+    var rightChipsHtml = rightItems.map(function(it){ return '<span>' + esc(it) + '</span>'; }).join('');
+    document.getElementById('msRightItems').innerHTML = rightChipsHtml;
+    document.getElementById('msRightItemsM').innerHTML = rightChipsHtml;
+
+    var outcome = content.outcome || 'Bookings · Visits · Event enquiries';
+    document.getElementById('msOutcomeDesktop').textContent = outcome;
+    document.getElementById('msOutcomeMobile').textContent = outcome;
+
+    var feedbackLabel = content.feedbackLabel || 'Performance data improves';
+    document.getElementById('msFeedbackLabelDesktop').textContent = feedbackLabel;
+    document.getElementById('msFeedbackLabelMobile').textContent = feedbackLabel;
+    var feedbackText = feedbackItems.length ? feedbackItems.join(' · ') : 'Audience · Creative · Budget';
+    document.getElementById('msFeedbackItemsDesktop').textContent = feedbackText;
+    document.getElementById('msFeedbackItemsMobile').textContent = feedbackText;
+  });
+
+  // ---- optional section modules (phase 2, batch 2) ----
+  renderOptionalSection(d, 'contentPillars', function(content){
+    var pillars = (content.pillars || []).filter(function(p){ return p && (p.h || p.p); });
+    if (!pillars.length) return false;
+    document.getElementById('cpEyebrow').textContent = content.eyebrow || 'Content system';
+    document.getElementById('cpHeading').innerHTML = rich(content.heading || '');
+    document.getElementById('cpGrid').innerHTML = pillars.map(function(p){
+      var tags = (p.tags || []).filter(Boolean);
+      return '<div class="pillar">' + (p.h ? '<h3>' + esc(p.h) + '</h3>' : '') + (p.p ? '<p>' + esc(p.p) + '</p>' : '') +
+        (tags.length ? '<div class="pillar-tags">' + tags.map(function(t){ return '<span>' + esc(t) + '</span>'; }).join('') + '</div>' : '') +
+      '</div>';
+    }).join('');
+    document.getElementById('cpFooterNote').textContent = content.footerNote || '';
+    document.getElementById('cpFooterNote').style.display = content.footerNote ? '' : 'none';
+  });
+
+  renderOptionalSection(d, 'roadmap', function(content){
+    var months = (content.months || []).filter(function(m){ return m && (m.n || m.h || m.p); });
+    if (!months.length && !content.compoundHeading && !content.compoundBody) return false;
+    document.getElementById('rmEyebrow').textContent = content.eyebrow || 'First 90 days';
+    document.getElementById('rmHeading').innerHTML = rich(content.heading || '');
+    document.getElementById('rmSub').textContent = content.sub || '';
+    document.getElementById('rmGrid').innerHTML = months.map(function(m){
+      return '<div class="rmcard">' +
+        (m.n ? '<span class="n">' + esc(m.n) + '</span>' : '') +
+        (m.h ? '<h3>' + esc(m.h) + '</h3>' : '') +
+        (m.p ? '<p>' + esc(m.p) + '</p>' : '') +
+      '</div>';
+    }).join('');
+    var compoundWrap = document.getElementById('rmCompoundWrap');
+    if (content.compoundHeading || content.compoundBody) {
+      document.getElementById('rmCompoundLabel').textContent = content.compoundLabel || '';
+      document.getElementById('rmCompoundHeading').textContent = content.compoundHeading || '';
+      document.getElementById('rmCompoundBody').textContent = content.compoundBody || '';
+      compoundWrap.style.display = '';
+    } else {
+      compoundWrap.style.display = 'none';
+    }
+  });
+
+  renderOptionalSection(d, 'partnership', function(content){
+    if (!content.title && !content.setupFee && !content.monthlyFee && !content.total && !content.body) return false;
+    document.getElementById('ptEyebrow').textContent = content.eyebrow || 'Recommended partnership';
+    document.getElementById('ptHeading').innerHTML = rich(content.heading || '');
+    var pills = (content.pills || []).filter(Boolean);
+    document.getElementById('ptPillRow').innerHTML = pills.map(function(p){ return '<span>' + esc(p) + '</span>'; }).join('');
+    document.getElementById('ptTitle').textContent = content.title || '';
+    paras(document.getElementById('ptBody'), content.body);
+    document.getElementById('ptSetup').textContent = content.setupFee || '';
+    document.getElementById('ptMonthly').textContent = content.monthlyFee || '';
+    document.getElementById('ptTotal').textContent = content.total || '';
+    var scopeGroups = (content.scopeGroups || []).filter(function(g){ return g && g.heading && (g.items || []).some(Boolean); });
+    document.getElementById('ptScopeGroups').innerHTML = scopeGroups.map(function(g){
+      return '<div class="pcard-scope"><h4>' + esc(g.heading) + '</h4><ul>' +
+        (g.items || []).filter(Boolean).map(function(it){ return '<li>' + esc(it) + '</li>'; }).join('') +
+      '</ul></div>';
+    }).join('');
+    // Optional structured "one-time setup & onboarding" breakdown — sits
+    // ahead of the concept-board/production/creator/paid-media notes, since
+    // onboarding is the very first phase of the engagement. Additive: a doc
+    // without setupItems (every portfolio before this field existed) never
+    // shows this block.
+    var setupItems = (content.setupItems || []).filter(function(it){ return it && (it.title || it.text); });
+    var setupWrap = document.getElementById('ptSetupWrap');
+    var setupGrid = document.getElementById('ptSetupGrid');
+    if (setupItems.length) {
+      document.getElementById('ptSetupLabel').textContent = content.setupLabel || 'One-time setup & onboarding';
+      document.getElementById('ptSetupIntro').textContent = content.setupIntro || '';
+      setupWrap.style.display = '';
+      setupGrid.innerHTML = setupItems.map(function(it){
+        return '<div class="pillar">' + (it.title ? '<h3>' + esc(it.title) + '</h3>' : '') + (it.text ? '<p>' + esc(it.text) + '</p>' : '') + '</div>';
+      }).join('');
+      setupGrid.style.display = '';
+    } else {
+      setupWrap.style.display = 'none';
+      setupGrid.style.display = 'none';
+    }
+    // Optional note about the content concept-board process — sits right
+    // after the scope groups, ahead of the production/creator/paid-media
+    // notes, since the concept board happens before any of that.
+    var conceptNoteWrap = document.getElementById('ptConceptNoteWrap');
+    if (content.conceptNoteBody) {
+      document.getElementById('ptConceptNoteLabel').textContent = content.conceptNoteLabel || '';
+      document.getElementById('ptConceptNoteBody').textContent = content.conceptNoteBody;
+      conceptNoteWrap.style.display = '';
+    } else { conceptNoteWrap.style.display = 'none'; }
+    var note1Wrap = document.getElementById('ptNote1Wrap');
+    if (content.note1Body) {
+      document.getElementById('ptNote1Label').textContent = content.note1Label || '';
+      document.getElementById('ptNote1Body').textContent = content.note1Body;
+      note1Wrap.style.display = '';
+    } else { note1Wrap.style.display = 'none'; }
+    var note2Wrap = document.getElementById('ptNote2Wrap');
+    if (content.note2Body) {
+      document.getElementById('ptNote2Label').textContent = content.note2Label || '';
+      document.getElementById('ptNote2Body').textContent = content.note2Body;
+      note2Wrap.style.display = '';
+    } else { note2Wrap.style.display = 'none'; }
+    // Optional supporting note for the Creator/KOL scope — sourcing/coordination
+    // context plus a fee-disclaimer, kept out of the scope-group bullet list
+    // since it's prose, not a checklist item.
+    var creatorNoteWrap = document.getElementById('ptCreatorNoteWrap');
+    if (content.creatorNoteBody) {
+      document.getElementById('ptCreatorNoteLabel').textContent = content.creatorNoteLabel || '';
+      document.getElementById('ptCreatorNoteBody').textContent = content.creatorNoteBody;
+      document.getElementById('ptCreatorNoteSecondary').textContent = content.creatorNoteSecondary || '';
+      document.getElementById('ptCreatorNoteSecondary').style.display = content.creatorNoteSecondary ? '' : 'none';
+      creatorNoteWrap.style.display = '';
+    } else { creatorNoteWrap.style.display = 'none'; }
+    // Optional, small reassurance note about paid-media budgets — deliberately
+    // not another fee card. Renders only when a body is set; every doc
+    // without it (every portfolio before this field existed) is unaffected.
+    var paidMediaWrap = document.getElementById('ptPaidMediaWrap');
+    if (content.paidMediaBody) {
+      document.getElementById('ptPaidMediaLabel').textContent = content.paidMediaLabel || 'Paid media budget';
+      document.getElementById('ptPaidMediaBody').textContent = content.paidMediaBody;
+      document.getElementById('ptPaidMediaSecondary').textContent = content.paidMediaSecondary || '';
+      document.getElementById('ptPaidMediaSecondary').style.display = content.paidMediaSecondary ? '' : 'none';
+      paidMediaWrap.style.display = '';
+    } else { paidMediaWrap.style.display = 'none'; }
+  });
+
+  renderOptionalSection(d, 'mediaInvestment', function(content){
+    var metaList = (content.metaList || []).filter(Boolean);
+    var googleList = (content.googleList || []).filter(Boolean);
+    if (!content.headline && !metaList.length && !googleList.length) return false;
+    document.getElementById('miEyebrow').textContent = content.eyebrow || 'Recommended media investment';
+    document.getElementById('miHeadline').innerHTML = rich(content.headline || '');
+    paras(document.getElementById('miBody'), content.body);
+    document.getElementById('miGrid').innerHTML =
+      '<div class="way"><span class="waytag">' + esc(content.list1Title || 'Meta') + '</span><ul>' + metaList.map(function(s){ return '<li>' + esc(s) + '</li>'; }).join('') + '</ul></div>' +
+      '<div class="way"><span class="waytag">' + esc(content.list2Title || 'Google') + '</span><ul>' + googleList.map(function(s){ return '<li>' + esc(s) + '</li>'; }).join('') + '</ul></div>';
+    document.getElementById('miBanner').textContent = content.banner || '';
+    document.getElementById('miBanner').style.display = content.banner ? '' : 'none';
+  });
+
+  // ---- optional section modules (phase 2, batch 3) ----
+  renderOptionalSection(d, 'audienceStrategy', function(content){
+    var cards = (content.cards || []).filter(function(c){ return c && (c.n || c.h || c.p); });
+    if (!cards.length) return false;
+    document.getElementById('asEyebrow').textContent = content.eyebrow || 'Audience strategy';
+    document.getElementById('asHeading').innerHTML = rich(content.heading || '');
+    document.getElementById('asSub').textContent = content.sub || '';
+    document.getElementById('asGrid').innerHTML = cards.map(function(c){
+      return '<div class="acard">' +
+        (c.n ? '<span class="n">' + esc(c.n) + '</span>' : '') +
+        (c.h ? '<h3>' + esc(c.h) + '</h3>' : '') +
+        (c.p ? '<p>' + esc(c.p) + '</p>' : '') +
+      '</div>';
+    }).join('');
+    document.getElementById('asFooterNote').textContent = content.footerNote || '';
+    document.getElementById('asFooterNote').style.display = content.footerNote ? '' : 'none';
+  });
+
+  renderOptionalSection(d, 'searchIntent', function(content){
+    var cards = (content.cards || []).filter(function(c){ return c && (c.h || c.p); });
+    if (!cards.length) return false;
+    document.getElementById('siEyebrow').textContent = content.eyebrow || 'Search & high-intent media';
+    document.getElementById('siHeading').innerHTML = rich(content.heading || '');
+    paras(document.getElementById('siSub'), content.sub);
+    document.getElementById('siGrid').innerHTML = cards.map(function(c){
+      return '<div class="intent-card">' + (c.h ? '<h3>' + esc(c.h) + '</h3>' : '') + (c.p ? '<p>' + esc(c.p) + '</p>' : '') + '</div>';
+    }).join('');
+    var calloutWrap = document.getElementById('siCalloutWrap');
+    if (content.callout) {
+      document.getElementById('siCallout').textContent = content.callout;
+      calloutWrap.style.display = '';
+    } else {
+      calloutWrap.style.display = 'none';
+    }
+    document.getElementById('siFooterNote').textContent = content.footerNote || '';
+    document.getElementById('siFooterNote').style.display = content.footerNote ? '' : 'none';
+  });
+
+  renderOptionalSection(d, 'creatorMarketing', function(content){
+    var stages = (content.stages || []).filter(function(s){ return s && (s.n || s.p); });
+    if (!stages.length) return false;
+    document.getElementById('cmEyebrow').textContent = content.eyebrow || 'Creator marketing';
+    document.getElementById('cmHeading').innerHTML = rich(content.heading || '');
+    document.getElementById('cmSub').textContent = content.sub || '';
+    document.getElementById('cmGrid').innerHTML = stages.map(function(s, i){
+      var arrow = i < stages.length - 1 ? '<div class="stage-arrow">&rarr;</div>' : '';
+      return '<div class="stage"><span class="n">' + (i + 1) + '</span>' +
+        (s.n ? '<h3>' + esc(s.n) + '</h3>' : '') + (s.p ? '<p>' + esc(s.p) + '</p>' : '') + '</div>' + arrow;
+    }).join('');
+    document.getElementById('cmFooterNote').textContent = content.footerNote || '';
+    document.getElementById('cmFooterNote').style.display = content.footerNote ? '' : 'none';
+    document.getElementById('cmNote').textContent = content.note || '';
+    document.getElementById('cmNote').style.display = content.note ? '' : 'none';
+  });
+
+  // ---- optional section modules (phase 1) ----
+  // Each is fully independent: missing "sections" on the doc (every portfolio
+  // today, including KAIA and AWC) means every check below is false and the
+  // <section> stays display:none, exactly as it already is in the markup. A
+  // failure inside one module is caught locally so it cannot take the rest
+  // of the page down with it.
+  renderOptionalSection(d, 'performanceMeasurement', function(content){
+    var commercial = (content.commercialSignals || []).filter(Boolean);
+    var performance = (content.performanceSignals || []).filter(Boolean);
+    if (!commercial.length && !performance.length) return false;
+    document.getElementById('pmEyebrow').textContent = content.eyebrow || 'Performance measurement';
+    document.getElementById('pmHeading').innerHTML = rich(content.heading || '');
+    document.getElementById('pmGrid').innerHTML =
+      '<div class="way"><span class="waytag">Commercial signals</span><ul>' +
+        commercial.map(function(s){ return '<li>' + esc(s) + '</li>'; }).join('') + '</ul></div>' +
+      '<div class="way"><span class="waytag">Performance signals</span><ul>' +
+        performance.map(function(s){ return '<li>' + esc(s) + '</li>'; }).join('') + '</ul></div>';
+    document.getElementById('pmFooterNote').textContent = content.footerNote || '';
+    document.getElementById('pmFooterNote').style.display = content.footerNote ? '' : 'none';
+  });
+
+  renderOptionalSection(d, 'includedExcluded', function(content){
+    var included = (content.includedList || []).filter(Boolean);
+    var excluded = (content.excludedList || []).filter(Boolean);
+    if (!included.length && !excluded.length) return false;
+    document.getElementById('ieEyebrow').textContent = content.eyebrow || 'Included / excluded costs';
+    document.getElementById('ieGrid').innerHTML =
+      '<div class="way"><span class="waytag">Included with BOKKO</span><ul>' +
+        included.map(function(s){ return '<li>' + esc(s) + '</li>'; }).join('') + '</ul></div>' +
+      '<div class="way excl"><span class="waytag">Separate / at cost</span><ul>' +
+        excluded.map(function(s){ return '<li>' + esc(s) + '</li>'; }).join('') + '</ul></div>';
+    document.getElementById('ieFooterNote').textContent = content.footerNote || '';
+    document.getElementById('ieFooterNote').style.display = content.footerNote ? '' : 'none';
+  });
+
+  renderOptionalSection(d, 'eventsActivations', function(content){
+    var examples = (content.examples || []).filter(Boolean);
+    // Optional richer structure: title+text capability cards, in place of
+    // the flat example chips. A doc without "capabilities" (every portfolio
+    // before this field existed) falls straight through to the original
+    // examples[] chip rendering, unchanged.
+    var capabilities = (content.capabilities || []).filter(function(c){ return c && (c.title || c.text); });
+    if (!examples.length && !capabilities.length) return false;
+    document.getElementById('eaEyebrow').textContent = content.eyebrow || 'Events & activations';
+    document.getElementById('eaHeading').innerHTML = rich(content.heading || '');
+    paras(document.getElementById('eaSub'), content.sub);
+    var eaGrid = document.getElementById('eaGrid');
+    if (capabilities.length) {
+      eaGrid.className = 'pillars';
+      eaGrid.innerHTML = capabilities.map(function(c){
+        return '<div class="pillar">' + (c.title ? '<h3>' + esc(c.title) + '</h3>' : '') + (c.text ? '<p>' + esc(c.text) + '</p>' : '') + '</div>';
+      }).join('');
+    } else {
+      eaGrid.className = 'examples';
+      eaGrid.innerHTML = examples.map(function(e){
+        return '<div class="example">' + esc(e) + '</div>';
+      }).join('');
+    }
+    document.getElementById('eaFooterNote').textContent = content.footerNote || '';
+    document.getElementById('eaFooterNote').style.display = content.footerNote ? '' : 'none';
+    // Optional secondary clarification — e.g. distinguishing ongoing-scope
+    // promotion of an existing event from dedicated event production that's
+    // quoted separately. Additive; absent on every doc before this field.
+    document.getElementById('eaScopeNote').textContent = content.scopeNote || '';
+    document.getElementById('eaScopeNote').style.display = content.scopeNote ? '' : 'none';
+  });
+
+  // services + trust
+  document.getElementById('servicesSection').style.display = d.showServices === false ? 'none' : '';
+  var svc = d.services || {};
+  document.getElementById('svcEyebrow').textContent = svc.eyebrow || 'Ways to work together';
+  document.getElementById('svcHeading').innerHTML = rich(svc.heading || 'Production only,\nor the whole system.');
+  document.getElementById('svcSub').textContent = svc.sub || "Some brands only need the film. Others want the media behind it too. Both are normal, and you can start with the first and add the second later.";
+  document.getElementById('svc1Tag').textContent = svc.option1Tag || 'Option one';
+  document.getElementById('svc1Title').textContent = svc.option1Title || 'Production only';
+  document.getElementById('svc1Lead').textContent = svc.option1Lead || 'We plan, shoot and deliver. Your own team publishes.';
+  document.getElementById('svc1List').innerHTML = ((svc.option1Items && svc.option1Items.length) ? svc.option1Items : DEFAULT_SERVICE_ITEMS_1)
+    .map(function(it){ return '<li>' + boldRich(it) + '</li>'; }).join('');
+  document.getElementById('svc1Foot').textContent = svc.option1Foot || 'Suits a property with a capable in-house social team that needs the craft, not the management.';
+  document.getElementById('svc2Tag').textContent = svc.option2Tag || 'Option two';
+  document.getElementById('svc2Title').textContent = svc.option2Title || 'Full scope';
+  document.getElementById('svc2Lead').textContent = svc.option2Lead || 'Everything above, and we run it.';
+  document.getElementById('svc2List').innerHTML = ((svc.option2Items && svc.option2Items.length) ? svc.option2Items : DEFAULT_SERVICE_ITEMS_2)
+    .map(function(it){ return '<li>' + boldRich(it) + '</li>'; }).join('');
+  document.getElementById('svc2Foot').textContent = svc.option2Foot || 'The creative and the media budget sit with the same team, so nothing is lost in the handover between them.';
+  const testis = (d.testimonials || []).filter(Boolean);
+  const showTrust = d.showTrust !== false && (d.logosImage || testis.length);
+  document.getElementById('trustSection').style.display = showTrust ? '' : 'none';
+  if (showTrust) {
+    if (d.logosImage) { document.getElementById('logosImg').src = d.logosImage; }
+    else { document.getElementById('logosBox').style.display = 'none'; }
+    renderTestimonials(testis);
+  }
+
+  // cta
+  document.getElementById('ctaHeading').innerHTML = rich(d.ctaHeading || '');
+  paras(document.getElementById('ctaBody'), d.ctaBody);
+  document.getElementById('ctaPrimaryBtn').textContent = d.ctaButtonLabel || 'Confirm scope with Jack';
+  document.getElementById('footNote').textContent = d.footNote || ('Portfolio \u2014 ' + new Date().getFullYear());
+
+  // footer credit \u2014 quiet line naming who this proposal is for, and when.
+  // Uses the same recipient field as the badge/title, so nothing new to fill in
+  // unless a specific prepared date is wanted (falls back to when it was created).
+  var creditEl = document.getElementById('pfCredit');
+  if (d.recipient) {
+    var when = d.preparedDate || (d.createdAt && typeof d.createdAt.toDate === 'function' ? formatMonthYear(d.createdAt.toDate()) : '');
+    creditEl.textContent = 'Private proposal prepared for ' + d.recipient + (when ? ' \u00b7 ' + when : '');
+  } else {
+    creditEl.textContent = '';
+  }
+
+  applySectionOrder(d);
+
+  // Jump nav: an explicit manual override always wins (stored admin input is
+  // never silently ignored). Otherwise it's generated from whichever
+  // sections are actually visible, now that every section's own visibility
+  // has been decided and applySectionOrder has fixed their final order.
+  var navLinksEl = document.getElementById('navLinks');
+  if (navLinksEl) {
+    // The admin's 4 override inputs always save as 4 slots, blank or not, so
+    // "has a nav array" isn't enough to mean "admin actually set one" — at
+    // least one slot needs both a label and an anchor to count as a real
+    // override rather than 4 empty entries from a portfolio that has simply
+    // been saved without anyone touching these fields.
+    var manualNav = Array.isArray(d.nav) ? d.nav.filter(function(l){ return l && l.label && l.anchor; }) : [];
+    var navLinks = manualNav.length ? manualNav : buildDynamicNav();
+    if (!navLinks.length) navLinks = DEFAULT_NAV;
+    navLinksEl.insertAdjacentHTML('afterbegin', navLinks.map(function(l){
+      return '<a href="' + esc(l.anchor) + '">' + esc(l.label) + '</a>';
+    }).join(''));
+  }
+
+  document.getElementById('boot').style.display = 'none';
+  document.getElementById('page').style.display = 'block';
+  wallState.filter = 'all';
+  wallState.expanded = false;
+  renderWall(true);
+  wireWallControls();
+  resultsState.expanded = false;
+  applyResultsCap();
+  wireResultsControls();
+  window.addEventListener('resize', function(){
+    clearTimeout(wallResizeTimer);
+    wallResizeTimer = setTimeout(function(){ applyWallCap(); applyResultsCap(); }, 150);
+  });
+}
+
+/* ---------- testimonials: swipeable rail + tap to read ---------- */
+function renderTestimonials(list) {
+  var rail  = document.getElementById('testiRail');
+  var block = document.getElementById('testiBlock');
+  if (!list.length) { block.style.display = 'none'; return; }
+  block.style.display = '';
+
+  rail.innerHTML = list.map(function(t, i){
+    return '<button class="tcard" type="button" data-t="' + i + '" aria-label="Read testimonial ' + (i + 1) + ' in full">' +
+      '<img src="' + esc(t) + '" alt="Client testimonial" loading="lazy">' +
+      '<span class="zoom">Tap to read</span>' +
+    '</button>';
+  }).join('');
+
+  document.getElementById('testiHint').textContent = list.length > 1
+    ? 'Swipe for more \u2014 tap any card to read it in full.'
+    : 'Tap to read in full.';
+
+  var box = document.getElementById('tbox');
+  var img = document.getElementById('tboxImg');
+  rail.querySelectorAll('[data-t]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      img.src = list[+btn.dataset.t];
+      box.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function closeBox() {
+    box.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('tboxClose').addEventListener('click', closeBox);
+  box.addEventListener('click', function(e){ if (e.target === box) closeBox(); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeBox(); });
+
+  // Desktop arrows. On touch you just swipe, so they're hidden by CSS.
+  var prev = document.getElementById('tPrev');
+  var next = document.getElementById('tNext');
+  function step(dir) {
+    var card = rail.querySelector('.tcard');
+    var w = card ? card.getBoundingClientRect().width + 16 : 316;
+    rail.scrollBy({ left: dir * w, behavior: 'smooth' });
+  }
+  prev.addEventListener('click', function(){ step(-1); });
+  next.addEventListener('click', function(){ step(1); });
+
+  function syncArrows() {
+    prev.disabled = rail.scrollLeft < 8;
+    next.disabled = rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 8;
+  }
+  rail.addEventListener('scroll', syncArrows);
+  window.addEventListener('resize', syncArrows);
+  syncArrows();
+}
+
+/* ---------- video wall: paging, filtering, playback ---------- */
+/* The grid is always rendered in full for the current filter — capping is
+   purely visual, done by measuring the actual rendered row height (which
+   depends on the live column count, itself dependent on viewport width)
+   and constraining the container to exactly WALL_ROWS_CAP rows via
+   max-height + overflow. This is the only way to get a correct "4 rows"
+   cutoff across breakpoints without hardcoding an item count per layout. */
+var WALL_ROWS_CAP = 4;
+
+var wallState = { pool: [], filter: 'all', expanded: false, initialCount: 10 };
+var WALL_MOBILE_COMPACT_CAP = 6;
+var wallObserver = null;
+var wallResizeTimer = null;
+
+function visibleClips() {
+  if (wallState.filter === 'all') return wallState.pool;
+  return wallState.pool.filter(function(c){ return c.cat === wallState.filter; });
+}
+
+function clipCard(c) {
+  return '<article class="vcard" data-cat="' + esc(c.cat || '') + '">' +
+    '<video preload="none" playsinline poster="' + esc(c.poster || '') + '" src="' + esc(c.url) + '"></video>' +
+    '<span class="vshade"></span>' +
+    (c.tag ? '<span class="vtag">' + esc(c.tag) + '</span>' : '') +
+    '<div class="vmeta"><b>' + esc(c.title) + '</b>' + (c.sub ? '<i>' + esc(c.sub) + '</i>' : '') + '</div>' +
+    '<span class="play"></span>' +
+    '<button class="sound" aria-label="Mute or unmute">\u266a</button>' +
+    '<span class="vbar"></span>' +
+    '<button class="tap" aria-label="Play ' + esc(c.title) + ' clip"></button>' +
+  '</article>';
+}
+
+function stopAllVideos(except) {
+  Array.prototype.forEach.call(document.querySelectorAll('.vcard'), function(c){
+    if (c === except) return;
+    var v = c.querySelector('video');
+    if (v && !v.paused) v.pause();
+    c.classList.remove('playing');
+  });
+}
+
+/* Cards are added, never rebuilt, unless the filter changes — so nothing
+   ever interrupts a clip that's already playing. */
+function renderWall(rebuild) {
+  var wall = document.getElementById('wall');
+  var list = visibleClips();
+
+  if (rebuild) { stopAllVideos(null); wall.innerHTML = ''; }
+
+  for (var i = wall.children.length; i < list.length; i++) {
+    wall.insertAdjacentHTML('beforeend', clipCard(list[i]));
+  }
+  wireNewCards();
+  applyWallCap();
+}
+
+/* Same breakpoint as the CSS rule that turns the grid into a swipeable
+   row — below it there's no cap and no Load more, since a horizontal
+   carousel doesn't need pagination the way a grid does. */
+var wallMobileQuery = window.matchMedia('(max-width:720px)');
+
+/* Measures the grid's live column count and per-item height (both depend on
+   viewport width via CSS, so neither can be hardcoded), then caps the wall
+   to exactly WALL_ROWS_CAP full rows of height. Skips entirely once the
+   visitor has expanded, if the filtered set doesn't even fill the cap, or
+   on mobile where the grid is a swipeable carousel instead. */
+function applyWallCap() {
+  var wall = document.getElementById('wall');
+  var wrap = document.getElementById('morewrap');
+  var btn = document.getElementById('moreBtn');
+  var cards = wall.children;
+
+  // Compact proposals (opt-in per portfolio) use an explicit visible-count
+  // cap on both breakpoints instead of the row-height measurement below,
+  // since the target is "about N cards", not "N full rows" at whatever
+  // column count the viewport happens to produce. A portfolio without the
+  // flag never reaches this branch, so its behaviour is untouched.
+  if (PF_COMPACT) {
+    if (!cards.length || wallState.expanded) {
+      Array.prototype.forEach.call(cards, function(c){ c.style.display = ''; });
+      wrap.style.display = 'none';
+      return;
+    }
+    var cap = wallMobileQuery.matches ? WALL_MOBILE_COMPACT_CAP : wallState.initialCount;
+    if (cards.length <= cap) {
+      Array.prototype.forEach.call(cards, function(c){ c.style.display = ''; });
+      wrap.style.display = 'none';
+      return;
+    }
+    Array.prototype.forEach.call(cards, function(c, i){ c.style.display = i < cap ? '' : 'none'; });
+    wrap.style.display = '';
+    btn.innerHTML = 'Load more work <span>' + (cards.length - cap) + ' more</span>';
+    return;
+  }
+
+  if (!cards.length || wallState.expanded || wallMobileQuery.matches) {
+    wall.style.maxHeight = '';
+    wall.style.overflow = '';
+    wrap.style.display = 'none';
+    return;
+  }
+
+  var cs = getComputedStyle(wall);
+  var cols = cs.gridTemplateColumns.split(' ').filter(Boolean).length || 1;
+  var rowGap = parseFloat(cs.rowGap || cs.gap) || 0;
+  var itemHeight = cards[0].getBoundingClientRect().height;
+  var rows = Math.ceil(cards.length / cols);
+
+  if (rows <= WALL_ROWS_CAP || !itemHeight) {
+    wall.style.maxHeight = '';
+    wall.style.overflow = '';
+    wrap.style.display = 'none';
+    return;
+  }
+
+  wall.style.maxHeight = (itemHeight * WALL_ROWS_CAP + rowGap * (WALL_ROWS_CAP - 1)) + 'px';
+  wall.style.overflow = 'hidden';
+  wrap.style.display = '';
+  var remaining = cards.length - cols * WALL_ROWS_CAP;
+  btn.innerHTML = 'Load more work <span>' + remaining + ' more</span>';
+}
+
+/* ---------- results: same compact-only cap, count-based ---------- */
+var resultsState = { expanded: false };
+var RESULTS_COMPACT_CAP = 6;
+function applyResultsCap() {
+  var grid = document.getElementById('resultsGrid');
+  var wrap = document.getElementById('resultsMorewrap');
+  var btn = document.getElementById('resultsMoreBtn');
+  var cards = grid.children;
+
+  // Not compact, or the mobile swipe-carousel breakpoint (already paginated
+  // by scrolling, and already shows a sliver of the next card) — every
+  // existing portfolio keeps showing every result with no button, exactly
+  // as today.
+  if (!PF_COMPACT || getComputedStyle(grid).display !== 'grid') {
+    Array.prototype.forEach.call(cards, function(c){ c.style.display = ''; });
+    wrap.style.display = 'none';
+    return;
+  }
+  if (!cards.length || resultsState.expanded || cards.length <= RESULTS_COMPACT_CAP) {
+    Array.prototype.forEach.call(cards, function(c){ c.style.display = ''; });
+    wrap.style.display = 'none';
+    return;
+  }
+  Array.prototype.forEach.call(cards, function(c, i){ c.style.display = i < RESULTS_COMPACT_CAP ? '' : 'none'; });
+  wrap.style.display = '';
+  btn.innerHTML = 'View more results <span>' + (cards.length - RESULTS_COMPACT_CAP) + ' more</span>';
+}
+function wireResultsControls() {
+  document.getElementById('resultsMoreBtn').addEventListener('click', function(){
+    resultsState.expanded = true;
+    applyResultsCap();
+  });
+}
+
+function wireNewCards() {
+  if (!wallObserver && 'IntersectionObserver' in window) {
+    wallObserver = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (!en.isIntersecting) {
+          var v = en.target.querySelector('video');
+          if (v && !v.paused) v.pause();
+        }
+      });
+    }, { threshold: 0.25 });
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('.vcard:not([data-wired])'), function(card){
+    card.setAttribute('data-wired', '1');
+    var v   = card.querySelector('video');
+    var tap = card.querySelector('.tap');
+    var snd = card.querySelector('.sound');
+    var bar = card.querySelector('.vbar');
+
+    tap.addEventListener('click', function(){
+      if (v.paused) {
+        stopAllVideos(card);
+        v.muted = false;
+        var p = v.play();
+        if (p && p.catch) p.catch(function(){ v.muted = true; v.play(); });
+      } else { v.pause(); }
+    });
+    snd.addEventListener('click', function(e){
+      e.stopPropagation();
+      v.muted = !v.muted;
+      snd.textContent = v.muted ? '\u2715' : '\u266a';
+    });
+    v.addEventListener('play',  function(){ card.classList.add('playing'); });
+    v.addEventListener('pause', function(){ card.classList.remove('playing'); });
+    v.addEventListener('ended', function(){ card.classList.remove('playing'); v.currentTime = 0; bar.style.width = '0'; });
+    v.addEventListener('timeupdate', function(){ if (v.duration) bar.style.width = (v.currentTime / v.duration * 100) + '%'; });
+
+    if (wallObserver) wallObserver.observe(card);
+  });
+}
+
+function wireWallControls() {
+  document.getElementById('moreBtn').addEventListener('click', function(){
+    wallState.expanded = true;
+    applyWallCap();
+  });
+
+  document.getElementById('filters').addEventListener('click', function(e){
+    var chip = e.target.closest('.chip[data-filter]');
+    if (!chip) return;
+    Array.prototype.forEach.call(document.querySelectorAll('.chip[data-filter]'), function(c){
+      c.setAttribute('aria-pressed', String(c === chip));
+    });
+    wallState.filter = chip.dataset.filter;
+    wallState.expanded = false;
+    renderWall(true);
+  });
+}
+
+/* ---------- the rest of the Work library ---------- */
+function libraryClips(projSnap) {
+  var catMap = { restaurant:'dining', hotel:'hotel', travel:'travel', lifestyle:'lifestyle' };
+  var out = [];
+  if (!projSnap || projSnap.empty) return out;
+
+  var docs = projSnap.docs.slice().sort(function(a, b){
+    return (a.data().order || 0) - (b.data().order || 0);
+  });
+
+  docs.forEach(function(doc){
+    var p = doc.data() || {};
+    (p.media || []).forEach(function(m){
+      if (!m || m.type !== 'video' || !m.url) return;
+      var ready = m.optimised === true || m.url.indexOf('video-h264') !== -1;
+      if (!ready) return;
+      out.push({
+        url: m.url,
+        poster: m.poster || '',
+        title: p.title || '',
+        sub: m.label || '',
+        tag: p.tag || '',
+        cat: catMap[p.category] || 'lifestyle'
+      });
+    });
+  });
+  return out;
+}
+
+/* A banner at least this many times wider than it is tall is treated as a
+   wordmark rather than a photograph. Measured against the real files: a
+   3:1 logo strip loses about three quarters of its width to a portrait
+   crop, while banners at 2.2 and below are photographs that should fill. */
+var BANNER_WIDE_RATIO = 2.5;
+
+function fitBanner(band, media, url) {
+  var probe = new Image();
+  probe.onload = function () {
+    if (!probe.naturalWidth || !probe.naturalHeight) return;
+    var ar = probe.naturalWidth / probe.naturalHeight;
+    if (ar >= BANNER_WIDE_RATIO) {
+      media.style.setProperty('--banner-ar', probe.naturalWidth + ' / ' + probe.naturalHeight);
+      band.classList.add('is-wide');
+    }
+  };
+  probe.src = url;
+}
+
+/* ---------- access gate ----------
+   Collects a name and email before revealing a portfolio, when that
+   portfolio has the gate switched on in the admin.
+
+   This is lead capture, not security: the page content still arrives in
+   the browser, so anyone who views source or disables JavaScript can read
+   past it. Anything genuinely confidential should not be on the page.
+
+   Each submission does two things:
+     1. writes a row to Firestore, so the Leads list in admin shows who
+        opened which portfolio and when
+     2. posts to Netlify Forms, which sends the email notification
+   Either can fail without blocking the visitor — being unable to log a
+   lead is never a reason to keep a client out of their own deck. */
+
+var GATE_KEY_PREFIX = 'bokko_pf_access_';
+
+function gateAlreadyPassed(slug){
+  try {
+    return !!localStorage.getItem(GATE_KEY_PREFIX + slug);
+  } catch (e) {
+    return false;   // private browsing: just ask again
+  }
+}
+
+function gateRemember(slug, lead){
+  try {
+    localStorage.setItem(GATE_KEY_PREFIX + slug, JSON.stringify({
+      name: lead.name, email: lead.email, at: Date.now()
+    }));
+  } catch (e) { /* nothing to do; they'll re-enter next visit */ }
+}
+
+function validEmail(v){
+  // Deliberately permissive — the job is catching typos, not policing
+  // address formats. A real address that looks odd should still get in.
+  return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+}
+
+function logLead(db, slug, portfolioName, lead){
+  if (!db) return Promise.resolve();
+  return db.collection('portfolioLeads').add({
+    name: lead.name,
+    email: lead.email,
+    slug: slug,
+    portfolioName: portfolioName || '',
+    userAgent: (navigator.userAgent || '').slice(0, 300),
+    referrer: (document.referrer || '').slice(0, 300),
+    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+  });
+}
+
+function notifyLead(slug, portfolioName, lead){
+  // Netlify Forms: urlencoded POST to any path on the site, with form-name.
+  var body = new URLSearchParams({
+    'form-name': 'portfolio-access',
+    name: lead.name,
+    email: lead.email,
+    portfolio: (portfolioName ? portfolioName + ' — ' : '') + '/portfolio/' + slug
+  }).toString();
+  return fetch('/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: body
+  });
+}
+
+/* Resolves once the visitor is allowed through. */
+function requireAccess(db, slug, data){
+  return new Promise(function(resolve){
+    var gate  = document.getElementById('gate');
+    var form  = document.getElementById('gateForm');
+    var btn   = document.getElementById('gateBtn');
+    var errEl = document.getElementById('gateErr');
+    var nameEl  = document.getElementById('gateName');
+    var emailEl = document.getElementById('gateEmail');
+
+    if (data.gateHeading) document.getElementById('gateHeading').innerHTML = rich(data.gateHeading);
+    if (data.gateBody)    document.getElementById('gateLead').textContent  = data.gateBody;
+    var forEl = document.getElementById('gateFor');
+    if (data.recipient) forEl.textContent = data.recipient; else forEl.style.display = 'none';
+    if (data.brandLogo) {
+      var m = document.getElementById('gateMark');
+      m.classList.add('has-logo');
+      m.innerHTML = '<img src="' + esc(data.brandLogo) + '" alt="BOKKO">';
+    }
+
+    document.getElementById('boot').style.display = 'none';
+    gate.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    document.title = 'BOKKO — Portfolio access';
+    setTimeout(function(){ nameEl.focus(); }, 60);
+
+    function fail(msg, el){
+      errEl.textContent = msg;
+      errEl.classList.add('show');
+      if (el) { el.classList.add('bad'); el.focus(); }
+    }
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      errEl.classList.remove('show');
+      nameEl.classList.remove('bad');
+      emailEl.classList.remove('bad');
+
+      var lead = {
+        name: nameEl.value.trim().slice(0, 120),
+        email: emailEl.value.trim().slice(0, 160)
+      };
+      if (lead.name.length < 2)      return fail('Please enter your name.', nameEl);
+      if (!validEmail(lead.email))   return fail('That email address doesn’t look right — please check it.', emailEl);
+
+      btn.disabled = true;
+      btn.textContent = 'Opening…';
+
+      // Log and notify in the background. Neither gates entry: a failed
+      // write must not cost us the meeting.
+      Promise.allSettled([
+        logLead(db, slug, data.name, lead).catch(function(err){
+          console.warn('Lead not logged:', err && err.message);
+        }),
+        notifyLead(slug, data.name, lead).catch(function(err){
+          console.warn('Lead notification not sent:', err && err.message);
+        })
+      ]).then(function(){
+        gateRemember(slug, lead);
+        gate.classList.remove('open');
+        document.body.style.overflow = '';
+        resolve(lead);
+      });
+    });
+  });
+}
+
+/* ---------- boot ---------- */
+(async function(){
+  const slug = slugFromUrl();
+  const configured = FIREBASE_CONFIG.apiKey && FIREBASE_CONFIG.apiKey !== 'YOUR_API_KEY';
+  if (!configured || typeof firebase === 'undefined') { render(FALLBACK); return; }
+
+  try {
+    firebase.initializeApp(FIREBASE_CONFIG);
+    const db = firebase.firestore();
+
+    const reads = await Promise.all([
+      db.collection('portfolios').where('slugLower', '==', slug || 'default').limit(1).get(),
+      db.collection('content').doc('logos').get(),
+      db.collection('content').doc('testimonials').get(),
+      db.collection('content').doc('branding').get(),
+      db.collection('projects').get()
+    ]);
+    const snap = reads[0], logosDoc = reads[1], testiDoc = reads[2], brandDoc = reads[3], projSnap = reads[4];
+
+    if (snap.empty) {
+      // A named link that doesn't exist should say so, not quietly
+      // show a different client's portfolio.
+      if (slug) { showNotFound(); return; }
+      render(FALLBACK);
+      return;
+    }
+
+    const doc  = snap.docs[0];
+    const data = doc.data() || {};
+    if (data.active === false) { showNotFound(); return; }
+
+    // Merge over the fallback so a half-filled portfolio still looks complete.
+    const merged = Object.assign({}, FALLBACK, data);
+    if (!data.clips   || !data.clips.length)   merged.clips   = FALLBACK.clips;
+    if (!data.results || !data.results.length) merged.results = FALLBACK.results;
+    if (!data.stats   || !data.stats.length)   merged.stats   = FALLBACK.stats;
+
+    // Site-wide assets, unless this portfolio overrides them. Logos are a
+    // single pre-composited image (there's no per-logo library to select
+    // from), so a portfolio's own logosImage — when explicitly set — is a
+    // full-image override rather than a curated subset; that's the only
+    // "which logos show for this client" control this data model supports.
+    // Absent, both behave exactly as before this change.
+    if (data.showTrust !== false) {
+      if (!data.logosImage) {
+        const l = logosDoc.exists ? logosDoc.data() : null;
+        if (l && (l.imageDesktop || l.image)) merged.logosImage = l.imageDesktop || l.image;
+      }
+      const t = testiDoc.exists ? testiDoc.data() : null;
+      if (data.testimonials && data.testimonials.length) merged.testimonials = data.testimonials;
+      else if (t && t.items && t.items.length)           merged.testimonials = t.items;
+    }
+    const b = brandDoc.exists ? brandDoc.data() : null;
+    if (b && b.logoImage) merged.brandLogo = b.logoImage;
+
+    // Everything else in the Work library, revealed by "Load more work".
+    // Only files that have been through the H.264 optimiser are offered —
+    // an unconverted .mov would fail to play for a large share of viewers,
+    // which is worse than not showing it at all.
+    if (data.showLibrary !== false) merged.extraClips = libraryClips(projSnap);
+
+    // Ask who's opening it, when this portfolio asks for that. Someone who
+    // already identified themselves on this device goes straight in.
+    if (data.gateEnabled === true && !gateAlreadyPassed(slug)) {
+      await requireAccess(db, slug, merged);
+    }
+
+    render(merged);
+
+    // Optional: lets you see in admin whether a link was ever opened.
+    doc.ref.update({
+      views: firebase.firestore.FieldValue.increment(1),
+      lastViewed: firebase.firestore.FieldValue.serverTimestamp()
+    }).catch(function(){ /* view counting is best-effort */ });
+
+  } catch (err) {
+    console.warn('Portfolio load failed, showing default.', err);
+    render(FALLBACK);
+  }
+})();
+
+/* ---------- hero showreel ----------
+   Plays muted on loop as soon as it scrolls into view (desktop only, and
+   never when the visitor has asked for reduced motion). One tap turns the
+   sound on. If the file isn't there yet, the whole section stays hidden
+   rather than showing a broken player. */
+(function(){
+  var sec = document.getElementById('showreel');
+  if (!sec) return;
+  var box   = document.getElementById('reelBox');
+  var v     = document.getElementById('reelVideo');
+  var tap   = document.getElementById('reelTap');
+  var snd   = document.getElementById('reelSound');
+  var full  = document.getElementById('reelFull');
+  var cap   = document.getElementById('reelCap');
+  if (!v) return;
+
+  // Optional override, e.g. a per-client showreel set from the admin panel.
+  if (window.SHOWREEL_URL)    v.src = window.SHOWREEL_URL;
+  if (window.SHOWREEL_POSTER) v.poster = window.SHOWREEL_POSTER;
+
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var wide    = window.matchMedia && window.matchMedia('(min-width: 900px)').matches;
+
+  v.addEventListener('error', function(){ sec.style.display = 'none'; });
+
+  v.addEventListener('loadedmetadata', function(){
+    if (!v.videoWidth) { sec.style.display = 'none'; return; }
+    if (v.videoHeight > v.videoWidth) box.classList.add('portrait');
+    sec.style.display = '';
+
+    if (wide && !reduced && 'IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          if (en.isIntersecting) {
+            v.muted = true;
+            var p = v.play();
+            if (p && p.catch) p.catch(function(){});
+          } else if (!v.paused && v.muted) {
+            v.pause();
+          }
+        });
+      }, { threshold: 0.35 });
+      io.observe(box);
+    }
+  });
+
+  function soundOn(on){
+    v.muted = !on;
+    box.classList.toggle('sound-on', on);
+    snd.textContent = on ? 'Mute' : 'Sound on';
+    cap.textContent = on ? 'Showreel \u2014 2026' : 'Tap for sound';
+  }
+
+  tap.addEventListener('click', function(){
+    if (v.muted || v.paused) {
+      // Pause any clip playing in the wall below before taking over the audio.
+      Array.prototype.forEach.call(document.querySelectorAll('.vcard video'), function(o){
+        if (!o.paused) o.pause();
+      });
+      soundOn(true);
+      var p = v.play();
+      if (p && p.catch) p.catch(function(){ v.muted = true; soundOn(false); });
+    } else {
+      v.pause();
+      soundOn(false);
+    }
+  });
+
+  snd.addEventListener('click', function(e){ e.stopPropagation(); soundOn(v.muted); });
+
+  full.addEventListener('click', function(e){
+    e.stopPropagation();
+    if (v.requestFullscreen) v.requestFullscreen();
+    else if (v.webkitEnterFullscreen) v.webkitEnterFullscreen();
+  });
+
+  v.addEventListener('pause', function(){ if (!v.muted) soundOn(false); });
+  // Trigger metadata load even where preload is ignored.
+  if (v.readyState >= 1) v.dispatchEvent(new Event('loadedmetadata'));
+})();
+
+</script>
+</body>
+</html>
