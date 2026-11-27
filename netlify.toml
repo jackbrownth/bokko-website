@@ -1,126 +1,85 @@
-headersOrigin = "config"
-redirectsOrigin = "config"
-plugins = []
+# BOKKO — Netlify configuration
+#
+# Keep this file at the ROOT of the site (same level as index.html).
+# The site is plain static files: there is no build step and no [build]
+# section here on purpose. Do not replace this file with the netlify.toml
+# found inside a "Download deployed files" zip from Netlify: that copy is
+# Netlify's own export and contains a publish path from one computer,
+# which makes the next deploy fail.
 
 [images]
-remote_images = [
-  "https://firebasestorage.googleapis.com/.*"
-]
+  remote_images = ["https://firebasestorage.googleapis.com/.*"]
 
-[functions]
+# ---------------------------------------------------------------- Redirects
+# Order matters: keep the media rule first.
 
-  [functions."*"]
+# 1. Real files under /portfolio/media/ are served as-is.
+[[redirects]]
+  from = "/portfolio/media/*"
+  to = "/portfolio/media/:splat"
+  status = 200
 
-[build]
-publish = "/Users/Jack/Downloads/bokko"
-publishOrigin = "default"
-
-  [build.environment]
-
-  [build.processing]
-
-    [build.processing.css]
-
-    [build.processing.html]
-
-    [build.processing.images]
-
-    [build.processing.js]
-
-  [build.services]
-
-[[headers]]
-for = "/portfolio/*"
-
-  [headers.values]
-  X-Robots-Tag = "noindex, nofollow"
-
-[[headers]]
-for = "/portfolio/media/*"
-
-  [headers.values]
-  Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
-for = "/admin.html"
-
-  [headers.values]
-  X-Robots-Tag = "noindex, nofollow"
-
-[[headers]]
-for = "/admin"
-
-  [headers.values]
-  X-Robots-Tag = "noindex, nofollow"
-
-[[headers]]
-for = "/assets/*"
-
-  [headers.values]
-  Cache-Control = "public, max-age=86400"
-
-[[headers]]
-for = "/showreel/*"
-
-  [headers.values]
-  Cache-Control = "public, max-age=604800"
-
-[[headers]]
-for = "/*.png"
-
-  [headers.values]
-  Cache-Control = "public, max-age=604800"
-
-[[headers]]
-for = "/*.ico"
-
-  [headers.values]
-  Cache-Control = "public, max-age=604800"
+# 2. /portfolio or /portfolio/ with no client code goes to the homepage.
+#    force is required because /portfolio/index.html is a real file.
+[[redirects]]
+  from = "/portfolio"
+  to = "/"
+  status = 301
+  force = true
 
 [[redirects]]
-from = "/portfolio/media/*"
-to = "/portfolio/media/:splat"
-status = 200
-force = false
+  from = "/portfolio/"
+  to = "/"
+  status = 301
+  force = true
 
-  [redirects.query]
-
-  [redirects.conditions]
-
-  [redirects.headers]
-
+# 3. Every other /portfolio/<code> URL serves the portfolio page, which
+#    reads the code from the URL and looks it up in Firestore.
 [[redirects]]
-from = "/portfolio"
-to = "/"
-status = 301
-force = true
+  from = "/portfolio/*"
+  to = "/portfolio/index.html"
+  status = 200
 
-  [redirects.query]
+# ------------------------------------------------------------------ Headers
 
-  [redirects.conditions]
+# Client proposal links and the admin should not appear in search results.
+[[headers]]
+  for = "/portfolio/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
 
-  [redirects.headers]
+[[headers]]
+  for = "/admin.html"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
 
-[[redirects]]
-from = "/portfolio/"
-to = "/"
-status = 301
-force = true
+[[headers]]
+  for = "/admin"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
 
-  [redirects.query]
+# Long cache on portfolio videos: their names are unique per upload.
+[[headers]]
+  for = "/portfolio/media/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
 
-  [redirects.conditions]
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
 
-  [redirects.headers]
+[[headers]]
+  for = "/showreel/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
 
-[[redirects]]
-from = "/portfolio/*"
-to = "/portfolio/index.html"
-status = 200
-force = false
+[[headers]]
+  for = "/*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
 
-  [redirects.query]
-
-  [redirects.conditions]
-
-  [redirects.headers]
+[[headers]]
+  for = "/*.ico"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
