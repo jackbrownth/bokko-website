@@ -1070,6 +1070,48 @@ html[lang="th"] .imgcap{letter-spacing:.02em;font-size:11px}
   .wall .vcard{flex:none!important;width:auto!important}
   .fit,.cta,.gi-offer{box-shadow:none!important}
 }
+
+/* ============================================================
+   Investment options side by side, and optional add-ons.
+   ============================================================ */
+.gi-offers{margin-top:44px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;align-items:stretch}
+.gi-offers.n3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.gi-ocard{position:relative;background:linear-gradient(135deg,var(--deep),var(--deep2));color:#fff;border-radius:30px;box-shadow:var(--shadow);padding:44px 40px 36px;display:flex;flex-direction:column}
+.gi-ocard.alt{background:#fff;color:var(--deep);border:1px solid rgba(6,47,61,.14)}
+.gi-ocard .gi-label{font-weight:900;letter-spacing:.08em}
+.gi-ocard.alt .gi-label{color:var(--aquad)}
+.gi-obadge{position:absolute;top:20px;right:20px;background:var(--pink);color:#fff;border-radius:999px;padding:6px 12px;font-size:10px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;line-height:1.2}
+.gi-ocard .gi-price{margin-top:20px;font-weight:700;font-size:clamp(38px,4.6vw,64px);letter-spacing:-.07em;line-height:.92;white-space:nowrap}
+.gi-ocard .gi-price small{display:block;margin-top:12px;font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:900;color:var(--pink)}
+.gi-ocard .gi-offer-title{margin:20px 0 0;font-size:16px;line-height:1.5;max-width:none;color:inherit;opacity:.88}
+.gi-ocard .gi-points{margin-top:22px}
+.gi-ocard .gi-points li{padding:12px 0;font-size:14.5px}
+.gi-ocard.alt .gi-points{border-top-color:rgba(6,47,61,.2)}
+.gi-ocard.alt .gi-points li{border-bottom-color:rgba(6,47,61,.12);color:rgba(6,47,61,.9)}
+.gi-both{margin:26px 0 0;font-size:15px;line-height:1.7;color:rgba(6,47,61,.78);max-width:74ch}
+html[lang="th"] .gi-obadge{letter-spacing:.02em;font-size:11.5px}
+html[lang="th"] .gi-ocard .gi-price small{letter-spacing:.03em;font-size:13px}
+@media(max-width:860px){.gi-offers,.gi-offers.n3{grid-template-columns:1fr}.gi-ocard{padding:40px 26px 30px}}
+
+#addOnsSection .ao-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-top:8px}
+.ao-card{background:#fff;border:1px solid rgba(6,47,61,.12);border-radius:30px;box-shadow:var(--shadow);padding:36px 34px 30px;display:flex;flex-direction:column}
+.ao-tag{display:block;font-size:11px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--aquad)}
+.ao-card h3{margin:12px 0 0;font-size:clamp(21px,2.3vw,27px);font-weight:700;letter-spacing:-.045em;line-height:1.12}
+.ao-price{margin-top:18px;font-size:clamp(28px,3.2vw,40px);font-weight:700;letter-spacing:-.06em;line-height:1;color:var(--pink);white-space:nowrap}
+.ao-price small{display:block;margin-top:9px;font-size:11.5px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);white-space:normal;line-height:1.4}
+.ao-price + .ao-price{margin-top:16px;padding-top:16px;border-top:1px solid rgba(6,47,61,.12)}
+.ao-body{margin:18px 0 0;font-size:15px;line-height:1.66;color:rgba(6,47,61,.8)}
+.ao-points{list-style:none;margin:18px 0 0;padding:0;border-top:1px solid rgba(6,47,61,.14)}
+.ao-points li{padding:11px 0;border-bottom:1px solid rgba(6,47,61,.1);font-size:14.5px;line-height:1.5;color:rgba(6,47,61,.9)}
+.ao-note{margin:30px 0 0;font-size:14.5px;line-height:1.7;color:rgba(6,47,61,.74);max-width:74ch}
+html[lang="th"] .ao-tag,html[lang="th"] .ao-price small{letter-spacing:.03em;font-size:12.5px}
+html[lang="th"] .ao-card h3{letter-spacing:0;line-height:1.35}
+@media(max-width:860px){#addOnsSection .ao-grid{grid-template-columns:1fr}.ao-card{padding:30px 24px 24px}}
+@media print{
+  .gi-ocard,.ao-card{break-inside:avoid;page-break-inside:avoid;box-shadow:none!important}
+  .gi-ocard{padding:28px 26px 22px!important}
+  .ao-card{padding:24px 22px 18px!important}
+}
 </style>
 </head>
 <body>
@@ -1594,6 +1636,18 @@ html[lang="th"] .imgcap{letter-spacing:.02em;font-size:11px}
     </div>
   </section>
 
+  <section id="addOnsSection" style="display:none">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow"><span class="dot"></span><span id="aoEyebrow"></span></span>
+        <h2 id="aoHeading"></h2>
+        <div class="sub" id="aoSub"></div>
+      </div>
+      <div class="ao-grid" id="aoGrid"></div>
+      <p class="ao-note" id="aoNote"></p>
+    </div>
+  </section>
+
   <section id="deliverablesSection" style="display:none">
     <div class="wrap">
       <div class="head">
@@ -1638,6 +1692,8 @@ html[lang="th"] .imgcap{letter-spacing:.02em;font-size:11px}
         </div>
         <ul class="gi-points" id="giPoints"></ul>
       </div>
+      <div class="gi-offers reveal" id="giOffers" style="display:none"></div>
+      <p class="gi-both" id="giBoth"></p>
       <h3 class="gi-h3 serif" id="giCompareTitle"></h3>
       <table class="dt reveal" id="giCompare"></table>
       <div class="gi-adv reveal" id="giAdv">
@@ -1880,7 +1936,7 @@ var SECTION_ELEMENT_ID = {
   audienceStrategy: 'audienceStrategySection', searchIntent: 'searchIntentSection',
   creatorMarketing: 'creatorMarketingSection', reviewPanels: 'reviewPanelsSection',
   branchPlans: 'branchPlansSection', properties: 'propertiesSection',
-  gallery: 'gallerySection', showcase: 'showcaseSection',
+  gallery: 'gallerySection', showcase: 'showcaseSection', addOns: 'addOnsSection',
   deliverables: 'deliverablesSection', productionLogistics: 'productionLogisticsSection',
   groupInvestment: 'groupInvestmentSection', terms: 'termsSection', trust: 'trustSection'
 };
@@ -1889,7 +1945,7 @@ var DEFAULT_SECTION_ORDER = [
   'services','pricing','performanceMeasurement','includedExcluded','eventsActivations',
   'contentPillars','roadmap','partnership','mediaInvestment','audienceStrategy',
   'searchIntent','creatorMarketing','reviewPanels','branchPlans',
-  'properties','gallery','showcase','deliverables','productionLogistics','groupInvestment','terms','trust'
+  'properties','gallery','showcase','deliverables','productionLogistics','groupInvestment','addOns','terms','trust'
 ];
 function applySectionOrder(d){
   var flow = document.getElementById('sectionsFlow');
@@ -2697,7 +2753,8 @@ function render(d){
   });
 
   renderOptionalSection(d, 'groupInvestment', function(content){
-    if (!content.offerPrice && !(content.compareRows || []).length) return false;
+    var offers = (content.offers || []).filter(function(o){ return o && o.price; });
+    if (!content.offerPrice && !offers.length && !(content.compareRows || []).length) return false;
     document.getElementById('giEyebrow').textContent = content.eyebrow || 'Investment';
     document.getElementById('giHeading').innerHTML = rich(content.heading || '');
     paras(document.getElementById('giIntro'), content.intro);
@@ -2705,7 +2762,22 @@ function render(d){
     pfText('giStdCap', hasStd ? content.standardCaption : '');
     pfText('giBridge', content.bridge);
 
-    document.getElementById('giOffer').style.display = content.offerPrice ? '' : 'none';
+    // Two or three options side by side replace the single rate panel; the first is the highlighted one.
+    var pfLines = function(v){ return (Array.isArray(v) ? v : String(v || '').split('\n')).map(function(x){ return String(x).trim(); }).filter(Boolean); };
+    var offersEl = document.getElementById('giOffers');
+    offersEl.style.display = offers.length ? '' : 'none';
+    offersEl.className = 'gi-offers reveal' + (offers.length === 3 ? ' n3' : '');
+    offersEl.innerHTML = offers.map(function(o, i){
+      return '<div class="gi-ocard' + (i > 0 ? ' alt' : '') + '">' +
+        (o.badge ? '<span class="gi-obadge">' + esc(o.badge) + '</span>' : '') +
+        (o.label ? '<span class="gi-label">' + esc(o.label) + '</span>' : '') +
+        '<div class="gi-price">' + esc(o.price) + (o.unit ? '<small>' + esc(o.unit) + '</small>' : '') + '</div>' +
+        (o.title ? '<p class="gi-offer-title">' + esc(o.title) + '</p>' : '') +
+        '<ul class="gi-points">' + pfLines(o.points).map(function(p){ return '<li>' + esc(p) + '</li>'; }).join('') + '</ul>' +
+      '</div>';
+    }).join('');
+    pfText('giBoth', offers.length ? content.offersNote : '');
+    document.getElementById('giOffer').style.display = (content.offerPrice && !offers.length) ? '' : 'none';
     document.getElementById('giOfferLabel').textContent = content.offerLabel || '';
     document.getElementById('giPrice').textContent = content.offerPrice || '';
     document.getElementById('giUnit').textContent = content.offerUnit || '';
@@ -2740,6 +2812,26 @@ function render(d){
       '</div>';
     }).join('');
     pfText('giFoot', content.footNote);
+  });
+
+  renderOptionalSection(d, 'addOns', function(content){
+    var items = (content.items || []).filter(function(it){ return it && (it.title || it.price); });
+    if (!items.length) return false;
+    var lines = function(v){ return (Array.isArray(v) ? v : String(v || '').split('\n')).map(function(x){ return String(x).trim(); }).filter(Boolean); };
+    document.getElementById('aoEyebrow').textContent = content.eyebrow || 'Optional add-ons';
+    document.getElementById('aoHeading').innerHTML = rich(content.heading || '');
+    paras(document.getElementById('aoSub'), content.sub);
+    document.getElementById('aoGrid').innerHTML = items.map(function(it){
+      var price = function(v, u){ return v ? '<div class="ao-price">' + esc(v) + (u ? '<small>' + esc(u) + '</small>' : '') + '</div>' : ''; };
+      return '<div class="ao-card reveal">' +
+        (it.tag ? '<span class="ao-tag">' + esc(it.tag) + '</span>' : '') +
+        (it.title ? '<h3>' + esc(it.title) + '</h3>' : '') +
+        price(it.price, it.unit) + price(it.price2, it.unit2) +
+        (it.body ? '<p class="ao-body">' + esc(it.body) + '</p>' : '') +
+        '<ul class="ao-points">' + lines(it.points).map(function(p){ return '<li>' + esc(p) + '</li>'; }).join('') + '</ul>' +
+      '</div>';
+    }).join('');
+    pfText('aoNote', content.note);
   });
 
   renderOptionalSection(d, 'terms', function(content){
