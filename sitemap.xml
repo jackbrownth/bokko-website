@@ -122,6 +122,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://bokko.co/th/restaurant-page-management/</loc>
+    <xhtml:link rel="alternate" hreflang="th" href="https://bokko.co/th/restaurant-page-management/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://bokko.co/th/digital-marketing-agency-bangkok/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://bokko.co/digital-marketing-agency-bangkok/"/>
     <xhtml:link rel="alternate" hreflang="th" href="https://bokko.co/th/digital-marketing-agency-bangkok/"/>
